@@ -195,8 +195,8 @@ function Admin() {
                     <tr>
                       <th>Name</th>
                       <th>Category</th>
-                      <th>Price ($)</th>
-                      <th>Price Sale ($)</th>
+                      <th>Price($)</th>
+                      <th>Sale($)</th>
                       <th>Rate</th>
                     </tr>
                   </thead>
@@ -227,8 +227,19 @@ function Admin() {
               <table class="content-table">
                 <thead>
                   <tr>
-                    <th>Username</th>
-                    <th>IsAdmin</th>
+                    <th class="sort sortUsername">
+                      <input type="radio" name="sort" value="" />Username<i class="fas fa-sort"></i>
+                    </th>
+                    <th class="sort sortFullName">
+                      <input type="radio" name="sort" value="" />FullName<i class="fas fa-sort"></i>
+                    </th>
+                    <th class="sort sortAddress">
+                      <input type="radio" name="sort" value="" />Address<i class="fas fa-sort"></i>
+                    </th>
+                    <th class="sort sortPhone">
+                      <input type="radio" name="sort" value="" />Phone<i class="fas fa-sort"></i>
+                    </th>
+                    <th class="sort sortPermission">IsAdmin<i class="fas fa-sort"></i></th>
                     <th>Action</th>
                   </tr>
                 </thead>
@@ -256,11 +267,31 @@ function Admin() {
                 <thead>
                   <tr>
                     <th>Image</th>
-                    <th>Name</th>
-                    <th>Category</th>
-                    <th>Price ($)</th>
-                    <th>Price Sale ($)</th>
-                    <th>Rate</th>
+                    <th class="sort sortName col1">
+                      <input type="radio" name="sort" value="" checked />
+                      Name
+                      <i class="fas fa-sort"></i>
+                    </th>
+                    <th class="sort sortCategory col2">
+                      <input type="radio" name="sort" value="" />
+                      Category
+                      <i class="fas fa-sort"></i>
+                    </th>
+                    <th class="sort sortPrice col3">
+                      <input type="radio" name="sort" value="" />
+                      Price($)
+                      <i class="fas fa-sort"></i>
+                    </th>
+                    <th class="sort sortSale col4">
+                      <input type="radio" name="sort" value="" />
+                      Sale($)
+                      <i class="fas fa-sort"></i>
+                    </th>
+                    <th class="sort sortRate col5">
+                      <input type="radio" name="sort" value="" />
+                      Rate
+                      <i class="fas fa-sort"></i>
+                    </th>
                     <th>Action</th>
                   </tr>
                 </thead>
@@ -289,7 +320,11 @@ function Admin() {
                 <thead>
                   <tr>
                     <th>Image</th>
-                    <th>Name</th>
+                    <th class="sort sortName">
+                      <input type="radio" name="sort" value="" checked />
+                      Name
+                      <i class="fas fa-sort"></i>
+                    </th>
                     <th>Action</th>
                   </tr>
                 </thead>
@@ -316,37 +351,26 @@ function Admin() {
               <table class="content-table">
                 <thead>
                   <tr>
-                    <th>Username</th>
+                    <th class="sort sortUsername">
+                      <input type="radio" name="sort" value="" checked />
+                      Username
+                      <i class="fas fa-sort"></i>
+                    </th>
                     <th>Products</th>
-                    <th>Subtotal</th>
-                    <th>Status</th>
+                    <th class="sort sortSubtotal">
+                      <input type="radio" name="sort" value="" />
+                      Subtotal
+                      <i class="fas fa-sort"></i>
+                    </th>
+                    <th class="sort sortStatus">
+                      <input type="radio" name="sort" value="" />
+                      Status
+                      <i class="fas fa-sort"></i>
+                    </th>
                     <th>Action</th>
                   </tr>
                 </thead>
-                <tbody>
-                  <!-- <tr>
-                    <td>npt</td>
-                    <td class="action">
-                    <button class="button-icon see-detail">
-                        <span>Xem chi tiết</span>
-                    </button>
-                    </td>
-                    <td>1.182.232.232.233</td>
-                    <td class="status-bill">
-                    <i class="fas fa-check-circle completed"></i>
-                    <i class="fas fa-times-circle cancelled"></i>
-                    <div class="lds-dual-ring"></div>
-                    </td>
-                    <td class="action">
-                    <button class="button-icon accept">
-                        <i class="fas fa-check-circle"></i>
-                    </button>
-                    <button class="button-icon cancel">
-                        <i class="fas fa-times-circle"></i>
-                    </button>
-                    </td>
-                </tr> -->
-                </tbody>
+                <tbody></tbody>
               </table>
             </div>
             <div class="button-add add-category" style="visibility: hidden;">
@@ -388,11 +412,31 @@ function Admin() {
               <table class="content-table">
                 <thead>
                   <tr>
-                    <th>Product</th>
-                    <th>Category</th>
-                    <th>Price</th>
-                    <th>Quantity Sold</th>
-                    <th>Total</th>
+                    <th class="sort sortProductName">
+                      <input type="radio" name="sort" value="" />
+                      Product
+                      <i class="fas fa-sort"></i>
+                    </th>
+                    <th class="sort sortCategory">
+                      <input type="radio" name="sort" value="" />
+                      Category
+                      <i class="fas fa-sort"></i>
+                    </th>
+                    <th class="sort sortPrice">
+                      <input type="radio" name="sort" value="" />
+                      Price
+                      <i class="fas fa-sort"></i>
+                    </th>
+                    <th class="sort sortQTY">
+                      <input type="radio" name="sort" value="" />
+                      Quantity Sold
+                      <i class="fas fa-sort"></i>
+                    </th>
+                    <th class="sort sortTotal">
+                      <input type="radio" name="sort" value="" />
+                      Total
+                      <i class="fas fa-sort"></i>
+                    </th>
                   </tr>
                 </thead>
                 <tbody></tbody>

@@ -30,6 +30,34 @@ const TableEvent = {
       this.Add();
       this.Remove();
       this.Search();
+      this.Sort();
+    },
+    Sort: function () {
+      $$('.tmanager-user .sort').forEach((ele) => {
+        ele.onclick = function () {
+          let type = ele.classList[1];
+          switch (type) {
+            case 'sortUsername':
+              sortTable(0, 'user');
+              break;
+            case 'sortFullName':
+              sortTable(1, 'user');
+              break;
+            case 'sortAddress':
+              sortTable(2, 'user');
+              break;
+            case 'sortPhone':
+              sortTable(3, 'user');
+              break;
+            case 'sortPermission':
+              sortTable(4, 'user');
+              break;
+            default:
+              return;
+          }
+          ele.querySelector('input').checked = true;
+        };
+      });
     },
   },
   Product: {
@@ -106,6 +134,33 @@ const TableEvent = {
         HandleEvent.Product.RemoveImage(btn);
       });
     },
+    Sort: function () {
+      $$('.tmanager-product .sort').forEach((ele) => {
+        ele.onclick = function () {
+          let type = ele.classList[1];
+          switch (type) {
+            case 'sortName':
+              sortTable(1, 'product');
+              break;
+            case 'sortCategory':
+              sortTableByCategoryProduct(2);
+              break;
+            case 'sortPrice':
+              sortTable(3, 'product');
+              break;
+            case 'sortSale':
+              sortTable(4, 'product');
+              break;
+            case 'sortRate':
+              sortTable(5, 'product');
+              break;
+            default:
+              return;
+          }
+          ele.querySelector('input').checked = true;
+        };
+      });
+    },
     Initialize: function () {
       this.Save();
       this.Add();
@@ -116,6 +171,7 @@ const TableEvent = {
       this.SaveImage();
       this.Search();
       this.HandleRate();
+      this.Sort();
     },
   },
   Category: {
@@ -151,12 +207,28 @@ const TableEvent = {
         };
       });
     },
+    Sort: function () {
+      $$('.tmanager-category .sort').forEach((ele) => {
+        ele.onclick = function () {
+          let type = ele.classList[1];
+          switch (type) {
+            case 'sortName':
+              sortTable(1, 'category');
+              break;
+            default:
+              return;
+          }
+          ele.querySelector('input').checked = true;
+        };
+      });
+    },
     Initialize: function () {
       this.Save();
       this.Add();
       this.Remove();
       this.Search();
       this.ChangeImage();
+      this.Sort();
     },
   },
   Bill: {
@@ -185,6 +257,28 @@ const TableEvent = {
       this.SeeDetail();
       this.Accept();
       this.Cancel();
+      this.Sort();
+    },
+    Sort: function () {
+      $$('.tmanager-bill .sort').forEach((ele) => {
+        ele.onclick = function () {
+          let type = ele.classList[1];
+          switch (type) {
+            case 'sortUsername':
+              sortTable(0, 'bill');
+              break;
+            case 'sortSubtotal':
+              sortTable(2, 'bill');
+              break;
+            case 'sortStatus':
+              sortTable(3, 'bill');
+              break;
+            default:
+              return;
+          }
+          ele.querySelector('input').checked = true;
+        };
+      });
     },
   },
   Revenue: {
@@ -195,6 +289,34 @@ const TableEvent = {
     },
     Initialize: function () {
       this.Filter();
+      this.Sort();
+    },
+    Sort: function () {
+      $$('.tmanager-revenue .sort').forEach((ele) => {
+        ele.onclick = function () {
+          let type = ele.classList[1];
+          switch (type) {
+            case 'sortProductName':
+              sortTable(0, 'revenue');
+              break;
+            case 'sortCategory':
+              sortTable(1, 'revenue');
+              break;
+            case 'sortPrice':
+              sortTable(2, 'revenue');
+              break;
+            case 'sortQTY':
+              sortTable(3, 'revenue');
+              break;
+            case 'sortTotal':
+              sortTable(4, 'revenue');
+              break;
+            default:
+              return;
+          }
+          ele.querySelector('input').checked = true;
+        };
+      });
     },
   },
   Initialize: function () {

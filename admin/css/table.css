@@ -355,3 +355,14 @@
   background-color: var(--purple);
   color: white;
 }
+th {
+  user-select: none;
+}
+.sort {
+  user-select: none;
+  cursor: pointer;
+}
+
+.sort > i {
+  margin-left: 5px;
+}

@@ -97,7 +97,8 @@ const ProductModel = {
         : this.getAll().length / LIMIT + 1);
   },
   getDocumentsByPage: function (page) {
-    return this.getAll().slice((page - 1) * LIMIT, page * LIMIT);
+    return sortObjectByField('name', this.getAll().slice((page - 1) * LIMIT, page * LIMIT), 'asc');
+    //return this.getAll().slice((page - 1) * LIMIT, page * LIMIT);
   },
   saveImage: function (id, arrayImage) {
     let collection = this.getAll();
@@ -138,6 +139,12 @@ const ProductModel = {
     return this.getAll()
       .filter((product) => product.rate == 5)
       .slice((page - 1) * LIMIT, page * LIMIT);
+  },
+  
+  getDocumentSortByField: function (field, data, type = 'asc') {
+    return type == 'asc'
+      ? data.sort((a, b) => (a[field] > b[field] ? 1 : b[field] > a[field] ? -1 : 0))
+      : data.sort((a, b) => (a[field] > b[field] ? 1 : b[field] > a[field] ? -1 : 0)).reverse();
   },
 };
 

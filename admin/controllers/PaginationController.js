@@ -68,8 +68,11 @@ const PaginationController = {
         let result = ``;
         collection.forEach((document) => {
           result += `
-              <tr>
-                  <td contenteditable="true" class="username">${document.username}</td>
+                <tr>
+                  <td  class="username">${document.username}</td>
+                  <td class="fullname">${document.fullname}</td>
+                  <td class="address">${document.address}</td>
+                  <td class="phone">${document.phone}</td>
                   <td class="isAdmin">                
                       <label class="switch">
                           <input type="checkbox" ${document.isAdmin ? 'checked' : ''}>
@@ -86,10 +89,14 @@ const PaginationController = {
                           <i class="fas fa-save"></i>
                       </button>
                   </td>
-              </tr>`;
+                </tr>`;
         });
         $('.tmanager-user table tbody').innerHTML = result;
         TableEvent.User.Initialize();
+        let currentSort = +$('.tmanager-user input:checked').parentNode.classList[2].split(
+          'col'
+        )[1];
+        sortTable(currentSort, 'user');
       };
     });
     $$('.page-product ul li').forEach((page) => {
@@ -219,6 +226,10 @@ const PaginationController = {
         });
         $('.tmanager-category table tbody').innerHTML = result;
         TableEvent.Category.Initialize();
+        let currentSort = +$('.tmanager-category input:checked').parentNode.classList[2].split(
+          'col'
+        )[1];
+        sortTable(currentSort, 'category');
       };
     });
     $$('.page-bill ul li').forEach((page) => {
@@ -277,6 +288,10 @@ const PaginationController = {
         });
         $('.tmanager-bill table tbody').innerHTML = result;
         TableEvent.Bill.Initialize();
+        let currentSort = +$('.tmanager-bill input:checked').parentNode.classList[2].split(
+          'col'
+        )[1];
+        sortTable(currentSort, 'bill');
       };
     });
   },
@@ -368,6 +383,7 @@ const PaginationController = {
               </div>
             </td>
             <td contenteditable="true" class="priceProduct">${document.price}</td>
+            <td contenteditable="true" class="saleProduct">${document.sale}</td>
             <td class="rateProduct">
               <span class="input-number-decrement">–</span>
                 <input class="input-number" type="text" value="${document.rate}" min="0" max="5" disabled>

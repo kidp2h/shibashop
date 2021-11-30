@@ -2,15 +2,12 @@ const BillModel = {
     Initialize: function () {
         localStorage.setItem('bills', JSON.stringify(BILLS));
     },
-    
     getAll: function () {
         return JSON.parse(localStorage.getItem('bills'));
     },
-
     UpdateAll: function (data) {
         localStorage.setItem('bills', JSON.stringify(data));
     },
-
     setStatusBill: function (id, status) {
         let collection = this.getAll();
         for (let bill of collection) {
@@ -27,21 +24,22 @@ const BillModel = {
             }
         }
     },
-
     getBillById: function (id) {
         let collection = this.getAll();
         return collection.filter((bill) => bill.id == id)[0];
     },
-
     getTotalPage: function () {
         return (totalPageUser =
             this.getAll().length % LIMIT == 0
                 ? this.getAll().length / LIMIT
                 : this.getAll().length / LIMIT + 1);
     },
-
     getDocumentsByPage: function (page) {
-        return this.getAll().slice((page - 1) * LIMIT, page * LIMIT);
+        return sortObjectByField(
+            'username',
+            this.getAll().slice((page - 1) * LIMIT, page * LIMIT),
+            'asc'
+        );
     },
 
     insertBill(bill) {
@@ -50,4 +48,5 @@ const BillModel = {
         this.UpdateAll(bills);
     },
 };
+
 if (BillModel.getAll() == null) BillModel.Initialize();
