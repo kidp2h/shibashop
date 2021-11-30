@@ -1,0 +1,70 @@
+.loader-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10000000000;
+    color: #fff;
+    background: linear-gradient(to bottom, var(--primary-color) 50%, violet);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    transition: 0s;
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+
+.loader-header {
+    width: 30rem;
+    text-align: center;
+    overflow: hidden;
+}
+
+.loader-header h2 {
+    font-size: 4rem;
+    font-weight: bolder;
+    transform: translateY(150%);
+    animation: lentren 1s infinite;
+    animation-timing-function: cubic-bezier(0.19, 1.13, 0.48, -0.04);
+}
+
+.loder-content {
+    width: 30rem;
+    text-align: center;
+    overflow: hidden;
+}
+
+.loder-content p {
+    font-size: 1.8rem;
+    letter-spacing: 0.5rem;
+    transform: translateY(150%);
+    animation: lentren 1s infinite;
+    animation-timing-function: cubic-bezier(0.19, 1.13, 0.48, -0.04);
+}
+
+.loader-img {
+    width: 15rem;
+    overflow: hidden;
+}
+
+.loader-img img {
+    width: 100%;
+    transform: translateY(130%);
+    opacity: 1;
+    animation: lentren 1s infinite;
+    animation-timing-function: cubic-bezier(0.19, 1.13, 0.48, -0.04);
+}
+
+.loader-container.fader-out {
+    display: none;
+}
+
+
+@keyframes lentren {
+    to {
+        transform: translateY(-110%);
+        opacity: 1;
+    }
+}

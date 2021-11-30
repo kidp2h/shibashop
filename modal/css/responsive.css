@@ -1,0 +1,34 @@
+@media (min-width: 740px) and (max-width: 1023px) {
+
+    #main .modal__body {
+        width: 80%;
+        min-width: 60rem;
+    }
+}
+
+@media (max-width: 739px) {
+    #main .modal__body {
+        width: 100%;
+        min-width: 20rem;
+        height: 100vh;
+    }
+
+    #main .action.hidden {
+        display: none;
+    }
+
+    #main .modal__inner .box .hidden {
+        display: block;
+    }
+
+    #main .modal__inner .box {
+        width: 100%;
+    }
+
+    #main .changeSign {
+        width: 50px;
+        font-size: 1.2rem;
+    }
+}
+
+
