@@ -1,5 +1,4 @@
 const CategoryController = {
-
   LoadCategory: function (page = 1) {
     let row = '';
     CategoryModel.getDocumentsByPage(page).forEach((item) => {
@@ -25,26 +24,25 @@ const CategoryController = {
               </button>
           </td>
       </tr>`;
-      
     });
-    $(".tmanager-category table tbody").innerHTML = row;
+    $('.tmanager-category table tbody').innerHTML = row;
     TableEvent.Category.Initialize();
   },
-  SaveImageToDB : function(id, image){
+  SaveImageToDB: function (id, image) {
     CategoryModel.saveImage(id, image);
-    let currentPage = Number($(".page-category input.currentPage").value);
-    PaginationController.LoadDataAtPage("category",currentPage)
+    let currentPage = Number($('.page-category input.currentPage').value);
+    PaginationController.LoadDataAtPage('category', currentPage);
   },
-  SearchCategory: function(key){
-    key = key.toLowerCase()
-    if(key != "" && key != undefined){
-      let result = []
-      CategoryModel.getAll().forEach(document => {
-        if(document.name.toLowerCase().match(new RegExp(`${key}.*`,"g"))){
+  SearchCategory: function (key) {
+    key = key.toLowerCase();
+    if (key != '' && key != undefined) {
+      let result = [];
+      CategoryModel.getAll().forEach((document) => {
+        if (document.name.toLowerCase().match(new RegExp(`${key}.*`, 'g'))) {
           result.push(document);
         }
-      })
-      let row = ''
+      });
+      let row = '';
       result.forEach((item) => {
         row += `
       <tr>
@@ -69,12 +67,11 @@ const CategoryController = {
           </td>
       </tr>`;
       });
-      $(".tmanager-category table tbody").innerHTML = row
+      $('.tmanager-category table tbody').innerHTML = row;
       TableEvent.Category.Initialize();
-    }else{
-      this.LoadCategory(Number($(".page-category input.currentPage").value));
+    } else {
+      this.LoadCategory(Number($('.page-category input.currentPage').value));
       //PaginationController.LoadDataAtPage("category",Number($(".page-category input.currentPage").value))
     }
-  }
-
+  },
 };
