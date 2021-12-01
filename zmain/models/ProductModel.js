@@ -140,11 +140,15 @@ const ProductModel = {
       .filter((product) => product.rate == 5)
       .slice((page - 1) * LIMIT, page * LIMIT);
   },
-  
+
   getDocumentSortByField: function (field, data, type = 'asc') {
     return type == 'asc'
       ? data.sort((a, b) => (a[field] > b[field] ? 1 : b[field] > a[field] ? -1 : 0))
       : data.sort((a, b) => (a[field] > b[field] ? 1 : b[field] > a[field] ? -1 : 0)).reverse();
+  },
+  getProductByCategory(category = '0') {
+    if (category == 0) return this.getAll();
+    return this.getAll().filter((product) => product.category == category);
   },
 };
 
