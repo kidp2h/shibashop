@@ -156,5 +156,9 @@ const UserModel = {
     this.UpdateAll(users);
     this.setUserCurrent(userCurrent);
   },
+
+  getIdMax() {
+    return Math.max(...this.getAll().map(user => user.id))
+  }
 };
 if (UserModel.getAll() == null) UserModel.Initialize();
