@@ -5,7 +5,7 @@ function productItems(item){
         <div class="product-items"></div>
         <div class="product-top">
             <a href="#product-${item.id}" class="product-thumb">
-                <img src="${item.imgList[0]}" alt="ảnh 1" width="200px" height="200px">
+                <img src="${'./images/Dai.jpg'}" alt="ảnh 1" width="200px" height="200px">
             </a>
            
             <!-- //Mua ngay -->
@@ -38,6 +38,7 @@ function productItems(item){
 //Lấy dữ liệu cho trang đầu tiên trong local và in ra màn hình
 function renderData (x=1) {
     var htmls = ProductModel.getDocumentsByPage(x).map((item) => {
+        console.log(item);
         return productItems(item);
     })
     
