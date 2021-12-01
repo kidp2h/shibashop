@@ -110,8 +110,8 @@ function ProductItem( product, type) {
             <div class="product-info">
                 <h2 class="product-info__heading">${product.name}</h2>
                 <div class="product-price">
-                    <span class="product-info__price product-info__price--sale">${product.sale}</span>
-                    <span class="product-info__price">${ formatMoney(product.price, '$')}</span>
+                    <span class="product-info__price product-info__price--sale">${ formatMoney(product.price, '$')}</span>
+                    <span class="product-info__price">${ formatMoney(product.sale, '$')}</span>
                 </div> 
             </div> 
         </div>

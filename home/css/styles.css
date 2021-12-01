@@ -517,8 +517,13 @@
 
 #main .product-add-cart {
     flex-grow: 1;
-    text-align: center;
+
     cursor: pointer;
+    height: 100%;
+    user-select: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 #main .product-add-cart p {

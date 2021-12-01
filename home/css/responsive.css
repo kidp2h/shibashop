@@ -90,12 +90,17 @@
         --column: 1;
     }
 
+    #wishList .wishList__box {
+        width: 100%;
+    }
+
     #main #home .product-box,
     #main #wishList .product-box {
-        --spacing: 20px;
+        --spacing: 10px;
         --column: 2;
         padding: 0;
-        width: 90%;
+        width: 100%;
+        max-width: 500px;
         min-width: 0px;
     }
 
@@ -116,6 +121,14 @@
     #main #home .product-quantity,
     #main #wishList .product-quantity{
         width: 50%;
+    }
+
+    #main .product-quantity input { 
+        width: 40%;
+    }
+
+    #main .product-quantity button {
+        width: 30%;
     }
 
     #main .product-add-cart #cart-icon {

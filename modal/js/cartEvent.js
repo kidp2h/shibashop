@@ -75,7 +75,7 @@ function ProductItemCartModel(product) {
             </div>
             <div class="modal__cart-item-infor">
                 <h3 class="modal__cart-item-name">${product.name}</h3>
-                <span class="modal__cart-item-price">$${product.basePrice}</span>
+                <span class="modal__cart-item-price">$${product.sale}</span>
                 <div class="modal__cart-item-input">
                     <button class="cart__item-decrement"  data-id = "${product.id}">-</button>
                     <input type="number" min="1" max="100" step="1" value="${product.quantity}" class="cart_item-input" data-id = "${product.id}" inputmode="numeric">
@@ -108,7 +108,7 @@ function ProductItemCartPage(product) {
                 </div>
             </div>
             <div class="cartPage__product-item-price">
-                <span class="cartPage__product-cost">$${product.basePrice}</span>
+                <span class="cartPage__product-cost">$${product.sale}</span>
             </div>
             <div class="cartPage__item-input">                           
                 <div class="modal__cart-item-input">
@@ -118,7 +118,7 @@ function ProductItemCartPage(product) {
                 </div>
             </div>                             
             <div class = "cartPage__product-total">
-                <span class="cartPage__product-total-cost">$${product.price}</span>
+                <span class="cartPage__product-total-cost">$${product.sale * product.quantity}</span>
             </div>
         </div>
     `;
@@ -142,7 +142,7 @@ function productTotalPrice() {
     let productsInCart = getProductInCart();
     let sumPrice = 0;
     productsInCart.forEach((product) => {
-        sumPrice += product.price;
+        sumPrice += product.sale * product.quantity;
     });
     return sumPrice;
 }
@@ -153,8 +153,9 @@ function AddProductInCart(product, inputQuantity) {
         name: product.name,
         category: product.category,
         img: product.imgList[0],
-        quantity: parseInt(inputQuantity.value),price: +product.price,
-        basePrice: +product.price,
+        quantity: parseInt(inputQuantity.value),
+        sale: +product.sale,
+        // basePrice: +product.sale,
     };
 
     let productsInCart = getProductInCart();
@@ -164,7 +165,7 @@ function AddProductInCart(product, inputQuantity) {
         if (productInCart.id == productToCart.id) {
             isExist = true;
             productInCart.quantity += productToCart.quantity; //1
-            productInCart.price = productInCart.basePrice * productInCart.quantity;
+            // productInCart.price = productInCart.basePrice * productInCart.quantity;
         }
     }
 
@@ -278,7 +279,7 @@ const eventCart = {
                         productsInCart[i].quantity = parseInt(Input.value);
                     }
 
-                    productsInCart[i].price = productsInCart[i].basePrice * productsInCart[i].quantity;
+                    // productsInCart[i].price = productsInCart[i].basePrice * productsInCart[i].quantity;
                 }
 
                 if (productsInCart[i].quantity < 1) {
@@ -312,7 +313,7 @@ const eventCart = {
                       
                         if (product.id == input.dataset.id) {
                             product.quantity = Number(input.value);
-                            product.price = product.basePrice * product.quantity;
+                            // product.price = product.basePrice * product.quantity;
                         }
 
                     });
