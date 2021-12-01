@@ -133,7 +133,9 @@ const modalSignEvent = {
                 renderComponentNavbar.userInfo(userCurrent)
                 renderHome.products()
                 renderComponentNavbar.amountWishlist()
+                renderComponentNavbar.amountCart()
                 renderWishList.start()
+                renderOrderPage.items()
             }
             else {
                 $('.modal__noti').classList.add('error')
