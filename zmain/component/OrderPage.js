@@ -96,11 +96,11 @@ function OrderProduct(product) {
                     ${product.name}
                 </h2>
                 <p class="order-product__quantity">Quantity: ${product.quantity}</p>
-                <p class="order-product__price">${formatMoney(product.price,'$')}</p>
+                <p class="order-product__price">${formatMoney(product.sale,'$')}</p>
             </div>
         </div>
         <div class="order-products__priceTotal">
-            <p>${formatMoney(product.price * product.quantity, '$')}</p>
+            <p>${formatMoney(product.sale * product.quantity, '$')}</p>
         </div>
     </div>
     `

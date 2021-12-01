@@ -157,6 +157,7 @@ const modalSignEvent = {
                 $('.modal__noti').classList.add('success');
                 $('.modal-noti__disc.success').innerText = 'Đăng ký thành công';
                 UserModel.Insert({
+                    id: UserModel.getIdMax() + 1,
                     fullname: inputList[0].value,
                     address: inputList[1].value,
                     phone: inputList[2].value,
