@@ -1,5 +1,5 @@
 const BillController = {
-  LoadBill : function(page = 1){
+  LoadBill: function (page = 1) {
     let row = '';
     BillModel.getDocumentsByPage(page).forEach((bill) => {
       row += `<tr>          
@@ -11,9 +11,12 @@ const BillController = {
       </td>
       <td>${formatNumber(bill.subtotal)}</td>
       <td class="status-bill">
-      ${bill.status == "PENDING" ? `<div class="lds-dual-ring"></div> `
-        : bill.status == "COMPLETED" ? `<i class="fas fa-check-circle completed"></i>` 
-        : `<i class="fas fa-times-circle cancelled"></i>` 
+      ${
+        bill.status == 'PENDING'
+          ? `<div class="lds-dual-ring"></div> `
+          : bill.status == 'COMPLETED'
+          ? `<i class="fas fa-check-circle completed"></i>`
+          : `<i class="fas fa-times-circle cancelled"></i>`
       }
       </td>
       <td class="action">
@@ -23,17 +26,16 @@ const BillController = {
         <button class="button-icon cancel" data-id="${bill.id}">
           <i class="fas fa-times-circle"></i>
         </button>
-      </td></tr>  `
-
+      </td></tr>  `;
     });
-    $(".tmanager-bill table tbody").innerHTML = row;
+    $('.tmanager-bill table tbody').innerHTML = row;
     TableEvent.Bill.Initialize();
   },
-  setStatusBill(id,status){
-    let result = BillModel.setStatusBill(id,status);
-    toast(result.message.type,icon[result.message.type],result.message.text)
+  setStatusBill(id, status) {
+    let result = BillModel.setStatusBill(id, status);
+    toast(result.message.type, icon[result.message.type], result.message.text);
   },
-  getBillById(id){
+  getBillById(id) {
     return BillModel.getBillById(id);
-  }
-}
+  },
+};
