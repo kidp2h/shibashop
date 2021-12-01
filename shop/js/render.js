@@ -38,7 +38,6 @@ function productItems(item){
 //Lấy dữ liệu cho trang đầu tiên trong local và in ra màn hình
 function renderData (x=1) {
     var htmls = ProductModel.getDocumentsByPage(x).map((item) => {
-        console.log(item);
         return productItems(item);
     })
     

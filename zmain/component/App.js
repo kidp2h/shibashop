@@ -38,10 +38,10 @@ function App() {
                     <div class="user-info">
                             <i class="fas fa-user" id="user-icon"></i> 
                     </div>
-                    <div class= "icon" id="heart-icon" data-amount="0">
+                    <div class= "icon wishList" id="heart-icon" data-amount="0">
                         <a href="#wishList" class="fas fa-heart" ></a>
                     </div>
-                    <div class= "icon" id="cart-icon" data-amount="0">
+                    <div class= "icon cart" id="cart-icon" data-amount="0">
                         <i class="fas fa-shopping-cart" ></i>
                     </div>
                 </div>
@@ -55,11 +55,11 @@ function App() {
                 <i class="fab fa-shopify"></i>
                 <p>Shop</p>
             </div>
-            <a href="#wishList" class="icon noti" data-amount="0">
+            <a href="#wishList" class="icon noti wishList" data-amount="0">
                 <i class="fas fa-heart"></i>
                 <p>Wishlist</p>
             </a>
-            <div class="icon noti" data-amount="0">
+            <div class="icon noti cart" data-amount="0">
                 <i class="fas fa-shopping-cart"></i>
                 <p>Cart</p>
             </div>

@@ -35,6 +35,11 @@ window.onhashchange = function () {
             if (prevHash[0] != '#home' && prevHash[0] != '#feature' && prevHash[0] != '#category') {
                 loading();
                 renderHome.start();
+
+                if ($('nav a.active')) 
+                $('nav a.active').classList.remove('active');
+                $('nav a.home').classList.add('active');
+
                 if (window.location.hash == '#category') {
                     $('nav a.category').click();
                 }
@@ -60,6 +65,7 @@ window.onhashchange = function () {
                     let categoryName = window.location.hash.split('-')[1];
                     $(`.locsanpham.${categoryName.toUpperCase()}`).click();
                 }
+                if ($('nav a.active')) 
                 $('nav a.active').classList.remove('active');
                 $('nav a.shop').classList.add('active');
             }
@@ -67,7 +73,8 @@ window.onhashchange = function () {
 
         case '#order':
             loading();
-            if ($('nav a.active')) $('nav a.active').classList.remove('active');
+            if ($('nav a.active')) 
+            $('nav a.active').classList.remove('active');
             renderOrderPage.start();
             break;
         case '#about':
@@ -122,13 +129,24 @@ const renderComponentNavbar = {
         userCurrent = JSON.parse(localStorage.getItem('userCurrent'));
         if (userCurrent) wish = userCurrent.wishList.length;
 
-        $('.navigation-container .icon').dataset.amount = wish;
-        $('.navigation-mobile .icon.noti').dataset.amount = wish;
+        $('.navigation-container .icon.wishList').dataset.amount = wish;
+        $('.navigation-mobile .icon.noti.wishList').dataset.amount = wish;
+    },
+
+    amountCart() {
+        let cart = 0;
+
+        productsInCart = JSON.parse(localStorage.getItem('productsInShoppingCart'));
+        if (productsInCart) cart = productsInCart.length;
+
+        $('.navigation-container .icon.cart ').dataset.amount = cart;
+        $('.navigation-mobile .icon.noti.cart ').dataset.amount = cart;
     },
 
     start() {
         this.rememberAccount();
         this.amountWishlist();
+        this.amountCart()
     },
 };
 
@@ -207,6 +225,7 @@ const renderHome = {
                 productBox.innerHTML = products.map((product) => ProductItem(product)).join('');
                 homeEvent.btnProduct();
                 homeEvent.btnItemProduct();
+                homeEvent.btnLoad();
             } else {
                 productBox.insertAdjacentHTML(
                     'beforeend',
@@ -229,45 +248,45 @@ const renderHome = {
 const renderWishList = {
     start() {
         //fix lỗi sign out lỗi bậy
-        if (window.location.hash == '#wishList') {
-            if (!$('#app')) renderApp.start();
-            $('#app').innerHTML = WishList();
+        if (window.location.hash != '#wishList') return;
+        if (!$('#app')) renderApp.start();
+        $('#app').innerHTML = WishList();
 
-            let products = ProductModel.getAll();
-            let productWish = '';
+        let products = ProductModel.getAll();
+        let productWish = '';
 
-            let userCurrent = JSON.parse(localStorage.getItem('userCurrent'));
-            if (userCurrent)
-                userCurrent.wishList.forEach((id) => {
-                    products.forEach((product) => {
-                        if (id == product.id) productWish += ProductItem(product);
-                    });
+        let userCurrent = JSON.parse(localStorage.getItem('userCurrent'));
+        if (userCurrent)
+            userCurrent.wishList.forEach((id) => {
+                products.forEach((product) => {
+                    if (id == product.id) productWish += ProductItem(product);
                 });
+            });
 
-            if (productWish) {
-                $('.wishList__box').innerHTML = ProductBox();
-                $('.product-box').innerHTML = productWish;
-            } else {
-                $('.wishList__box').innerHTML = WishList__Empty();
-            }
-
-            renderComponentNavbar.amountWishlist();
-            wishListEvent.init();
+        if (productWish) {
+            $('.wishList__box').innerHTML = ProductBox();
+            $('.product-box').innerHTML = productWish;
+        } else {
+            $('.wishList__box').innerHTML = WishList__Empty();
         }
+
+        renderComponentNavbar.amountWishlist();
+        wishListEvent.init();
     },
 };
 
 const renderOrderPage = {
     items(filter = 'ALL') {
+        if(window.location.hash != '#order') return;
         let userCurrent = JSON.parse(localStorage.getItem('userCurrent'));
         let bills;
         if(userCurrent) 
         bills = BillModel.getAll().filter((bill) => bill.username == userCurrent.username);
 
         if(!bills) {
-            $('.orderPage__box').innerHTML = OrderEmpty();
+            $('.orderPage__items').innerHTML = OrderItemEmpty()
             return;
-        } 
+        }
 
         let items = ''
         if(filter == 'ALL') {
@@ -283,12 +302,11 @@ const renderOrderPage = {
     },
 
     start() {
-        if (window.location.hash == '#order') {
-            if (!$('#app')) renderApp.start();
-            $('#app').innerHTML = OrderPage();
-            this.items();
-            eventOrderPage.init()
-        }
+        if (window.location.hash != '#order') return;
+        if (!$('#app')) renderApp.start();
+        $('#app').innerHTML = OrderPage();
+        this.items();
+        eventOrderPage.init()
     },
 };
 

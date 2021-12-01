@@ -158,7 +158,7 @@
     font-size: 14px;
 }
 
-.orderPage__Empty {
+/* .orderPage__Empty {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -201,7 +201,7 @@
   background-color: #f15f50;
   letter-spacing: 2px;
 }
-
+ */
 .order__itemEmpty {
     width: 100%;
     height: 500px;
@@ -221,3 +221,51 @@
     font-size: 20px;
 }
 
+@media (max-width: 739px) { 
+    .orderPage__box {
+        width: 90%;
+    }
+}
+
+@media (max-width: 600px) { 
+    .orderPage__box {
+        width: 100%;
+    }
+
+    .orderPage-filter__item {
+        font-size: 14px;
+    }
+
+    .order__subtotal h2 {
+        font-size: 20px;
+    }
+    
+    .order__subtotal p {
+        font-size: 14px;
+    }
+
+    .order-product__name {
+        font-size: 14px;
+    }
+    
+    .order-product__quantity {
+        font-size: 13px;
+    }
+    
+    .order-product__price {
+        font-size: 14px;
+    }
+
+    .order-product {
+        display: block;
+    }
+
+    .order-product__info {  
+        justify-content: flex-start;
+        width: 100%;
+    }
+
+    .order-products__priceTotal {
+        text-align: right;
+    }
+}
