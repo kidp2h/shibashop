@@ -350,51 +350,92 @@ const HandleEvent = {
     },
   },
   Revenue: {
-    Filter: function () {
-      let from = $('.input-from').value != '' ? Date.parse($('.input-from').value) : 0;
-      let to = $('.input-to').value != '' ? Date.parse($('.input-to').value) : Date.now();
+    Filter: function (from, to) {
+      from = $('.input-from').value != '' ? Date.parse($('.input-from').value) : 0;
+      to = $('.input-to').value != '' ? Date.parse($('.input-to').value) : Date.now();
       let category = $('#select-search-category').value;
       let bills = BillModel.getAll();
-      let products = ProductModel.getProductByCategory(category);
-      let totalAllBill = 0;
-      let totalAmountSold = 0;
+
       if (from > to) {
         toast('warning', icon['warning'], 'Vui lòng nhập khoảng thời gian hợp lệ !!');
       } else {
-        let row = '';
+        let idsProduct = [],
+          billFilter = [];
+
         bills.forEach((bill) => {
-          let listProductsInBill = bill.products;
-          let total = 0;
-          let amountSold = 0;
-          if (from <= bill.created_at && bill.created_at <= to) {
-            console.log(bill.id);
-            listProductsInBill.forEach((product) => {
-              total += product.price * product.quantity;
-              amountSold += product.quantity;
-              totalAmountSold += amountSold;
-              row += `<tr>
-                <td>${product.name}</td>
-                <td>${product.category}</td>
-                <td>${formatNumber(product.price)}</td>
-                <td>${amountSold}</td>
-                <td>${formatNumber(amountSold * product.price)}</td>
-              </tr>`;
+          bill.products.forEach((product) => {
+            idsProduct.push(product.id);
+          });
+        });
+
+        let idsUnique = [...new Set(idsProduct)];
+        idsUnique.forEach((idProduct) => {
+          let qty = 0,
+            currentProduct,
+            currentBill;
+          bills.forEach((bill) => {
+            bill.products.forEach((product) => {
+              if (product.id == idProduct) {
+                currentProduct = product;
+                qty += product.quantity;
+                currentBill = bill;
+              }
             });
-            console.log('Total : ', total);
-            totalAllBill += total;
+          });
+          billFilter.push({
+            product: currentProduct,
+            qty,
+            created_at: currentBill.created_at,
+            status: currentBill.status,
+          });
+        });
+        let row = '',
+          totalPrice = 0,
+          totalAmountSold = 0;
+        billFilter.forEach((bill) => {
+          console.log(category);
+          if (category == '0') {
+            if (bill.status != '' && from <= bill.created_at && bill.created_at <= to) {
+              row += `<tr>
+                <td>${bill.product.name}</td>
+                <td>${bill.product.category}</td>
+                <td>${formatNumber(bill.product.sale)}</td>
+                <td>${bill.qty}</td>
+                <td>${formatNumber(bill.product.sale * bill.qty)}</td>
+              </tr>`;
+              totalAmountSold += bill.qty;
+              totalPrice += bill.product.sale * bill.qty;
+            }
+          } else {
+            if (
+              bill.status != '' &&
+              from <= bill.created_at &&
+              bill.created_at <= to &&
+              bill.product.category == category
+            ) {
+              row += `<tr>
+                <td>${bill.product.name}</td>
+                <td>${bill.product.category}</td>
+                <td>${formatNumber(bill.product.sale)}</td>
+                <td>${bill.qty}</td>
+                <td>${formatNumber(bill.product.sale * bill.qty)}</td>
+              </tr>`;
+              totalAmountSold += bill.qty;
+              totalPrice += bill.product.sale * bill.qty;
+            }
           }
         });
         row += `<tr>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td><b>Amount Sold</b> = <b style="color:var(--ui-background)">${totalAmountSold}</b></td>
-          <td><b>Sub total</b> = <b style="color:var(--red)">${formatNumber(totalAllBill)}</b></td>
-        </tr>`;
+            <td></td>
+            <td></td>
+            <td></td>
+            <td><b>Amount Sold</b> = <b style="color:var(--ui-background)">${totalAmountSold}</b></td>
+            <td><b>Sub total</b> = <b style="color:var(--red)">${formatNumber(totalPrice)}</b></td>
+          </tr>`;
         $('.tmanager-revenue tbody').innerHTML = row;
-        console.log('Total all bill :', totalAllBill);
       }
     },
+    LoadBillByDate: function (from, to) {},
   },
   Add: function () {
     window.scrollTo({ top: 0, behavior: 'smooth' });
