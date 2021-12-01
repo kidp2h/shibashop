@@ -5,7 +5,7 @@ function productItems(item){
         <div class="product-items"></div>
         <div class="product-top">
             <a href="#product-${item.id}" class="product-thumb">
-                <img src="${'./images/Dai.jpg'}" alt="ảnh 1" width="200px" height="200px">
+                <img src="${item.imgList[0]}" alt="ảnh 1" width="200px" height="200px">
             </a>
            
             <!-- //Mua ngay -->
