@@ -29,12 +29,12 @@ function Shop() {
 
                 </div>
                 <div id="product-gaoshop" >
-                    <div id="filter" class="hide">
+                    <div id="filter" class="hide" style="z-index:10">
                         <i class="fas fa-times" id="close"></i>
                         <ul class="loc1" >
                             
                                 <h3>Product Categories</h3>
-                            
+                                <li><span id="productall">All</span></li>
                         <ul id="loccategories"></ul>
                         </ul>
                         <ul class="loc1">
