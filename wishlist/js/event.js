@@ -28,6 +28,37 @@ const wishListEvent = {
         UserModel.updateWishList(userCurrent, icon.dataset.index, wish);
     },
 
+    updateProductBeWish() {
+        let userCurrent = JSON.parse(localStorage.getItem('userCurrent'));
+        let userCurrentTemp = JSON.parse(localStorage.getItem('userCurrent'));
+
+        if (!userCurrent) return;
+
+        let isExist;
+
+        if (userCurrent.wishList.length == 0) return
+
+        let products = ProductModel.getAll();
+
+        userCurrent.wishList.forEach((id) => {
+            isExist = false;
+
+            products.forEach((product) => {
+                if (id == product.id) {
+                    product.wish = 1;
+                    isExist = true;
+                }
+            });
+
+            if (!isExist) {
+                UserModel.updateWishList(userCurrentTemp, id, 0);
+            }
+        });
+
+        renderComponentNavbar.amountWishlist();
+        ProductModel.UpdateAll(products);
+    },
+
     init() {
         homeEvent.btnProduct();
         homeEvent.btnItemProduct();

@@ -97,6 +97,7 @@ const navbarEvent = {
             users.forEach(user => {
                 if(user.id == userCurrent.id) {
                     user.cart = getProductInCart();
+                    user.wishList = userCurrent.wishList;
                 }
             });
 

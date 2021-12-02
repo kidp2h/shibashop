@@ -191,47 +191,23 @@ const renderHome = {
     },
 
     products: function (page = 1) {
-        let userCurrent = JSON.parse(localStorage.getItem('userCurrent'));
-        let userCurrentTemp = JSON.parse(localStorage.getItem('userCurrent'));
-        let products;
+        let products = ProductModel.getDocumentsByPage_Rate(page, 8);
+        
+        let productBox = $('.product .product-box');
+        if (!productBox) return;
 
-        if (userCurrent) {
-            let isExist;
-            if (userCurrent.wishList.length != 0) {
-                products = ProductModel.getAll();
-                userCurrent.wishList.forEach((id) => {
-                    isExist = false;
-                    products.forEach((product) => {
-                        if (id == product.id) {
-                            product.wish = 1;
-                            isExist = true;
-                        }
-                    });
-
-                    if (!isExist) {
-                        UserModel.updateWishList(userCurrentTemp, id, 0);
-                    }
-                });
-                renderComponentNavbar.amountWishlist();
-                ProductModel.UpdateAll(products);
-            }
+        if (page == 1) {
+            productBox.innerHTML = products.map((product) => ProductItem(product)).join('');
+            homeEvent.btnProduct();
+            homeEvent.btnItemProduct();
+            homeEvent.btnLoad();
+        } else {
+            productBox.insertAdjacentHTML(
+                'beforeend',
+                products.map((product) => ProductItem(product)).join('')
+            );
         }
 
-        products = ProductModel.getDocumentsByPage_Rate(page, 8);
-        let productBox = $('.product .product-box');
-
-        if (productBox)
-            if (page == 1) {
-                productBox.innerHTML = products.map((product) => ProductItem(product)).join('');
-                homeEvent.btnProduct();
-                homeEvent.btnItemProduct();
-                homeEvent.btnLoad();
-            } else {
-                productBox.insertAdjacentHTML(
-                    'beforeend',
-                    products.map((product) => ProductItem(product)).join('')
-                );
-            }
         AddToCart();
     },
 
@@ -314,6 +290,24 @@ const renderAbout = {
     start() {
         if (!$('#app')) renderApp.start();
         $('#app').innerHTML = About();
+    }
+};
+
+const renderToastAddToCart = {
+    start() {
+        let toastApp = $('#toast-app')
+        let toasts = document.createElement('div')
+        toasts.classList.add('toast-app')
+        toasts.innerHTML = ToastAddToCart()
+        toastApp.appendChild(toasts)
+
+        toasts.querySelector('.toast-app__close').onclick = () => {
+            toastApp.removeChild(toasts);
+        }
+
+        setTimeout(() => {
+            toastApp.removeChild(toasts);
+        },2000)
     }
 }
 

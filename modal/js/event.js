@@ -131,6 +131,7 @@ const modalSignEvent = {
                 updateProductInCart(userCurrent.cart);
 
                 renderComponentNavbar.userInfo(userCurrent)
+                wishListEvent.updateProductBeWish()
                 renderHome.products()
                 renderComponentNavbar.amountWishlist()
                 renderComponentNavbar.amountCart()
