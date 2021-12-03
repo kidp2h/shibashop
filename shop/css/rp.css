@@ -29,6 +29,10 @@
         width: 98%;
     }
 
+    #shop #products .icon-heart {
+        right: 0;
+    }
+
     /* #shop #menu #ter {
        
         width: 13em;

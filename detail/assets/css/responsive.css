@@ -39,6 +39,10 @@
     .recommended__add-to-cart{ 
         display: flex;
     }
+
+    .icon-heart{
+        right: 0;
+    }
 }
 
 @media(min-width: 1281px) {

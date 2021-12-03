@@ -253,17 +253,17 @@ function slideItem() {
 
 const renderDetailProduct = function (detailProduct) {
     const htmls = html`<div class="detail-item__slider">
-            ${detailProduct.imgList
-                .map((img, index) => {
-                    return `
-            <div class="item-imgBx ${index == 0 && 'item-imgBx--active'} 
-            data-index = "${index + 1}"">
-                <img class="item__img" src="${img}" alt="">
-            </div>
-            `;
-                })
-                .join('')}
 
+            ${detailProduct.imgList .map((img, index) => {
+               
+                return `
+                    <div class="item-imgBx ${index == 0 && 'item-imgBx--active'} 
+                    data-index = "${index + 1}"">
+                        <img class="item__img" src="${img}" alt="">
+                    </div>
+                `
+            }).join('')}
+                
             <div class="detail-item__next-prev-btn">
                 <button class="detail-item__prev-btn" onclick="clickSlideBtn(-1)">
                     <i class="fas fa-chevron-left"></i>
@@ -291,33 +291,31 @@ const renderDetailProduct = function (detailProduct) {
             </div>
 
             <div class="item-infor__description">
-                A pair of twill woven shorts featuring slanted front pockets, buttoned back pockets,
-                a zip pocket, buttoned waist, and keychain loop.
+            Morbi commodo, ipsum sed pharetra gravida, orci magna rhoncus neque, id pulvinar odio lorem non turpis. Nullam sit amet enim. Suspendisse id velit vitae ligula volutpat condimentum. 
             </div>
 
             <div class="item__option">
                 <div class="item__option-color">
 
                     ${detailProduct.colorList &&
-                    `<h4 class="color__title">
-                        COLOR:
-                        <span></span>
-                    </h4>
-                    <ul class="color__list">                  
-                        ${detailProduct.colorList
-                               //colorList: ['--pink:1', '--black:3', '--blue:4'],
-                            .map((color, index) => {
+                        `<h4 class="color__title">
+                            COLOR:
+                            <span></span>
+                        </h4>
+                        <ul class="color__list">                  
+                            ${detailProduct.colorList.map((color, index) => {
+                                //colorList: ['--pink:1', '--black:3', '--blue:4'],
                                 //color = "--pink:1" 
+                                    
                                 let colors = color.split(':');
-                                //colors = ["--pink",'1'];
+                                    //colors = ["--pink",'1'];
                                 return ` 
-                                <li class="color__list-item color${colors[0]} ${
-                                    index == 0 && 'color__list-item--active'
-                                }" data-img="${colors[1] - 1}"></li>                             
-                            `;
-                            })
-                            .join('')}
-                    </ul>
+                                    <li class="color__list-item color${colors[0]} 
+                                    ${index == 0 && 'color__list-item--active'}" 
+                                    data-img="${colors[1] - 1}"></li>                             
+                                `
+                                }).join('')}
+                        </ul>
                     `}
                 </div>
             </div>
@@ -326,16 +324,7 @@ const renderDetailProduct = function (detailProduct) {
                 <div class="variation__choose">
                     <div class="item__change-input">
                         <button class="decrement" id="decrement" onclick="stepper(this)">-</button>
-                        <input
-                            type="number"
-                            min="1"
-                            max="100"
-                            step="1"
-                            value="1"
-                            class="my-input"
-                            id="my-input"
-                            inputmode="numeric"
-                        />
+                        <input  type="number" min="1"  max="100" step="1" value="1" class="my-input"  id="my-input"  inputmode="numeric" />
                         <button class="increment" id="increment" onclick="stepper(this)">+</button>
                     </div>
                     <div class="item__favorative">
@@ -346,7 +335,7 @@ const renderDetailProduct = function (detailProduct) {
             </div>
 
             <div class="Img_box">
-                <img class="img_more" src="./assets/img/img_more.png" alt="" />
+                <img class="img_more" src="./images/detail_icon/img_more.png" alt="" />
             </div>
 
             <div class="item__support-link">
@@ -420,7 +409,8 @@ const renderRecommendedProduct = function () {
     }
 
     function ProductItem(product) {
-        return html`<div class="recommended__products-item">
+        return html`
+        <div class="recommended__products-item">
             <div class="recommended__product-image">
                 <div class="recommended__img">
                     ${product.imgList.map((img, index) => {
@@ -430,21 +420,18 @@ const renderRecommendedProduct = function () {
                             }" src="${img}" alt="">
                         `;
                     }).join('')}
+
+                    <div class="icon-heart ${product.wish == 1 && 'active'}" data-index="${product.id}" data-wish="${product.wish}">
+                        <i class="far fa-heart"></i>
+                        <i class="fas fa-heart"></i>
+                    </div>
                 </div>
 
                 <div class="recommended__add-to-cart">
                     <div class="recommended__quantity">
                         <div class="recommended__quantity-input">
                             <button class="recommended__decrement">-</button>
-                            <input
-                                type="number"
-                                min="1"
-                                max="100"
-                                step="1"
-                                value="1"
-                                class="recommended__input"
-                                inputmode="numeric"
-                            />
+                            <input  type="number" min="1" max="100" step="1" value="1"  class="recommended__input"  inputmode="numeric"   />
                             <button class="recommended__increment">+</button>
                         </div>
                     </div>
