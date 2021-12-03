@@ -1,6 +1,8 @@
 @media screen and (max-width: 1260px) {
 
-  
+    #shop div#product-gaoshop{
+        height: 1100px;
+    }
     #shop ul#products li {
         /* box-sizing: border-box;
         margin-bottom: 30px;
@@ -18,7 +20,7 @@
    
     #shop ul#products li .product-top .product-thumb img {
         width: 100%;
-        height: 25em;
+        height: 28em;
     }
 }
 
@@ -98,6 +100,9 @@
         width: 100%;
         margin: 20px auto;
     }
+    #shop div#product-gaoshop{
+        height: 950px;
+    }
     #shop .center-product {
         width: 92%;
     }
@@ -136,7 +141,9 @@
         display: none;
         padding: 5px;
     }
-
+    #shop div#product-gaoshop{
+        height: 1000px;
+    }
     #shop #chuyentrang {
         width: 100%;
         margin: 20px auto;
@@ -226,7 +233,9 @@
         margin: 25px;
         display: block;
     }
-   
+    #shop div#product-gaoshop{
+        height: 890px;
+    }
     #shop .center-product {
         width: 98%;
     }
@@ -291,7 +300,9 @@
     #shop #menu #slt{
         width: 10em;
     }
-
+    #shop div#product-gaoshop{
+        height: 1380px;
+    }
     #shop .center-product {
         width: 98%;
     }
@@ -344,7 +355,9 @@
 }
 
 @media screen and (max-width: 540px) {
-  
+    #shop div#product-gaoshop{
+        height: 1200px;
+    }
     #shop #menu #ter{
         /* width:25%;
         margin-left: -0.5em; */
@@ -399,7 +412,9 @@
     #shop {
         font-size: 13px;
     }
- 
+    #shop div#product-gaoshop{
+        height: 2550px;
+    }
     #shop #product-gaoshop {
         width: 100%;
     }
