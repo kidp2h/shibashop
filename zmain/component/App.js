@@ -34,6 +34,10 @@ function App() {
                 </nav>
 
                 <div class="icons">
+                    <div class = "navbar__inputSearch"> 
+                        <input type = "text" >
+                        <i class="fas fa-search"  id ="nav-search"></i>
+                    </div>
                     <i class="fas fa-search"  id ="search-icon"></i>
                     <div class="user-info">
                             <i class="fas fa-user" id="user-icon"></i> 

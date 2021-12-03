@@ -354,7 +354,6 @@ function addpage1(data) {
 }
 // load trang rồi sử dụng các hàm
 // window.onload = () => {
-
 //     rendertheloai();
 //     renderData();
 //     renderproducts();

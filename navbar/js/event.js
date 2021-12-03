@@ -80,6 +80,13 @@ const navbarEvent = {
         };
     },
 
+    btnSearch() {
+        $('#search-icon').onclick = () => {
+            $('.navbar__inputSearch').classList.toggle('active')
+            $('#search-icon').classList.toggle('fa-times')
+        }
+    },
+
     loadOrder() {
     },
 
@@ -122,5 +129,6 @@ const navbarEvent = {
         this.SignOut();
         this.navItem();
         this.btnCart();
+        this.btnSearch();
     },
 };
