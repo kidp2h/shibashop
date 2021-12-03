@@ -35,6 +35,16 @@
     .recommended__product-image:hover .recommended__add-to-cart{
         animation: none; 
     }
+
+    .recommended__add-to-cart{ 
+        display: flex;
+    }
+}
+
+@media(min-width: 1281px) {
+    .pane-tab-content {
+        display: block !important;
+    }
 }
 
  /* TABLET 749*/
@@ -134,11 +144,7 @@
     }
 
     .recommended__next-prev-btn {
-        top: 35%;
-    }
-
-    .recommended__add-to-cart {
-        display: flex;
+        top: 33%;
     }
 
     .recommended__prev-btn {
@@ -158,7 +164,7 @@
 
     .recommended__quantity .recommended__increment,
     .recommended__quantity .recommended__decrement {
-        width: 42px;   
+        width: 32px;   
         font-size: 2rem;
         line-height: 2px;
         /* width: 62px; */
@@ -193,6 +199,10 @@
         padding: 50px 80px;
     }
 
+    .recommended__next-prev-btn {
+        top: 33%;
+    }
+
     .recommended__prev-btn {
         font-size: 4rem;
         left: -52px;
@@ -217,7 +227,6 @@
         height: 29px;
         margin-bottom: 16px;
         margin-right: 22px;
-        /* display: inline-block; */
     }
 }
 
@@ -408,17 +417,41 @@
         margin-bottom: 15px;
     }
 
-    /* #recommended__products-wrapper .recommended__products-item {
-        width: calc(100% / 3);
-    } */
 }
 
-@media(max-width: 1318px) {
+
     /* chuyển add to cart thành giỏ hàng  */
+@media(min-width: 1000px) and (max-width: 1040px) {
+    .recommended__addToCart span{
+        display: none;
+    }
+
+    .recommended__addToCart i {
+        display: block;
+        font-size: 2rem;
+    }
 }
 
-/* Điện thoại IPHONE 5 :))) */
-@media(max-width: 540px) {
+@media(min-width: 700px) and (max-width: 800px) {
+    
+    .recommended__addToCart span{
+        display: none;
+    }
+
+    .recommended__addToCart i {
+        display: block;
+        font-size: 2rem;
+    }
+}
+
+@media(min-width: 700px) and (max-width: 760px) {
+    .recommended__next-prev-btn {
+        top: 29%;
+    }
+}
+
+/* Điện thoại nhỏ như sucface duo, iphone 5, galaxy fold :))) */
+@media(max-width: 580px) { /* responsive chung cho các thiết bị nhỏ từ 580 trở xuống */
     .detail-item__slider {
         height: auto;
     }
@@ -428,17 +461,82 @@
     }
 
     .recommended__add-to-cart-btn {
-        font-size: 1.7rem;
+        font-size: 1.6rem;
     }
 
     .recommended__next-btn,
     .recommended__prev-btn {
-        font-size: 3.6rem;
+        font-size: 3.4rem;
     }
-
-    
-    .recommended__next-prev-btn {
+   
+    /* .recommended__next-prev-btn {
         top: 34%;
+    } */
+
+    /* chuyển add to cart thành giỏ hàng VÌ QUÁ NHỎ =((  */
+    .recommended__addToCart span{
+        display: none;
     }
 
+    .recommended__addToCart i {
+        display: block;
+        font-size: 2rem;
+    }
+}
+
+ /* responsive cho Iphone 5 */
+@media(width: 320px) {
+
+    /* phần detail  */
+    .detail-item__prev-btn {
+        padding: 6px 12px;
+    }
+
+    .detail-item__next-btn {
+        padding: 6px 12px;
+    }
+
+    /* phần yoy may also like */
+    .recommended__next-btn,
+    .recommended__prev-btn {
+        font-size: 3rem;      
+    }
+    .recommended__prev-btn {
+        left: -35px;
+    }
+    .recommended__next-btn {
+        right: -35px;
+    }
+    .recommended__next-prev-btn {
+        top: 32%;
+    }
+}
+
+ /* responsive cho Galaxy fold */
+@media(width: 280px) { 
+
+    .detail-item__prev-btn {
+        padding: 6px 12px;
+    }
+
+    .detail-item__next-btn {
+        padding: 6px 12px;
+    }
+
+    /* phần yoy may also like */
+    .recommended__next-prev-btn {
+        top: 27%;
+    }
+
+    .recommended__next-btn,
+    .recommended__prev-btn {
+        font-size: 3.2rem;
+    }
+
+    .recommended__prev-btn {
+        left: -34px;
+    }
+    .recommended__next-btn {
+        right: -34px;
+    }
 }

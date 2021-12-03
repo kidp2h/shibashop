@@ -19,6 +19,9 @@
     right: 0;
 }
 
+.modal__cart-product-box {
+    height: 100%;
+}
 
 .modal__cart .box {
     overflow-y: scroll;
@@ -57,6 +60,10 @@
     border-bottom: 1px solid #ccc;
 }
 
+.modal__cart-product-item:last-child {
+    border: none;
+}
+
 .modal__cart-imgbox{
     width: 122px;
     height: 178px;
@@ -76,6 +83,12 @@
 
 .modal__cart-item-name {
     font-size: 1.6rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-break: break-word;
 }
 
 .modal__cart-item-price {
@@ -187,6 +200,26 @@
 }
 
 
+ /* KHI KHÔNG CÓ SẢN PHẨM */
+.modal__cart-empty {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    color: var(--ui-background);
+}
+
+.modal__cart-empty i {
+    font-size: 4rem;
+}
+
+.modal__cart-empty-text {
+    margin: 13px 0;
+    text-align: center;
+    font-size: 1.8rem;
+}
+
  /* MOBILE */
 @media(max-width: 46.1875em) {
     .modal__cart { 
@@ -202,6 +235,9 @@
     .modal__cart-product-item {
         flex-direction: column;
         justify-content: center;
+    }
+    .modal__cart-item-name { 
+        text-align: center;
     }
 
     .modal__cart-item-infor {

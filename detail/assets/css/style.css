@@ -530,7 +530,7 @@
 }
 
 .detail__benefit-infor {
-    padding-top: 50px;
+    padding-top: 30px;
     display: flex;
     justify-content: center;
 }
@@ -730,7 +730,8 @@
 
 .recommended__next-prev-btn {
     position: absolute;
-    top: 35%;
+    top: 38%;
+    /* transform: translateY(-50%); */
     z-index: 1; 
     display: flex;
     width: 100%;
@@ -814,7 +815,15 @@
 .recommended-product-infor h3 {
     font-size: 1.4rem;
     letter-spacing: 2px;
-    color:rgb(92, 88, 88)
+    color:rgb(92, 88, 88);
+
+    /* XÉT CHO NÓ 2 DÒNG RỒI 3 CHẤM */
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-break: break-word;
 }
 
 .recommended-product-infor span {
@@ -871,9 +880,12 @@
     position: absolute;
     width: 100%;
     height: 42px;
-    display: none;
     /* top: 90%; */
     bottom: 0;
+    display: none;
+}
+
+.recommended__addToCart i {
     display: none;
 }
 
@@ -936,10 +948,9 @@
     /* border-radius: 0; */
 }
 
-.recommended__add-to-cart span {
+.recommended__add-to-cart .recommended__addToCart {
     width: 100%;
     height: 100%;
-    /* width: 70%; */
     /* border-left: 1px solid #fff; */
 }
 
