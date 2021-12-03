@@ -218,7 +218,7 @@ function SliderProducts() {
         } else if (window.innerWidth >= 1000) {
             //1280
             makeItem(3);
-        } else if (window.innerWidth >= 600) {
+        } else if (window.innerWidth >= 540) {
             //540
             makeItem(2);
         } else {
@@ -229,7 +229,7 @@ function SliderProducts() {
     const media = [
         window.matchMedia('(min-width: 1366px)'),
         window.matchMedia('(min-width: 1000px)'),
-        window.matchMedia('(min-width: 600px)'),
+        window.matchMedia('(min-width: 540px)'),
     ];
 
     if (media[0].matches) {
@@ -292,18 +292,19 @@ const renderDetailProduct = function (detailProduct) {
 
             <div class="item__option">
                 <div class="item__option-color">
-                    <h4 class="color__title">
-                        COLOR:
-                        <span>BLUE</span>
-                    </h4>
 
                     ${detailProduct.colorList &&
-                    `
-                    <ul class="color__list">
+                    `<h4 class="color__title">
+                        COLOR:
+                        <span></span>
+                    </h4>
+                    <ul class="color__list">                  
                         ${detailProduct.colorList
+                               //colorList: ['--pink:1', '--black:3', '--blue:4'],
                             .map((color, index) => {
+                                //color = "--pink:1" 
                                 let colors = color.split(':');
-                                console.log('colors : ', colors);
+                                //colors = ["--pink",'1'];
                                 return ` 
                                 <li class="color__list-item color${colors[0]} ${
                                     index == 0 && 'color__list-item--active'
@@ -332,12 +333,11 @@ const renderDetailProduct = function (detailProduct) {
                         />
                         <button class="increment" id="increment" onclick="stepper(this)">+</button>
                     </div>
-                    <button id="add-to-cart" class="add-to-cart-btn">Add to cart</button>
                     <div class="item__favorative">
                         <i class="far fa-heart"></i>
                     </div>
                 </div>
-                <button id="buy-it-now" class="buy-it-now-btn">Buy it now</button>
+                <button id="buy-it-now" class="buy-it-now-btn">Add to cart</button>
             </div>
 
             <div class="Img_box">
