@@ -146,6 +146,7 @@ const modalSignEvent = {
                 renderComponentNavbar.amountCart()
                 renderWishList.start()
                 renderOrderPage.items()
+                renderShop.start()
             }
             else {
                 $('.modal__noti').classList.add('error')

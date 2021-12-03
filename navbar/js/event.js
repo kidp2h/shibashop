@@ -49,6 +49,10 @@ const navbarEvent = {
             $('.modal').classList.add('active')
             $('.modal__cart').classList.add('active')
         }
+
+        $('.icon.noti.cart').onclick = () => {
+            $('#cart-icon').click()
+        }
     },
 
     loadProfile() {
@@ -95,6 +99,7 @@ const navbarEvent = {
         }
 
         $('#nav-search').onclick = () => {
+            if(!$('.navbar-input-Search').value) return;
             search.click()
             window.location.hash = `#shop-search:${$('.navbar-input-Search').value}`
             $('.navbar-input-Search').value = ""   
@@ -143,6 +148,7 @@ const navbarEvent = {
             renderOrderPage.items()
             renderWishList.start()
             renderHome.products()
+            renderShop.start()
         };
     },
 

@@ -6,7 +6,7 @@ function CartPage() {
             <div id="cartPage">
             <div class="banner">
                 <div class="banner__header">
-                    <h1>View your FUCKING CART products</h1>
+                    <h1>view your CART products</h1>
                 </div>
                 <div class="banner__img-box">
                     <img src="https://source.unsplash.com/random" alt="">
@@ -344,7 +344,9 @@ const eventCart = {
 
     btnViewCartModal() {
         $('.modal__cart-view-cart').onclick = () => {
-            renderCartPage.start();
+            // renderCartPage.start();
+            window.location.hash = "#cart";
+            //để hàm render ở zmain render
         };
     },
 
@@ -371,7 +373,9 @@ const eventCart = {
 
             $('.modal').classList.add('active')
             $('.modal__noti').classList.add('success')
+            $('.modal__noti input').focus()
             $('.modal-noti__disc.success').innerText = "Bạn đã đặt hàng thành công"
+            window.scrollTo(0, 0);
             modalEvent.btnNoti();
         })
     },

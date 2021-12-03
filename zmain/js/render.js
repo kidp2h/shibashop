@@ -103,6 +103,11 @@ window.onhashchange = function () {
             loading();
             renderAbout.start();
             break;
+
+        case '#cart':
+            if ($('nav a.active')) $('nav a.active').classList.remove('active');
+            renderCartPage.start();
+            break;
     }
     prevHash.shift();
 };
@@ -359,7 +364,6 @@ const renderAdmin = {
 //================================> CHI THỊNH <================================
 const renderDetail = {
     start(product) {
-        loading();
         if (!$('#app')) renderApp.start();
         $('#app').innerHTML = Detail();
         InitEventDetail();
@@ -371,6 +375,7 @@ const renderDetail = {
 
 const renderShop = {
     start() {
+        if(window.location.hash.split('-')[0]!="#shop") return;
         if (!$('#app')) renderApp.start();
         $('#app').innerHTML = Shop();
         rendertheloai();
@@ -440,5 +445,10 @@ switch (window.location.hash.split('-')[0]) {
     case '#about':
         loading();
         renderAbout.start();
+        break;
+
+    case '#cart':
+        if ($('nav a.active')) $('nav a.active').classList.remove('active');
+        renderCartPage.start();
         break;
 }

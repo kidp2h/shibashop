@@ -249,6 +249,22 @@ function slideItem() {
     SliderProducts()
 }
 
+function clickWish() {
+    $('.item__favorative').onclick = () => {
+        //hàm bên wishListEvent/homeEvent
+        if (!chekLogin) {
+            $('.modal').classList.add('active');
+            $('.modal__noti').classList.add('error');
+            $('.modal-noti__disc.error').innerText = 'Vui lòng đăng nhập !';
+            modalEvent.btnNoti('checkLogin');
+        } else {
+            $('.item__favorative i').classList.toggle('fas')
+            wishListEvent.changeStatusWish($('.item__favorative i'));
+            renderComponentNavbar.amountWishlist();
+        }
+    }
+}
+
 
 
 const renderDetailProduct = function (detailProduct) {
@@ -324,14 +340,14 @@ const renderDetailProduct = function (detailProduct) {
                 <div class="variation__choose">
                     <div class="item__change-input">
                         <button class="decrement" id="decrement" onclick="stepper(this)">-</button>
-                        <input  type="number" min="1"  max="100" step="1" value="1" class="my-input"  id="my-input"  inputmode="numeric" />
+                        <input class ="my-input inputQuantity" data-id="${detailProduct.id}" type="number" min="1"  max="100" step="1" value="1" id="my-input"  inputmode="numeric" />
                         <button class="increment" id="increment" onclick="stepper(this)">+</button>
                     </div>
                     <div class="item__favorative">
-                        <i class="far fa-heart"></i>
+                        <i class="far fa-heart ${detailProduct.wish == 1 && 'fas'}" data-index="${detailProduct.id}" data-wish="${detailProduct.wish}"></i>
                     </div>
                 </div>
-                <button id="buy-it-now" class="buy-it-now-btn">Add to cart</button>
+                <button id="buy-it-now" data-id="${detailProduct.id}" class="buy-it-now-btn addToCart">Add to cart</button>
             </div>
 
             <div class="Img_box">
@@ -371,6 +387,9 @@ const renderDetailProduct = function (detailProduct) {
     $('.detail__more-infor-imgBox').innerHTML = detailInforImgBox(detailProduct);
     document.getElementById('detail-item').innerHTML = htmls;
     clickColorChangeSlide();
+    AddToCart();
+    clickWish() 
+    homeEvent.btnWish()
 };
 
 function randomIdProduct(Products, numbers) {
@@ -431,11 +450,11 @@ const renderRecommendedProduct = function () {
                     <div class="recommended__quantity">
                         <div class="recommended__quantity-input">
                             <button class="recommended__decrement">-</button>
-                            <input  type="number" min="1" max="100" step="1" value="1"  class="recommended__input"  inputmode="numeric"   />
+                            <input class ="inputQuantity" data-id="${product.id}" type="number" min="1" max="100" step="1" value="1"  class="recommended__input"  inputmode="numeric"   />
                             <button class="recommended__increment">+</button>
                         </div>
                     </div>
-                    <div class="recommended__addToCart">
+                    <div class="recommended__addToCart addToCart" data-id="${product.id}">
                         <button
                             class="recommended__add-to-cart-btn"
                             class="recommended__add-to-cart-btn"
@@ -473,4 +492,6 @@ const renderRecommendedProduct = function () {
     hoverColorChangeImg();
     clickPlusMinusRecommendedInput();
     slideItem();
+    AddToCart();
+    homeEvent.btnWish()
 };
