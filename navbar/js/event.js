@@ -81,9 +81,32 @@ const navbarEvent = {
     },
 
     btnSearch() {
-        $('#search-icon').onclick = () => {
+        let search = $('#search-icon')
+        search.onclick = () => {
             $('.navbar__inputSearch').classList.toggle('active')
             $('#search-icon').classList.toggle('fa-times')
+            $('#search-icon-mb i').classList.toggle('fa-times')
+
+            if($('.navbar__inputSearch.active')) $('.navbar-input-Search').focus()
+        }
+
+        $('#search-icon-mb').onclick = () => {
+            search.click()
+        }
+
+        $('#nav-search').onclick = () => {
+            search.click()
+            window.location.hash = `#shop-search:${$('.navbar-input-Search').value}`
+            $('.navbar-input-Search').value = ""   
+        }
+
+        $('.navbar-input-Search').onkeydown = (e) => {
+            if(e.keyCode == 13)  {
+                if(!$('.navbar-input-Search').value) return;
+                search.click()
+                window.location.hash = `#shop-search:${$('.navbar-input-Search').value}`
+                $('.navbar-input-Search').value = ""
+            }
         }
     },
 

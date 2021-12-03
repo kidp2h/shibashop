@@ -798,6 +798,10 @@
     animation: fadeIn_2 ease 0.8s;
 }
 
+.recommended__img:hover .icon-heart{
+    right: 0;
+}
+
 .recommended__img img{
     max-width: 100%;
     display: none;

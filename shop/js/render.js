@@ -261,6 +261,9 @@ function renderproducts() {
         localStorage.setItem("sanphamtheoloai",JSON.stringify(""));  // Sự kiện onclick ở button fillter title
         let sanphamtheotimkiem= [];
         let title = document.getElementById('search').value; // lấy giá trị trong div.search
+        
+        document.getElementById('search').value = ""
+
         const filterdata = ProductModel.getAll().filter(value => {   // Chạy hàm lọc
             return value.name.toUpperCase().includes(title.toUpperCase());
         })

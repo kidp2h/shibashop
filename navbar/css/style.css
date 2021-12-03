@@ -115,7 +115,7 @@
 .navigation-container .icons .navbar__inputSearch {
     position: absolute;
     top: calc(100% + 15px);
-    right: -200%;
+    right: -500px;
 
     display: flex;
     justify-content: center;

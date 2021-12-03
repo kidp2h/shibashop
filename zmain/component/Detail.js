@@ -4,9 +4,9 @@ function Detail(product) {
     <div class = "detail-content">
         <div class="detail-nav">
             <div class="detail-nav__item  pd-left-right-174">
-                <span><a href="#">Home</a></span>
+                <span><a href="#home">Home</a></span>
                 <i class="fas fa-angle-right"></i>
-                <span><a href="#">Laptop</a></span>
+                <span><a href="#shop">Shop</a></span>
                 <i class="fas fa-angle-right"></i>
                 <span class = "nav__item--disable">Blue Laptop</span>
             </div>
@@ -61,7 +61,7 @@ function Detail(product) {
                             <div class="detail__benefit-list detail__benefit-list--tr">
                                 <div class="detail__benefit-item">
                                     <div class="detail__benefit-img">
-                                        <img src="./assets/img/benefit-img_1.png" alt="">
+                                        <img src="./images/detail_icon/benefit-img_1.png" alt="">
                                     </div>
                                     <div class="detail__benefit-name">
                                         Rain & Water 
@@ -72,7 +72,7 @@ function Detail(product) {
 
                                 <div class="detail__benefit-item">
                                     <div class="detail__benefit-img">
-                                        <img src="./assets/img/benefit-img_2.png" alt="">
+                                        <img src="./images/detail_icon/benefit-img_2.png" alt="">
                                     </div>
                                     <div class="detail__benefit-name">
                                         UV Resistant
@@ -83,7 +83,7 @@ function Detail(product) {
 
                                 <div class="detail__benefit-item">
                                     <div class="detail__benefit-img">
-                                        <img src="./assets/img/benefit-img_3.png" alt="">
+                                        <img src="./images/detail_icon/benefit-img_3.png" alt="">
                                     </div>
                                     <div class="detail__benefit-name">
                                         Corrosion Resistance 
@@ -95,7 +95,7 @@ function Detail(product) {
                             <div class="detail__benefit-list detail__benefit-list--tl">
                                 <div class="detail__benefit-item">
                                     <div class="detail__benefit-img">
-                                        <img src="./assets/img/benefit-img_4.png" alt="">
+                                        <img src="./images/detail_icon/benefit-img_4.png" alt="">
                                     </div>
                                     <div class="detail__benefit-name">
                                         Lead-free
@@ -106,7 +106,7 @@ function Detail(product) {
 
                                 <div class="detail__benefit-item">
                                     <div class="detail__benefit-img">
-                                        <img src="./assets/img/benefit-img_5.png" alt="">
+                                        <img src="./images/detail_icon/benefit-img_5.png" alt="">
                                     </div>
                                     <div class="detail__benefit-name">
                                         Resistant to
@@ -117,7 +117,7 @@ function Detail(product) {
 
                                 <div class="detail__benefit-item">
                                     <div class="detail__benefit-img">
-                                        <img src="./assets/img/benefit-img_6.png" alt="">
+                                        <img src="./images/detail_icon/benefit-img_6.png" alt="">
                                     </div>
                                     <div class="detail__benefit-name">                               
                                         Recyclable
@@ -180,7 +180,7 @@ function Detail(product) {
                                 <tbody>
                                     <tr class="detail__sp-tab-reason-list">
                                         <th class="detail__sp-tab-reason-header">
-                                            <img src="./assets/img/reasons_1.png" alt="">
+                                            <img src="./images/detail_icon/reasons_1.png" alt="">
                                         </th>
                                         <td class="detail__sp-tab-reason">
                                             <p><strong>Exceptional Support</strong> Our friendly support staff are available all the time to help customers with any questions or concerns. We want our products to deliver the most joy and value with zero hassle. That’s why we insist on being available to assist when the need arises.</p>
@@ -188,7 +188,7 @@ function Detail(product) {
                                     </tr>
                                     <tr class="detail__sp-tab-reason-list">
                                         <th class="detail__sp-tab-reason-header">
-                                            <img src="./assets/img/reasons_1.png" alt="">
+                                            <img src="./images/detail_icon/reasons_1.png" alt="">
                                         </th>
                                         <td class="detail__sp-tab-reason">
                                             <p><strong>Exceptional Support</strong> Our friendly support staff are available all the time to help customers with any questions or concerns. We want our products to deliver the most joy and value with zero hassle. That’s why we insist on being available to assist when the need arises.</p>
@@ -196,7 +196,7 @@ function Detail(product) {
                                     </tr>
                                     <tr class="detail__sp-tab-reason-list">
                                         <th class="detail__sp-tab-reason-header">
-                                            <img src="./assets/img/reasons_1.png" alt="">
+                                            <img src="./images/detail_icon/reasons_1.png" alt="">
                                         </th>
                                         <td class="detail__sp-tab-reason">
                                             <p><strong>Exceptional Support</strong> Our friendly support staff are available all the time to help customers with any questions or concerns. We want our products to deliver the most joy and value with zero hassle. That’s why we insist on being available to assist when the need arises.</p>
@@ -204,7 +204,7 @@ function Detail(product) {
                                     </tr>
                                     <tr class="detail__sp-tab-reason-list">
                                         <th class="detail__sp-tab-reason-header">
-                                            <img src="./assets/img/reasons_1.png" alt="">
+                                            <img src="./images/detail_icon/reasons_1.png" alt="">
                                         </th>
                                         <td class="detail__sp-tab-reason">
                                             <p><strong>Exceptional Support</strong> Our friendly support staff are available all the time to help customers with any questions or concerns. We want our products to deliver the most joy and value with zero hassle. That’s why we insist on being available to assist when the need arises.</p>
@@ -212,7 +212,7 @@ function Detail(product) {
                                     </tr>
                                     <tr class="detail__sp-tab-reason-list">
                                         <th class="detail__sp-tab-reason-header">
-                                            <img src="./assets/img/reasons_1.png" alt="">
+                                            <img src="./images/detail_icon/reasons_1.png" alt="">
                                         </th>
                                         <td class="detail__sp-tab-reason">
                                             <p><strong>Exceptional Support</strong> Our friendly support staff are available all the time to help customers with any questions or concerns. We want our products to deliver the most joy and value with zero hassle. That’s why we insist on being available to assist when the need arises.</p>
