@@ -55,10 +55,10 @@ function App() {
         </div>
 
         <div class="navigation-mobile">
-            <div class="icon" id="shop-icon">
+            <a href="#shop" class="icon">
                 <i class="fab fa-shopify"></i>
                 <p>Shop</p>
-            </div>
+            </a>
             <a href="#wishList" class="icon noti wishList" data-amount="0">
                 <i class="fas fa-heart"></i>
                 <p>Wishlist</p>

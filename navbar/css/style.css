@@ -114,8 +114,9 @@
 
 .navigation-container .icons .navbar__inputSearch {
     position: absolute;
-    top: calc(100% + 15px);
-    right: -500px;
+    top: -100%;
+    right: calc(100% - 50px);
+    z-index: -1;
 
     display: flex;
     justify-content: center;
@@ -134,7 +135,7 @@
     font-size: 20px;
 }
 .navigation-container .icons .navbar__inputSearch.active {
-    right: calc(100% - 50px);
+    top: calc(100% + 15px);
 }
 
 .navigation-container .icons .navbar__inputSearch i {
