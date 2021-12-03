@@ -43,7 +43,7 @@ function InitEventDetail() {
                 content.style.display = 'block';
                 disableIcon.style.display = 'block';
                 activeIcon.style.display = 'none';
-                Item.querySelector('.pane-title').style.color = '#b59677';
+                Item.querySelector('.pane-title').style.color = '#5f50f1';
             }
         };
     });
@@ -448,14 +448,15 @@ const renderRecommendedProduct = function () {
                             <button class="recommended__increment">+</button>
                         </div>
                     </div>
-                    <span>
+                    <div class="recommended__addToCart">
                         <button
                             class="recommended__add-to-cart-btn"
                             class="recommended__add-to-cart-btn"
                         >
-                            Add to cart
+                            <span>Add to cart</span>
+                            <i class="fas fa-shopping-cart"></i>
                         </button>
-                    </span>
+                    </div>
                 </div>
             </div>
 
