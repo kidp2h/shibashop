@@ -84,7 +84,7 @@ const ProductModel = {
       if (found == false) {
         if (isExistRecord('products', product.name))
           return { status: false, message: lang.existDocument };
-        product.imgList = ['./images/products/product-1-img-1.jpg'];
+        product.imgList = ['./images/products/product.jpg'];
         this.Insert({ id: id, ...product });
         return { status: true, message: lang.createSuccess };
       }

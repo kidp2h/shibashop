@@ -28,7 +28,7 @@
     width: 700px;
   }
   #admin .search-category {
-    margin-left:auto;
+    margin-left: auto;
   }
 }
 @media (max-width: 768px) {
@@ -64,7 +64,7 @@
   #admin .t-wrap {
     overflow-x: scroll;
   }
-  #admin .modal{
+  #admin .modal {
     width: 400px;
   }
   #admin .tmanager-revenue .box-filter {
@@ -73,10 +73,9 @@
     align-items: flex-start;
   }
   #admin .search-category {
-    margin-left:0;
+    margin-left: 0;
     margin-bottom: 10px;
   }
-
 }
 
 @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
@@ -85,9 +84,9 @@
   }
   #admin .details {
     grid-template-columns: repeat(1, 1fr);
-    zoom: 90%;
+    zoom: 1;
   }
-  #admin .modal{
+  #admin .modal {
     width: 350px;
   }
   #admin .tmanager-revenue .box-filter {
@@ -95,14 +94,26 @@
     flex-direction: column;
   }
   #admin .search-category {
-    margin-left:0;
+    margin-left: 0;
     margin-bottom: 10px;
+  }
+  #admin .wrap-table td {
+    word-break: break-all;
   }
 }
 @media (max-width: 320px) {
+  #admin .actionUser div {
+    display: inline;
+  }
+  #admin .button-add {
+    margin: 5px 0;
+  }
   #admin .details {
     grid-template-columns: repeat(1, fr);
-    zoom: 80%;
+    zoom: 95%;
+  }
+  #admin .wrap-table td {
+    word-break: break-all;
   }
   #admin .card-statistic {
     grid-template-columns: repeat(1, 1fr);
@@ -127,10 +138,10 @@
     align-items: flex-start;
   }
   #admin .search-category {
-    margin-left:0;
+    margin-left: 0;
     margin-bottom: 10px;
   }
-  #admin .modal{
+  #admin .modal {
     width: 280px;
   }
 }

@@ -30,25 +30,26 @@ function toast(type, icon, text) {
 }
 
 function Admin_Main() {
+  HandleEvent.SlideTdTable();
   $$('.sidebar li:not(:first-child)').forEach((item) =>
     item.addEventListener('click', function () {
+      $$('.pagination').forEach((item) => {
+        item.classList.remove('hidden');
+      });
       $$('.sidebar li').forEach((item) => item.classList.remove('active'));
       this.classList.add('active');
       $('.sidebar').classList.add('active');
       $('.main-content').classList.add('active');
       $('.toggle').classList.remove('open');
-      $$('.pagination').forEach((item) => {
-        item.classList.remove('hidden');
-      });
     })
   );
   $('.toggle').onclick = () => {
-    $('.sidebar').classList.toggle('active');
-    $('.main-content').classList.toggle('active');
-    $('.toggle').classList.toggle('open');
     $$('.pagination').forEach((item) => {
       item.classList.toggle('hidden');
     });
+    $('.sidebar').classList.toggle('active');
+    $('.main-content').classList.toggle('active');
+    $('.toggle').classList.toggle('open');
   };
 
   $('.tmanager-user').style.display = 'none';

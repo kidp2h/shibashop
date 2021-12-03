@@ -182,6 +182,7 @@ function Admin() {
                   <thead>
                     <tr>
                       <th>Username</th>
+                      <th>FullName</th>
                       <th>IsAdmin</th>
                     </tr>
                   </thead>
@@ -196,8 +197,6 @@ function Admin() {
                       <th>Name</th>
                       <th>Category</th>
                       <th>Price($)</th>
-                      <th>Sale($)</th>
-                      <th>Rate</th>
                     </tr>
                   </thead>
                   <tbody></tbody>
@@ -208,6 +207,7 @@ function Admin() {
                 <table class="content-table tcategory">
                   <thead>
                     <tr>
+                      <th>Image</th>
                       <th>Name</th>
                     </tr>
                   </thead>
@@ -246,13 +246,17 @@ function Admin() {
                 <tbody></tbody>
               </table>
             </div>
-            <div class="button-add add-user"><i class="fas fa-plus"></i></div>
-            <div class="pagination page-user" style="float: right">
-              <input type="hidden" class="currentPage" value="1" />
-              <ul>
-                <li class="previous">&lt;</li>
-                <li class="next">&gt;</li>
-              </ul>
+            <div class="actionUser table-action">
+              <div>
+                <span class="btn-table-action add-user"><i class="fas fa-plus"></i></span>
+              </div>
+              <div class="pagination page-user" style="float: right">
+                <input type="hidden" class="currentPage" value="1" />
+                <ul>
+                  <li class="previous">&lt;</li>
+                  <li class="next">&gt;</li>
+                </ul>
+              </div>
             </div>
           </div>
           <div class="tmanager tmanager-product">
@@ -299,13 +303,17 @@ function Admin() {
               </table>
             </div>
 
-            <div class="button-add add-product"><i class="fas fa-plus"></i></div>
-            <div class="pagination page-product" style="float: right">
-              <input type="hidden" class="currentPage" value="1" />
-              <ul>
-                <li class="previous">&lt;</li>
-                <li class="next">&gt;</li>
-              </ul>
+            <div class="actionProduct table-action">
+              <div>
+                <span class="btn-table-action add-product"><i class="fas fa-plus"></i></span>
+              </div>
+              <div class="pagination page-product" style="float: right">
+                <input type="hidden" class="currentPage" value="1" />
+                <ul>
+                  <li class="previous">&lt;</li>
+                  <li class="next">&gt;</li>
+                </ul>
+              </div>
             </div>
           </div>
           <div class="tmanager tmanager-category">
@@ -331,13 +339,17 @@ function Admin() {
                 <tbody></tbody>
               </table>
             </div>
-            <div class="button-add add-category"><i class="fas fa-plus"></i></div>
-            <div class="pagination page-category" style="float: right">
-              <input type="hidden" class="currentPage" value="1" />
-              <ul>
-                <li class="previous">&lt;</li>
-                <li class="next">&gt;</li>
-              </ul>
+            <div class="actionCategory table-action">
+              <div>
+                <span class="btn-table-action add-category"><i class="fas fa-plus"></i></span>
+              </div>
+              <div class="pagination page-category" style="float: right">
+                <input type="hidden" class="currentPage" value="1" />
+                <ul>
+                  <li class="previous">&lt;</li>
+                  <li class="next">&gt;</li>
+                </ul>
+              </div>
             </div>
           </div>
           <div class="tmanager tmanager-bill">
@@ -373,15 +385,14 @@ function Admin() {
                 <tbody></tbody>
               </table>
             </div>
-            <div class="button-add add-category" style="visibility: hidden;">
-              <i class="fas fa-plus"></i>
-            </div>
-            <div class="pagination page-bill" style="float: right">
-              <input type="hidden" class="currentPage" value="1" />
-              <ul>
-                <li class="previous">&lt;</li>
-                <li class="next">&gt;</li>
-              </ul>
+            <div class="actionBill table-action" style="justify-content:flex-end">
+              <div class="pagination page-bill">
+                <input type="hidden" class="currentPage" value="1" />
+                <ul>
+                  <li class="previous">&lt;</li>
+                  <li class="next">&gt;</li>
+                </ul>
+              </div>
             </div>
           </div>
           <div class="tmanager tmanager-revenue">
