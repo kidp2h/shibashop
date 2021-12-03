@@ -63,7 +63,6 @@ const TableEvent = {
             default:
               return;
           }
-          ele.querySelector('input').checked = true;
         };
       });
     },
@@ -171,7 +170,6 @@ const TableEvent = {
             default:
               return;
           }
-          ele.querySelector('input').checked = true;
         };
       });
     },
@@ -232,7 +230,6 @@ const TableEvent = {
             default:
               return;
           }
-          ele.querySelector('input').checked = true;
         };
       });
     },
@@ -290,7 +287,6 @@ const TableEvent = {
             default:
               return;
           }
-          ele.querySelector('input').checked = true;
         };
       });
     },
@@ -328,7 +324,6 @@ const TableEvent = {
             default:
               return;
           }
-          ele.querySelector('input').checked = true;
         };
       });
     },

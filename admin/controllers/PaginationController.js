@@ -83,14 +83,14 @@ const PaginationController = {
                       <button class="button-icon remove" data-id='${
                         document.id
                       }' data-table='users' style="visibility:${
-            user.username == JSON.parse(localStorage.getItem('username')) ? 'hidden' : 'visible'
+            document.username == JSON.parse(localStorage.getItem('username')) ? 'hidden' : 'visible'
           }">
                           <i class="far fa-trash-alt"></i>
                       </button>
                       <button class="button-icon save" data-id='${
                         document.id
                       }' data-table='users' style="visibility:${
-            user.username == JSON.parse(localStorage.getItem('username')) ? 'hidden' : 'visible'
+            document.username == JSON.parse(localStorage.getItem('username')) ? 'hidden' : 'visible'
           }">
                           <i class="fas fa-save"></i>
                       </button>
@@ -100,10 +100,6 @@ const PaginationController = {
         $('.tmanager-user table tbody').innerHTML = result;
         TableEvent.User.Initialize();
         HandleEvent.SlideTdTable();
-        let currentSort = +$('.tmanager-user input:checked').parentNode.classList[2].split(
-          'col'
-        )[1];
-        sortTable(currentSort, 'user');
       };
     });
     $$('.page-product ul li').forEach((page) => {
@@ -235,10 +231,6 @@ const PaginationController = {
         $('.tmanager-category table tbody').innerHTML = result;
         TableEvent.Category.Initialize();
         HandleEvent.SlideTdTable();
-        let currentSort = +$('.tmanager-category input:checked').parentNode.classList[2].split(
-          'col'
-        )[1];
-        sortTable(currentSort, 'category');
       };
     });
     $$('.page-bill ul li').forEach((page) => {
@@ -299,10 +291,6 @@ const PaginationController = {
 
         TableEvent.Bill.Initialize();
         HandleEvent.SlideTdTable();
-        let currentSort = +$('.tmanager-bill input:checked').parentNode.classList[2].split(
-          'col'
-        )[1];
-        sortTable(currentSort, 'bill');
       };
     });
   },
