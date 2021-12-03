@@ -16,7 +16,7 @@ function productItems(item){
             <div class="buy-now">
             <div class="product-quantity">
                 <button class="btn btn-tru"> - </button>
-                <input type="text" min="1" max="99" value="1" class="inputQuantity" data-id ="${item.id}" >
+                <input type="text" min="1" max="99" value="1" class="inputQuantity" data-id ="${item.id}"  >
                 <button class="btn btn-add"> + </button>
             </div>
                 <div class="addtocart addToCart" data-id ="${item.id}" >
@@ -31,8 +31,8 @@ function productItems(item){
             </div>
         </div>
         <div class="product-info ">
-            <a href="" class="product-cat">${item.category}</a>
-            <a href="" class="product-name">${item.name}</a>
+            <div href="" class="product-cat">${item.category}</div>
+            <div href="" class="product-name">${item.name}</div>
             <div class="price">
             <div class="product-price">${formatMoney(item.price, "$")}</div>
             <div class="sale-price">${formatMoney(item.sale, "$")}</div>
