@@ -9,6 +9,11 @@ const BillController = {
           <span>Xem chi tiết</span>
         </button>
       </td>
+      <td>${
+        new Date(bill.created_at).toLocaleDateString() +
+        ' ' +
+        new Date(bill.created_at).toLocaleTimeString()
+      }</td>
       <td>${formatNumber(bill.subtotal)}</td>
       <td class="status-bill">
       ${

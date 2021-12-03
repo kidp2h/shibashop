@@ -27,8 +27,6 @@ function Detail(product) {
                     <li class="detail__infor-item">Additional Information</li>
                     <li class="detail__infor-item">Why Buy From Us</li>
                     <li class="detail__infor-item">Delivery & Returns</li>
-                    <li class="detail__infor-item">Custom tab</li>
-                    <li class="detail__infor-item">Reviews</li>
                 </ul>
             </div>
 
@@ -250,9 +248,9 @@ function Detail(product) {
                                     </div>                        
                                 </div>
                         
-                                <div class="detail__delivery-return-content">
+                                <div class="detail__delivery-return-content detail__delivery-return-content--mg">
                                     <i class="fas fa-map-marker-alt"></i>
-                                    <div class="delivery-return__detail">
+                                    <div class="delivery-return__detail delivery-return__detail--mg">
                                         <h3>TRACKED ORDERS</h3>
                                         <p>After dispatch you will get a tracking code to follow your order's full journey</p>
                                     </div>                        
@@ -266,8 +264,8 @@ function Detail(product) {
                                 <div class="detail__delivery-return-content">
                                     <i class="fas fa-undo-alt"></i>
                                     <div class="delivery-return__detail">
-                                        <h3>14 DAYS RETURN</h3>
-                                        <p>You can return any unwanted item within 14 days and get a full refund</p>
+                                        <h3>30 DAYS RETURN</h3>
+                                        <p>You can return any unwanted item within 30 days and get a full refund</p>
                                     </div>                        
                                 </div>
                         

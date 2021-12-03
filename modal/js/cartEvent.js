@@ -58,10 +58,10 @@ function CartPageEmpty() {
                         <i class="fas fa-shopping-bag"></i>
                 
                     </div>
-                    <h2>YOUR FUCKING CART IS EMPTY.</h2>
-                    <p>You don't have any products in the fucking cart yet.</p>
+                    <h2>YOUR CART IS EMPTY.</h2>
+                    <p>You don't have any products in the cart yet.</p>
                     
-                    <p>You will find a lot of disgusting and terrible products on our "Shop" page.</p>
+                    <p>You will find a lot of products on our "Shop" page.</p>
 
                     <button>RETURN TO SHOP</button>
                 </div>`;
@@ -75,7 +75,7 @@ function ProductItemCartModel(product) {
             </div>
             <div class="modal__cart-item-infor">
                 <h3 class="modal__cart-item-name">${product.name}</h3>
-                <span class="modal__cart-item-price">$${product.sale}</span>
+                <span class="modal__cart-item-price">${formatMoney(product.sale, '$')}</span>
                 <div class="modal__cart-item-input">
                     <button class="cart__item-decrement"  data-id = "${product.id}">-</button>
                     <input type="number" min="1" max="100" step="1" value="${product.quantity}" class="cart_item-input" data-id = "${product.id}" inputmode="numeric">
@@ -108,7 +108,7 @@ function ProductItemCartPage(product) {
                 </div>
             </div>
             <div class="cartPage__product-item-price">
-                <span class="cartPage__product-cost">$${product.sale}</span>
+                <span class="cartPage__product-cost">${formatMoney(product.sale, '$')}</span>
             </div>
             <div class="cartPage__item-input">                           
                 <div class="modal__cart-item-input">
@@ -118,7 +118,7 @@ function ProductItemCartPage(product) {
                 </div>
             </div>                             
             <div class = "cartPage__product-total">
-                <span class="cartPage__product-total-cost">$${product.sale * product.quantity}</span>
+                <span class="cartPage__product-total-cost">${formatMoney(product.sale * product.quantity, '$')}</span>
             </div>
         </div>
     `;
@@ -195,8 +195,12 @@ const renderProductCart = {
 
         if (productsInCart.length <= 0) {
             $('.modal__cart-footer').style.display = 'none';
-            $('.modal__cart-product-box').innerHTML =
-                '<h4 class="empty-cart">Your shopping cart is fucking empty</h4>';
+            $('.modal__cart-product-box').innerHTML = `
+                <div class = "modal__cart-empty">
+                    <i class="fas fa-shopping-cart"></i>
+                    <h4 class="modal__cart-empty-text">Your shopping cart is empty</h4>
+              </div>
+              `
             $('.modal__cart-subtotal-all').innerHTML = '';
             return;
         }
@@ -207,7 +211,7 @@ const renderProductCart = {
 
         $('.modal__cart-product-box').innerHTML = productlist.join('');
         $('.modal__cart-footer').style.display = 'block';
-        $('.modal__cart-subtotal-all').innerHTML = '$' + productTotalPrice();
+        $('.modal__cart-subtotal-all').innerHTML =  formatMoney(productTotalPrice(), '$');
     },
 
     CartPage() {
@@ -228,7 +232,7 @@ const renderProductCart = {
 
             $('#cartPage .product-box').innerHTML = productlist.join('');
             $('#cartPage .cartPage-footer').style.display = 'flex';
-            $('.cartPage__Subtotal-number').innerHTML = '$' + productTotalPrice();
+            $('.cartPage__Subtotal-number').innerHTML = formatMoney(productTotalPrice(), '$');
             //cartPageSubtotal (productlist);
         }
         

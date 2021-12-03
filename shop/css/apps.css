@@ -23,7 +23,8 @@
                     line-height: 150px;
                     width: 100%;
                     height: 150px;
-                    background-color: #5f50f1;
+                   background-image: url(https://source.unsplash.com/random);
+                    background-size: cover  ;
                 }
                 
                 #shop #product-intro p {
@@ -34,6 +35,7 @@
                     letter-spacing: 7px;
                     cursor: pointer;
                     user-select: none;
+                    font-weight: 900;
                 }
                 /* 
 Menu */
@@ -241,13 +243,15 @@ lam bo loc */
                 }
                 /* 
 San pham  */
-                
+                #shop div#product-gaoshop{
+                    height: 1110px;
+                }
                 #shop .center-product {
                     width: 70%;
                     max-width: 900px;
                     display:flex;
                     align-items:center;
-                    justify-content:center;
+                    
                     flex-direction:column;
                 }
                 
@@ -387,6 +391,7 @@ San pham  */
                 #shop ul#products li .product-top div.buy-now .product-quantity button.btn{
                     font-size: 2em;
                     width: 30%;
+                    color: #fff;
                  
                 }
                 #shop ul#products li .product-top div.buy-now .product-quantity input {
@@ -422,7 +427,7 @@ San pham  */
                 }
                 #shop ul#products li div.buy-now div.addtocart i{
                     display: none;
-                    
+                    font-size: 20px;
                 }
                 #shop ul#products li:hover div.buy-now .product-quantity input {
                     border-right: 2px solid #fff;
@@ -447,7 +452,7 @@ San pham  */
                    
                 }
                 
-                #shop ul#products li .product-info a {
+                #shop ul#products li .product-info div {
                     display: block;
                     text-decoration: none;
                 }
@@ -465,7 +470,7 @@ San pham  */
                    word-break: break-word;  
                 }
         
-                #shop ul#products li .product-info a.product-name {
+                #shop ul#products li .product-info div.product-name {
                     color: #5f50f1;
                     font-weight: 700;
                     letter-spacing: 2px;
@@ -521,7 +526,7 @@ San pham  */
                     display: flex;
                     justify-content: center;
                     justify-items: center;
-                    margin: auto;
+                    margin: 30px;
                     height: auto;
                     margin-bottom: 20px;
                     /* margin-top: auto; */

@@ -220,13 +220,17 @@ const HandleEvent = {
         var FR = new FileReader();
         let result;
         FR.addEventListener('load', function (e) {
-          let imageHTML = `                        
-          <div class="wrap-image list-image-product" data-status="new">
-            <img class="image-product" src="${e.target.result}" alt="Image product id">
-            <button class="removeImage"><i class="fas fa-remove"></i></button>
-          </div>`;
-          $('.image-show').insertAdjacentHTML('beforeend', imageHTML);
-          TableEvent.Product.RemoveImage();
+          if (e.total > 500000) {
+            toast('danger', danger, 'Vui lòng upload ảnh size nhỏ hơn 500 KB');
+          } else {
+            let imageHTML = `                        
+            <div class="wrap-image list-image-product" data-status="new">
+              <img class="image-product" src="${e.target.result}" alt="Image product id">
+              <button class="removeImage"><i class="fas fa-remove"></i></button>
+            </div>`;
+            $('.image-show').insertAdjacentHTML('beforeend', imageHTML);
+            TableEvent.Product.RemoveImage();
+          }
           $('#inputUploadImage').value = '';
         });
         FR.readAsDataURL(this.files[0]);
@@ -412,6 +416,11 @@ const HandleEvent = {
               row += `<tr>
                 <td>${bill.product.name}</td>
                 <td>${bill.product.category}</td>
+                <td>${
+                  new Date(bill.created_at).toLocaleDateString() +
+                  ' ' +
+                  new Date(bill.created_at).toLocaleTimeString()
+                }</td>
                 <td>${formatNumber(bill.product.sale)}</td>
                 <td>${bill.qty}</td>
                 <td>${formatNumber(bill.product.sale * bill.qty)}</td>
@@ -429,6 +438,11 @@ const HandleEvent = {
               row += `<tr>
                 <td>${bill.product.name}</td>
                 <td>${bill.product.category}</td>
+                <td>${
+                  new Date(bill.created_at).toLocaleDateString() +
+                  ' ' +
+                  new Date(bill.created_at).toLocaleTimeString()
+                }</td>
                 <td>${formatNumber(bill.product.sale)}</td>
                 <td>${bill.qty}</td>
                 <td>${formatNumber(bill.product.sale * bill.qty)}</td>
@@ -442,10 +456,12 @@ const HandleEvent = {
             <td></td>
             <td></td>
             <td></td>
+            <td></td>
             <td><b>Amount Sold</b> = <b style="color:var(--ui-background)">${totalAmountSold}</b></td>
             <td><b>Sub total</b> = <b style="color:var(--red)">${formatNumber(totalPrice)}</b></td>
           </tr>`;
         $('.tmanager-revenue tbody').innerHTML = row;
+        HandleEvent.SlideTdTable();
       }
     },
     LoadBillByDate: function (from, to) {},

@@ -239,8 +239,8 @@ text-align: right;
   /* padding: 10px 0; */
   background: var(--primary-color);
   width: 280px;
-  height: 40px;
-  line-height: 40px;
+  height: 60px;
+  line-height: 60px;
   text-align: center;
   margin: 15px 0;
   cursor: pointer;
@@ -252,7 +252,7 @@ text-align: right;
 }
 
 .cartPage__Checkout-text {
-  font-size: 1.6rem;
+  font-size: 2.0rem;
   /* font-weight: bold; */
   color: white;
 }
@@ -271,7 +271,7 @@ text-align: right;
 
 
 /* TABLET */
-@media(min-width: 768px) and (max-width: 1024px){
+@media(min-width: 739px) and (max-width: 1024px){
   .cartPage-footer,
   #cartPage .cartList__box {
     margin-left: 15px;

@@ -1,7 +1,6 @@
  
  /* TABLET AND MOBILE */
 @media(max-width: 1280px){ 
-
     .pane-icon--minus-icon {
         display: none;
     }
@@ -36,27 +35,42 @@
     .recommended__product-image:hover .recommended__add-to-cart{
         animation: none; 
     }
+
+    .recommended__add-to-cart{ 
+        display: flex;
+    }
 }
 
- /* TABLET */
-@media(min-width: 768px) and (max-width: 1280px){
+@media(min-width: 1281px) {
+    .pane-tab-content {
+        display: block !important;
+    }
+}
+
+ /* TABLET 749*/
+@media(min-width: 701px) and (max-width: 1280px){
 /* @media(min-width: 46.25em) and (max-width: 64em){ */
     .detail-item,
     .detail-nav .detail-nav__item {
         padding-left: 15px;
         padding-right: 15px;
     }
-
+/* 
     .detail-item__slider {
-        flex-shrink: 0;
         height: auto;
-    }
+    } */
     .detail-item__next-prev-btn {
         top: 50%;
     }
 
     .detail-item__next-btn, .detail-item__prev-btn {
-        padding: 12px 18px
+        padding: 10px 16px
+    }
+
+    .item-infor .Img_box,
+    .item__variation .buy-it-now-btn {
+        width: 100%;
+        max-width: 359px;
     }
 
      /*reponsive phần show more infor */
@@ -130,20 +144,16 @@
     }
 
     .recommended__next-prev-btn {
-        top: 35%;
-    }
-
-    .recommended__add-to-cart {
-        display: flex;
+        top: 33%;
     }
 
     .recommended__prev-btn {
-        font-size: 4.6rem;
+        font-size: 4rem;
         left: -58px;
     }
     
     .recommended__next-btn {
-        font-size: 4.6rem;
+        font-size: 4rem;
         right: -58px;
     }
 
@@ -154,7 +164,7 @@
 
     .recommended__quantity .recommended__increment,
     .recommended__quantity .recommended__decrement {
-        width: 42px;   
+        width: 32px;   
         font-size: 2rem;
         line-height: 2px;
         /* width: 62px; */
@@ -162,7 +172,7 @@
 
     .recommended-product-infor span,
     .recommended-product-infor h3{
-        font-size: 1.8rem;
+        font-size: 1.6rem;
     }
 
     .recommended__color-item {
@@ -174,7 +184,7 @@
     }
     
 }
-
+ 
 @media(width: 768px) {
     .detail-item__slider {
         height: 550px;
@@ -187,6 +197,10 @@
     /* responsive phần you may also like */
     .recommended {
         padding: 50px 80px;
+    }
+
+    .recommended__next-prev-btn {
+        top: 33%;
     }
 
     .recommended__prev-btn {
@@ -213,13 +227,12 @@
         height: 29px;
         margin-bottom: 16px;
         margin-right: 22px;
-        /* display: inline-block; */
     }
 }
 
-
+ /* 748 */
  /* MOBILE */
-@media(max-width: 766px) {
+@media(max-width: 700px) {
     
     .detail-item,
     .detail-nav .detail-nav__item {
@@ -227,7 +240,7 @@
         padding-right: 15px;
         font-size: 1.2rem;
     }
-
+    
 
     .detail-item {
         margin-top: 15px;
@@ -238,7 +251,7 @@
     .detail-item__slider {
         width: 100%;
         /* height: 500px; */
-        height: auto;
+
     }
 
     .detail-item .item-imgBx {
@@ -273,6 +286,13 @@
     }
 
     /*reponsive phần show more infor */ 
+    .detail__benefit-list:nth-child(2) {
+        padding: 0;
+    }
+    .detail__more-infor-img {
+        margin: 0;
+    }
+
     .detail__more-infor {
         background-color: #fff;
         padding: 0;
@@ -347,6 +367,7 @@
 
     .detail__sp-delivery-return {
         flex-direction: column;
+        align-items: center;
         padding-top: 50px;
     }
 
@@ -396,13 +417,41 @@
         margin-bottom: 15px;
     }
 
-    /* #recommended__products-wrapper .recommended__products-item {
-        width: calc(100% / 3);
-    } */
 }
 
-/* Điện thoại IPHONE 5 :))) */
-@media(max-width: 540px) {
+
+    /* chuyển add to cart thành giỏ hàng  */
+@media(min-width: 1000px) and (max-width: 1040px) {
+    .recommended__addToCart span{
+        display: none;
+    }
+
+    .recommended__addToCart i {
+        display: block;
+        font-size: 2rem;
+    }
+}
+
+@media(min-width: 700px) and (max-width: 800px) {
+    
+    .recommended__addToCart span{
+        display: none;
+    }
+
+    .recommended__addToCart i {
+        display: block;
+        font-size: 2rem;
+    }
+}
+
+@media(min-width: 700px) and (max-width: 760px) {
+    .recommended__next-prev-btn {
+        top: 29%;
+    }
+}
+
+/* Điện thoại nhỏ như sucface duo, iphone 5, galaxy fold :))) */
+@media(max-width: 580px) { /* responsive chung cho các thiết bị nhỏ từ 580 trở xuống */
     .detail-item__slider {
         height: auto;
     }
@@ -412,23 +461,82 @@
     }
 
     .recommended__add-to-cart-btn {
-        font-size: 1.7rem;
+        font-size: 1.6rem;
     }
 
     .recommended__next-btn,
     .recommended__prev-btn {
-        font-size: 3.6rem;
+        font-size: 3.4rem;
     }
-
-    
-    .recommended__next-prev-btn {
+   
+    /* .recommended__next-prev-btn {
         top: 34%;
+    } */
+
+    /* chuyển add to cart thành giỏ hàng VÌ QUÁ NHỎ =((  */
+    .recommended__addToCart span{
+        display: none;
     }
 
+    .recommended__addToCart i {
+        display: block;
+        font-size: 2rem;
+    }
 }
 
-@media(min-width: 1280px) {
-    .recommended__products #recommended__products-wrapper .recommended__products-item {
-        width: calc(100% / 8);
+ /* responsive cho Iphone 5 */
+@media(width: 320px) {
+
+    /* phần detail  */
+    .detail-item__prev-btn {
+        padding: 6px 12px;
+    }
+
+    .detail-item__next-btn {
+        padding: 6px 12px;
+    }
+
+    /* phần yoy may also like */
+    .recommended__next-btn,
+    .recommended__prev-btn {
+        font-size: 3rem;      
+    }
+    .recommended__prev-btn {
+        left: -35px;
+    }
+    .recommended__next-btn {
+        right: -35px;
+    }
+    .recommended__next-prev-btn {
+        top: 32%;
+    }
+}
+
+ /* responsive cho Galaxy fold */
+@media(width: 280px) { 
+
+    .detail-item__prev-btn {
+        padding: 6px 12px;
+    }
+
+    .detail-item__next-btn {
+        padding: 6px 12px;
+    }
+
+    /* phần yoy may also like */
+    .recommended__next-prev-btn {
+        top: 27%;
+    }
+
+    .recommended__next-btn,
+    .recommended__prev-btn {
+        font-size: 3.2rem;
+    }
+
+    .recommended__prev-btn {
+        left: -34px;
+    }
+    .recommended__next-btn {
+        right: -34px;
     }
 }
