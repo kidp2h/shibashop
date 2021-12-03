@@ -19,6 +19,7 @@ window.onhashchange = function () {
         break;
       }
 
+<<<<<<< HEAD
     case '#admin':
       let userCurrent = JSON.parse(localStorage.getItem('userCurrent'));
       if (userCurrent && userCurrent.isAdmin == true) {
@@ -76,6 +77,62 @@ window.onhashchange = function () {
       break;
   }
   prevHash.shift();
+=======
+        case '#feature':
+        case '#category':
+        case '#home':
+            if (prevHash[0] != '#home' && prevHash[0] != '#feature' && prevHash[0] != '#category') {
+                loading();
+                renderHome.start();
+
+                if ($('nav a.active')) 
+                $('nav a.active').classList.remove('active');
+                $('nav a.home').classList.add('active');
+
+                if (window.location.hash == '#category') {
+                    $('nav a.category').click();
+                }
+                if (window.location.hash == '#feature') {
+                    $('nav a.feature').click();
+                }
+            }
+            break;
+
+        case '#product':
+            loading();
+            let id = Number(window.location.hash.split('-')[1]);
+            let product = ProductModel.getAll().filter((product) => product.id == id);
+            renderDetail.start(product[0]);
+            if ($('nav a.active')) $('nav a.active').classList.remove('active');
+            break;
+
+        case '#shop':
+            if (prevHash[0].split('-')[0] != '#shop') {
+                loading();
+                renderShop.start();
+                if (window.location.hash.split('-')[1]) {
+                    let categoryName = window.location.hash.split('-')[1];
+                    $(`.locsanpham.${categoryName.toUpperCase()}`).click();
+                }
+                if ($('nav a.active')) 
+                $('nav a.active').classList.remove('active');
+                $('nav a.shop').classList.add('active');
+            }
+            break;
+
+        case '#order':
+            loading();
+            if ($('nav a.active')) 
+            $('nav a.active').classList.remove('active');
+            renderOrderPage.start();
+            break;
+        case '#about':
+            loading();
+            renderAbout.start();
+            break;
+    }
+    prevHash.shift();
+>>>>>>> f558d0d27e8afd4d006e63bbbe7e96534d9309a6
 };
 
 const renderApp = {
@@ -122,6 +179,7 @@ const renderComponentNavbar = {
     userCurrent = JSON.parse(localStorage.getItem('userCurrent'));
     if (userCurrent) wish = userCurrent.wishList.length;
 
+<<<<<<< HEAD
     $('.navigation-container .icon').dataset.amount = wish;
     $('.navigation-mobile .icon.noti').dataset.amount = wish;
   },
@@ -130,6 +188,27 @@ const renderComponentNavbar = {
     this.rememberAccount();
     this.amountWishlist();
   },
+=======
+        $('.navigation-container .icon.wishList').dataset.amount = wish;
+        $('.navigation-mobile .icon.noti.wishList').dataset.amount = wish;
+    },
+
+    amountCart() {
+        let cart = 0;
+
+        productsInCart = JSON.parse(localStorage.getItem('productsInShoppingCart'));
+        if (productsInCart) cart = productsInCart.length;
+
+        $('.navigation-container .icon.cart ').dataset.amount = cart;
+        $('.navigation-mobile .icon.noti.cart ').dataset.amount = cart;
+    },
+
+    start() {
+        this.rememberAccount();
+        this.amountWishlist();
+        this.amountCart()
+    },
+>>>>>>> f558d0d27e8afd4d006e63bbbe7e96534d9309a6
 };
 
 const renderModalSign = {
@@ -155,6 +234,7 @@ const renderModalProfile = {
 };
 
 const renderHome = {
+<<<<<<< HEAD
   slider: function () {
     $('.slider-wrapper').innerHTML = SliderModel.getAll()
       .map((slide) => SliderItem(slide))
@@ -267,6 +347,106 @@ const renderOrderPage = {
       $('.orderPage__box').innerHTML = OrderEmpty();
       return;
     }
+=======
+    slider: function () {
+        $('.slider-wrapper').innerHTML = SliderModel.getAll()
+            .map((slide) => SliderItem(slide))
+            .join('');
+
+        $('.slider-dots').innerHTML = SliderModel.getAll()
+            .map((slide) => SliderDots(slide))
+            .join('');
+    },
+
+    categories: function () {
+        $('.category-box').innerHTML = CategoryModel.getAll()
+            .map((category) => CategoryItem(category))
+            .join('');
+    },
+
+    products: function (page = 1) {
+        let products = ProductModel.getDocumentsByPage_Rate(page, 8);
+        
+        let productBox = $('.product .product-box');
+        if (!productBox) return;
+
+        if (page == 1) {
+            productBox.innerHTML = products.map((product) => ProductItem(product)).join('');
+            homeEvent.btnProduct();
+            homeEvent.btnItemProduct();
+            homeEvent.btnLoad();
+        } else {
+            productBox.insertAdjacentHTML(
+                'beforeend',
+                products.map((product) => ProductItem(product)).join('')
+            );
+        }
+
+        AddToCart();
+    },
+
+    start: function () {
+        if (!$('#app')) renderApp.start();
+        $('#app').innerHTML = Home();
+        this.slider();
+        this.categories();
+        this.products();
+        homeEvent.init();
+    },
+};
+
+const renderWishList = {
+    start() {
+        //fix lỗi sign out lỗi bậy
+        if (window.location.hash != '#wishList') return;
+        if (!$('#app')) renderApp.start();
+        $('#app').innerHTML = WishList();
+
+        let products = ProductModel.getAll();
+        let productWish = '';
+
+        let userCurrent = JSON.parse(localStorage.getItem('userCurrent'));
+        if (userCurrent)
+            userCurrent.wishList.forEach((id) => {
+                products.forEach((product) => {
+                    if (id == product.id) productWish += ProductItem(product);
+                });
+            });
+
+        if (productWish) {
+            $('.wishList__box').innerHTML = ProductBox();
+            $('.product-box').innerHTML = productWish;
+        } else {
+            $('.wishList__box').innerHTML = WishList__Empty();
+        }
+
+        renderComponentNavbar.amountWishlist();
+        wishListEvent.init();
+    },
+};
+
+const renderOrderPage = {
+    items(filter = 'ALL') {
+        if(window.location.hash != '#order') return;
+        let userCurrent = JSON.parse(localStorage.getItem('userCurrent'));
+        let bills;
+        if(userCurrent) 
+        bills = BillModel.getAll().filter((bill) => bill.username == userCurrent.username);
+
+        if(!bills) {
+            $('.orderPage__items').innerHTML = OrderItemEmpty()
+            return;
+        }
+
+        let items = ''
+        if(filter == 'ALL') {
+            items = bills.map((bill) => OrderItem(bill)).join('');
+        }
+        else {
+            items = bills.filter(bill => bill.status == filter)
+            .map((bill) => OrderItem(bill)).join('');
+        }
+>>>>>>> f558d0d27e8afd4d006e63bbbe7e96534d9309a6
 
     let items = '';
     if (filter == 'ALL') {
@@ -278,6 +458,7 @@ const renderOrderPage = {
         .join('');
     }
 
+<<<<<<< HEAD
     if (items == '') $('.orderPage__items').innerHTML = OrderItemEmpty();
     else $('.orderPage__items').innerHTML = items;
   },
@@ -298,6 +479,41 @@ const renderAbout = {
     $('#app').innerHTML = About();
   },
 };
+=======
+    start() {
+        if (window.location.hash != '#order') return;
+        if (!$('#app')) renderApp.start();
+        $('#app').innerHTML = OrderPage();
+        this.items();
+        eventOrderPage.init()
+    },
+};
+
+const renderAbout = {
+    start() {
+        if (!$('#app')) renderApp.start();
+        $('#app').innerHTML = About();
+    }
+};
+
+const renderToastAddToCart = {
+    start() {
+        let toastApp = $('#toast-app')
+        let toasts = document.createElement('div')
+        toasts.classList.add('toast-app')
+        toasts.innerHTML = ToastAddToCart()
+        toastApp.appendChild(toasts)
+
+        toasts.querySelector('.toast-app__close').onclick = () => {
+            toastApp.removeChild(toasts);
+        }
+
+        setTimeout(() => {
+            toastApp.removeChild(toasts);
+        },2000)
+    }
+}
+>>>>>>> f558d0d27e8afd4d006e63bbbe7e96534d9309a6
 
 //================================> PHÚC THỊNH <================================
 const renderAdmin = {

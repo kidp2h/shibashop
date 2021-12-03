@@ -151,6 +151,7 @@
     font-size: 14px;
     margin-bottom: 1.4rem;
     transition: all 0.3s ease;
+    cursor: pointer;
 }
 
 .footer-content a:hover {
@@ -256,6 +257,11 @@
     height: 4rem;
     font-size: 1.4rem;
     width: 40%;
+    transition: all 0.3s ease;
+}
+
+.newsletter .mail-user .btn:hover {
+    background-color: var(--red);
 }
 
 .footer__bottom {

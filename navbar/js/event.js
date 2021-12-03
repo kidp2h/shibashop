@@ -15,6 +15,7 @@ const navbarEvent = {
             navItem.onclick = () => {
                 if ($('nav a.active')) $('nav a.active').classList.remove('active');
                 navItem.classList.add('active');
+                if ($('.navbar.open')) $('.fancy-burger').click()
             };
         });
     },
@@ -96,6 +97,7 @@ const navbarEvent = {
             users.forEach(user => {
                 if(user.id == userCurrent.id) {
                     user.cart = getProductInCart();
+                    user.wishList = userCurrent.wishList;
                 }
             });
 
@@ -107,6 +109,8 @@ const navbarEvent = {
             localStorage.setItem("timeExpired", JSON.stringify(''));
             
             renderComponentNavbar.amountWishlist()
+            renderComponentNavbar.amountCart()
+            renderOrderPage.items()
             renderWishList.start()
             renderHome.products()
         };

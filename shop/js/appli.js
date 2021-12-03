@@ -21,6 +21,13 @@ function InitEvent() {
 
 
     }
+    $$('.loc1 h3').forEach(item =>{
+        item.onclick =function (e){
+            //console.log("clicked")
+            item.parentElement.classList.toggle("active");
+            
+        }
+    })
 
     // Sử dụng cho thanh range
     var slider = document.getElementById("myRange");
@@ -76,9 +83,8 @@ function scrollFunction() {
 
 function topFunction() {
     document.body.scrollTop = 0;
-    document.documentElement.style.animation = 'fadeIn ease-in 0.7s';
     document.documentElement.scrollTop = 0;
-    document.body.style.animation = 'fadeIn ease-in 0.7s';
+
 }
 
 // Cộng trừ
@@ -100,6 +106,7 @@ function AddEvent() {
         }
     })
 }
+// 
 
 // Hiệu ứng trái tim bé nhỏ
 function AddHeart() {

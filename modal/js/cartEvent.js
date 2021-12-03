@@ -136,6 +136,7 @@ function updateProductInCart(productInCart) {
     localStorage.setItem('productsInShoppingCart', JSON.stringify(productInCart));
     renderProductCart.CartModel();
     renderProductCart.CartPage();
+    renderComponentNavbar.amountCart()
 }
 
 function productTotalPrice() {
@@ -172,9 +173,13 @@ function AddProductInCart(product, inputQuantity) {
     if (!isExist) {
         productsInCart.push(productToCart);
     }
-
+    renderToastAddToCart.start()
     updateProductInCart(productsInCart);
 }
+
+
+
+
 
 // =============================================
 
@@ -402,6 +407,7 @@ function AddToCart() {
             let product = ProductModel.getAll().filter((product) => product.id == id && product.id == inputQuantity.dataset.id)[0];
 
             AddProductInCart(product, inputQuantity);
+
         };
     });
 }

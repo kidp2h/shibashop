@@ -61,6 +61,12 @@ const homeEvent = {
                 btnNext.click();
             });
         });
+
+        $$('.btn.slide__btn').forEach(btn => {
+            btn.onclick = () => {
+                window.location.hash = '#shop';
+            }
+        })
     },
 
     btnItemCategory() {
@@ -137,6 +143,7 @@ const homeEvent = {
 
     btnLoad: function () {
         var btnLoad = $('.btn-load');
+        btnLoad.style.display = 'block';
         let _this = this;
         let page = 1;
         btnLoad.onclick = function () {

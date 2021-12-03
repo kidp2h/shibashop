@@ -5,7 +5,9 @@ const ProductModel = {
   UpdateAll: function (data) {
     localStorage.setItem('products', JSON.stringify(data));
   },
+  
   Remove: function (id) {
+
     let table = this.getAll();
     let result = table.filter((record) => record.id != id);
     this.UpdateAll(result);

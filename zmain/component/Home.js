@@ -47,7 +47,7 @@ function SliderItem( slide ) {
                 <span>${slide.title}</span>
                 <h3>${slide.header}</h3>
                 <p>${slide.desc}</p>
-                <a href="" class="btn slide__btn">SHOP NOW</a>
+                <button class="btn slide__btn">SHOP NOW</button>
             </div>
             <div class="slide__imageBox">
                 <img src="${slide.img}" alt="" class="slide__image">

@@ -17,6 +17,8 @@ function productItems(item){
             </div>
                 <div class="addtocart">
                     <p>ADD TO CART</p>
+                    <i id="cart-icon" class="fas fa-shopping-cart"></i>
+
                 </div>
             </div>
             <div class="icon-heart ${item.wish == 1 && 'active'}" data-index="${item.id}" data-wish="${item.wish}">
@@ -40,8 +42,8 @@ function renderData (x=1) {
     var htmls = ProductModel.getDocumentsByPage(x).map((item) => {
         return productItems(item);
     })
-    
-    
+    if(!$('#products'))
+    $(".center-product").innerHTML = ` <ul id="products"> </ul>`;
     document.getElementById('products').innerHTML = htmls.join('');
     AddEvent();
     AddHeart();
@@ -118,6 +120,7 @@ function filtersort() {
 // lÀM CATEGORIES
 // INR RA DANH SÁCH THỂ LOẠI CỦA SẢN PHẨM
 function rendertheloai(){
+    
     var htmls = CATEGORIES.map(items =>{
         var cout =0;
         let listProducts = ProductModel.getAll();
@@ -166,6 +169,13 @@ function addpagecategories() {
             filter_hide();
         }
     });
+    document.getElementById("productall").onclick = function(){
+        renderData (x=1);
+        taotrang();
+        AddEvent();
+        AddHeart();
+        filter_hide();
+    }
 }
 
 function renderproducts() {
@@ -181,6 +191,23 @@ function renderproducts() {
         filterdata.map(item=>{
             sanphamtheogia.push(item);
         })
+        if(filterdata.length ==0){
+            console.log("dô");
+         $(".center-product").innerHTML = productEmty();
+         filter_hide();
+         page_hide()
+         
+         $('#return').onclick = function(){
+            renderData (x=1);
+            taotrang();
+            AddEvent();
+            AddHeart();
+            filter_hide();
+            page_block();
+         }
+         return;
+        }
+        $(".center-product").innerHTML =` <ul id="products"> </ul>`;
         let htmlsprice = getpage(filterdata,1).map(item =>{
            
             return productItems(item);
@@ -206,16 +233,35 @@ function renderproducts() {
             sanphamtheotimkiem.push(item);
         })
         localStorage.setItem("sanphamtheotimkiem",JSON.stringify(sanphamtheotimkiem));
+        if(filterdata.length ==0){
+            console.log("dô");
+         $(".center-product").innerHTML = productEmty();
+         filter_hide();
+         page_hide()
+         $('#return').onclick = function(){
+            renderData (x=1);
+            taotrang();
+            AddEvent();
+            AddHeart();
+            filter_hide();
+            page_block();
+         }
+         return;
+        }
+        $(".center-product").innerHTML = ` <ul id="products"> </ul>`;
         let htmltilte = getpage(filterdata,1).map(item =>{    // sử dụng hàm getpage bên appli.js
             return productItems(item);
         })
-        console.log(filterdata.length);
+        //console.log(filterdata.length);
+        
+       
         document.getElementById("products").innerHTML = htmltilte.join(""); // in dữ liệu ra màn hình
         taotrang1(filterdata,Number.parseInt(getnumberpage(filterdata)));
         console.log(getnumberpage(filterdata)); // tạo ra 
         AddEvent(); // sự kiện công trừ cho sản phẩm
         AddHeart(); // sự kiện thêm yêu thích cho sản phẩm
         filter_hide();  // hàm ẩn filter
+        page_block();
 
     }
 
@@ -281,3 +327,10 @@ function addpage1(data) {
 //     InitEvent()
 // }
 
+function productEmty(){
+    return ` <div id="empty">
+    <i class="far fa-sad-tear"></i>
+    <p>Sản phẩm không tồn tại</p>
+    <div id="return">Return Shop</div>
+</div>`
+}

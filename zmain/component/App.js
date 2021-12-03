@@ -38,10 +38,10 @@ function App() {
                     <div class="user-info">
                             <i class="fas fa-user" id="user-icon"></i> 
                     </div>
-                    <div class= "icon" id="heart-icon" data-amount="0">
+                    <div class= "icon wishList" id="heart-icon" data-amount="0">
                         <a href="#wishList" class="fas fa-heart" ></a>
                     </div>
-                    <div class= "icon" id="cart-icon" data-amount="0">
+                    <div class= "icon cart" id="cart-icon" data-amount="0">
                         <i class="fas fa-shopping-cart" ></i>
                     </div>
                 </div>
@@ -55,11 +55,11 @@ function App() {
                 <i class="fab fa-shopify"></i>
                 <p>Shop</p>
             </div>
-            <a href="#wishList" class="icon noti" data-amount="0">
+            <a href="#wishList" class="icon noti wishList" data-amount="0">
                 <i class="fas fa-heart"></i>
                 <p>Wishlist</p>
             </a>
-            <div class="icon noti" data-amount="0">
+            <div class="icon noti cart" data-amount="0">
                 <i class="fas fa-shopping-cart"></i>
                 <p>Cart</p>
             </div>
@@ -71,6 +71,11 @@ function App() {
 
         <div id="app">
         </div>
+
+        <div id="toast-app">
+        </div>
+
+
         <div class="footer">    
             <div class="footer__top">
                 <ul class="footer-track">
@@ -196,29 +201,28 @@ function App() {
                     </div>
                     <div class="information">
                         <h2 class="header">INFOMATION</h2>
-                        <a href="#" class="content">About Us</a>
-                        <a href="#" class="content">Contact Us</a>
-                        <a href="#" class="content">Terms & Conditions</a>
-                        <a href="#" class="content">Returns & Exchanges</a>
-                        <a href="#" class="content">Shipping & Delivery</a>
-                        <a href="#" class="content">Privacy Policy</a>
+                        <a href="#about" class="content">About Us</a>
+                        <a href="#home" class="content">Home Us</a>
+                        <a href="#category" class="content">Category Us</a>
+                        <a href="#feature" class="content">Feature Us</a>              
+                        <a href="#shop" class="content">Shop Us</a>                     
                     </div>
                     <div class="useful">
                         <h2 class="header">USEFUL LINKS</h2>
-                        <a href="#" class="content"> Store Location</a>
-                        <a href="#" class="content">Latest News</a>
-                        <a href="#" class="content">My Account</a>
-                        <a href="#" class="content">Size Guide</a>
-                        <a href="#" class="content">Portfolio</a>
-                        <a href="#" class="content">FAQs</a>
+                        <a href="#home" class="content"> Store Location</a>
+                        <a href="#home" class="content">Latest News</a>
+                        <a onclick = "if($('#profile-icon')) $('#profile-icon').click();" class="content">My Account</a>
+                        <a href="#home" class="content">Size Guide</a>
+                        <a href="#home" class="content">Portfolio</a>
+                        <a href="#home" class="content">FAQs</a>
                     </div>
                     <div class="newsletter">
                         <h2 class="header">NEWSLETTER SIGNUP</h2>
                         <p class="content">Subscribe to our newsletter and get 10% off your first purchase</p>
-                        <div class="mail-user">
-                            <input type="text" placeholder="Your email address">
-                            <button class="btn ">Subcribe</button>
-                        </div>
+                        <form class="mail-user">
+                            <input name="email" type="email" placeholder="Your email address">
+                            <button type ="submit" class="btn">Subcribe</button>
+                        </form>
                         <!-- <img src="./images/footer.png" alt=""> -->
                         
                     </div>
@@ -236,6 +240,7 @@ function App() {
 
         <div class="modal">
             <div class="modal__overlay"></div>
+
             <div class="modal__cart">
             <div class="modal__cart-header">
                 <h1>CART PRODUCTS</h1>
@@ -538,5 +543,21 @@ function UserInfo(user) {
 function UserInfoDefault() {
     return html`
     <i class="fas fa-user" id="user-icon"></i> 
+    `
+}
+
+//line 75
+function ToastAddToCart() {
+    return html`
+        <div class="toast-app__icon">
+            <i class="fas fa-cart-plus"></i>
+        </div>
+        <div class="toast-app__body">
+            <h3 class="toast-title">Đã thêm vào giỏ hàng</h3>
+            <p class="toast-msg">Vào giỏ hàng của bạn và kiểm tra ngay</p>
+        </div>
+        <div class="toast-app__close">
+            <i class="fas fa-times"></i>
+        </div>
     `
 }

@@ -74,38 +74,26 @@
         margin-bottom: 50px;
     }
     #shop ul.loc1 {
+        cursor: pointer;
         margin: 25px;
         display: block;
     }
     #shop ul.loc1 li {
+        
         display: none;
         padding: 5px;
     }
-    #shop ul.loc1:hover li {
+    #shop ul.loc1.active li {
         display: block;
         animation: fadeIn 0.8s ease-in;
     }
-    #shop ul.loc1 li:hover {
-        font-size: 1.5rem;
-    }
-    #shop ul.loc1 div#bycolor {
-        display: none;
-    }
-    #shop ul.loc1:hover div#bycolor {
-        display: block;
-        animation: fadeIn 0.8s ease-in;
-    }
-    
+  
+   
     #shop ul.loc1 li.hotro {
-        display: none;
-    }
-    #shop ul.loc1:hover li.hotro {
         display: flex;
         margin-right: -1em;
     }
-    #shop ul.loc1 li.hotro:hover {
-        box-shadow: 0px 0px 5px 2px #999;
-    }
+   
     #shop #chuyentrang {
         width: 100%;
         margin: 20px auto;
@@ -121,6 +109,7 @@
         height: 25em;
         width: 100%;
     }
+    
 }
 
 @media screen and (max-width:850px) {
@@ -148,17 +137,6 @@
         padding: 5px;
     }
 
-    #shop ul.loc1:hover li {
-        display: block;
-        animation: fadeIn 0.8s ease-in;
-    }
-    #shop ul.loc1 div#bycolor {
-        display: none;
-    }
-    #shop ul.loc1:hover div#bycolor {
-        display: block;
-        animation: fadeIn 0.8s ease-in;
-    }
     #shop #chuyentrang {
         width: 100%;
         margin: 20px auto;
@@ -181,6 +159,39 @@
     #shop ul#products li .product-top .product-thumb img {
         width: 100%;
         height: 25em;
+    }
+    #shop ul#products li div.buy-now div.addtocart i{
+        width: 50%;
+        display: block;
+        font-size: 1.5em;
+        padding: 0.5em 0;
+        padding-left: 25%;
+        text-align: center;
+    
+    }
+    #shop ul#products li div.buy-now div.addtocart p{
+        display: none;
+        
+    }
+    #shop ul#products li .product-top div.buy-now .product-quantity input{
+        margin: 0 0.5em;
+        width: 2.5em;
+    }
+    #shop ul#products li .product-top div.buy-now .product-quantity button.btn{
+        font-size: 1.5em;
+        margin: auto;
+    }
+    #shop ul#products li .product-top div.buy-now .product-quantity button.btn-tru{
+    
+        padding-left: 0.5em;
+    }
+    #shop ul#products li .product-top div.buy-now .product-quantity button.btn-add{
+        border-right: solid 2px #fff;
+        padding-right: 0.5em;
+    }
+    #shop ul#products li .product-top div.buy-now .product-quantity input{
+        font-size: 1.5em;
+        
     }
 }
 
@@ -215,21 +226,7 @@
         margin: 25px;
         display: block;
     }
-    #shop ul.loc1 li {
-        display: none;
-        padding: 5px;
-    }
-    #shop ul.loc1:hover li {
-        display: block;
-        animation: fadeIn 0.8s ease-in;
-    }
-    #shop ul.loc1 div#bycolor {
-        display: none;
-    }
-    #shop ul.loc1:hover div#bycolor {
-        display: block;
-        animation: fadeIn 0.8s ease-in;
-    }
+   
     #shop .center-product {
         width: 98%;
     }
@@ -248,6 +245,14 @@
     #shop ul#products li .product-top .product-thumb img {
         height: 23em;
         width: 100%;
+    }
+    #shop ul#products li .product-top div.buy-now .product-quantity input{
+        margin: 0 0.5em;
+        width: 1.5em;
+    }
+    #shop ul#products li div.buy-now div.addtocart i{
+      
+        padding-left: 25%;
     }
     #shop #chuyentrang {
         width: 100%;
@@ -295,7 +300,12 @@
         /* height: auto;
         margin: 3em 0;
         margin-right: 0.9em; */
-        width: 100%;
+       
+        width: 95%;
+        
+    }
+    #shop ul#products {
+        --column: 2;
     }
    
     #shop ul#products li .product-top div.buy-now {
@@ -315,9 +325,22 @@
         bottom: 0.1em;
     }
     #shop ul#products li .product-top .product-thumb img {
-        height: 18em;
+        height: 25em;
         width: 100%;
     }
+    #shop ul#products li .product-top div.buy-now .product-quantity input{
+        margin: 0 0.5em;
+        width: 3em;
+    }
+    #shop ul#products li div.buy-now div.addtocart i{
+      
+        padding-left: 25%;
+    }
+    /* #shop ul#products li div.buy-now div.addtocart i{
+        padding-left: 1em;
+       
+    } */
+   
 }
 
 @media screen and (max-width: 540px) {
@@ -328,6 +351,11 @@
     }
     #shop #slt {
         /* margin-right: -1em; */
+    }
+    #shop #filter {
+        position: fixed;
+        width: 100%;
+        height: 100%;
     }
     #shop ul.loc1 li.hotro {
         margin-right: -3em;
@@ -340,9 +368,7 @@
         width: 90%;
     }
 
-    #shop ul#products {
-        --column: 2;
-    }
+   
     #shop ul#products li {
         /* flex-basis: 45%; */
         /* margin: 1.5em 0.5em; */
@@ -354,9 +380,22 @@
         width: 100%;
         height: 20em;
     }
+    #shop ul#products li .product-top div.buy-now .product-quantity{
+        margin-left: 0.5em;
+    }
+  
+    #shop ul#products li .product-top div.buy-now .product-quantity input{
+        margin: 0 0.5em;
+        width: 1.6em;
+    }
+    #shop ul#products li div.buy-now div.addtocart i{
+      
+        padding-left: 25%;
+    }
+   
 }
 
-@media screen and (max-width: 425px) {
+@media screen and (max-width: 460px) {
     #shop {
         font-size: 13px;
     }
@@ -388,7 +427,7 @@
     }
     #shop ul#products li .product-top .product-thumb img {
         width: 100%;
-        height: 20em;
+        height: 23em;
     }
     #shop ul#products li .product-top div.buy-now {
         bottom: auto;
@@ -406,6 +445,15 @@
     }
     #shop ul#products li:hover div.buy-now {
         bottom: 0.1em;
+    }
+    #shop ul#products li .product-top div.buy-now .product-quantity input{
+        font-size: 2em;
+        margin: 0 0.5em;
+        width: 2em;
+    }
+    #shop ul#products li div.buy-now div.addtocart i{
+        font-size: 2.5em;
+        padding-left: 30%;
     }
     #shop #chuyentrang {
         width: 100%;
@@ -429,4 +477,5 @@
         height: 25px;
         bottom: 80px;
     }
+    
 }
