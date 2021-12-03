@@ -1,7 +1,7 @@
 @media screen and (max-width: 1260px) {
 
     #shop div#product-gaoshop{
-        height: 1100px;
+        height: 1150px;
     }
     #shop ul#products li {
         /* box-sizing: border-box;
@@ -20,7 +20,7 @@
    
     #shop ul#products li .product-top .product-thumb img {
         width: 100%;
-        height: 28em;
+        height: 25em;
     }
 }
 
@@ -38,6 +38,44 @@
     /* #shop #slt {
         margin-right: -6em;
     } */
+    #shop ul#products li .product-top div.buy-now {
+        bottom: 0px;
+        background-color: tomato;
+    }
+    #shop ul#products li .product-top div.buy-now span {
+        font-size: 0.8em;
+        line-height: auto;
+        font-weight: bold;
+    }
+    #shop ul#products li div.buy-now div.addtocart p{
+        padding: 5px 0;
+        font-size: 15px;
+        
+    }
+    #shop ul#products li div.buy-now div.addtocart {        
+        background: transparent;
+        cursor: pointer;
+        font-size: 10px;
+        font-weight: bold;
+        
+    }
+    #shop ul#products li div.buy-now div.addtocart {
+        font-size: 10px;
+        font-weight: bold;
+        margin-right: 0.6em
+    }
+    #shop ul#products li .product-top div.buy-now .product-quantity input{
+        font-weight: bold;
+        font-size: 1.5em;
+        margin: 0 0.5em;
+        width: 1.5em;
+        border-right: 2px solid #fff;
+        border-left: 2px solid #fff;
+    }
+    #shop ul#products li .product-top div.buy-now .product-quantity button.btn-add{
+        border-right: solid 2px #fff;
+        padding-right: 4px;
+    }
     #shop #filter {
         position: fixed;
         top: var(--height-nav);
@@ -170,12 +208,13 @@
     #shop ul#products li div.buy-now div.addtocart i{
         width: 50%;
         display: block;
-        font-size: 1.5em;
+        font-size: 20px;
         padding: 0.5em 0;
         padding-left: 25%;
         text-align: center;
     
     }
+    
     #shop ul#products li div.buy-now div.addtocart p{
         display: none;
         
@@ -318,6 +357,44 @@
     #shop ul#products {
         --column: 2;
     }
+    /* #shop ul#products li .product-top div.buy-now {
+        bottom: 0px;
+        background-color: tomato;
+    }
+    #shop ul#products li .product-top div.buy-now span {
+        font-size: 0.8em;
+        line-height: auto;
+        font-weight: bold;
+    }
+    #shop ul#products li div.buy-now div.addtocart p{
+        padding: 5px 0;
+        font-size: 15px;
+        
+    }
+    #shop ul#products li div.buy-now div.addtocart {        
+        background: transparent;
+        cursor: pointer;
+        font-size: 10px;
+        font-weight: bold;
+        
+    }
+    #shop ul#products li div.buy-now div.addtocart {
+        font-size: 10px;
+        font-weight: bold;
+        margin-right: 0.6em
+    }
+    #shop ul#products li .product-top div.buy-now .product-quantity input{
+        font-weight: bold;
+        font-size: 1.5em;
+        margin: 0 0.5em;
+        width: 1.5em;
+        border-right: 2px solid #fff;
+        border-left: 2px solid #fff;
+    }
+    #shop ul#products li .product-top div.buy-now .product-quantity button.btn-add{
+        border-right: solid 2px #fff;
+        padding-right: 4px;
+    }
    
     #shop ul#products li .product-top div.buy-now {
         bottom: auto;
@@ -331,9 +408,9 @@
         line-height: auto;
         font-weight: bold;
     }
-    #shop ul#products li:hover div.buy-now {
+    #shop ul#products li div.buy-now {
         transition: all 0.3s ease-in-out;
-        bottom: 0.1em;
+        bottom: 0px;
     }
     #shop ul#products li .product-top .product-thumb img {
         height: 25em;
@@ -346,7 +423,7 @@
     #shop ul#products li div.buy-now div.addtocart i{
       
         padding-left: 25%;
-    }
+    } */
     /* #shop ul#products li div.buy-now div.addtocart i{
         padding-left: 1em;
        
@@ -444,32 +521,41 @@
         width: 100%;
         height: 23em;
     }
+   
+    div.buy-now div.addtocart {
+                    
+        background: transparent;
+        cursor: pointer;
+        font-size: 20px;
+        font-weight: bold;
+        
+    }
+    #shop ul#products li div.buy-now div.addtocart i{
+        font-size: 25px;
+        padding-left: 30%;
+    }
     #shop ul#products li .product-top div.buy-now {
-        bottom: auto;
+        bottom: 0px;
+        background-color: tomato;
     }
     #shop ul#products li .product-top div.buy-now span {
         font-size: 0.8em;
         line-height: auto;
         font-weight: bold;
     }
-    #shop ul#products li:hover div.buy-now div.addtocart {
+    #shop ul#products li div.buy-now div.addtocart {
         font-size: 0.8em;
         font-weight: bold;
-        line-height: auto;
         margin-right: 0.6em
-    }
-    #shop ul#products li:hover div.buy-now {
-        bottom: 0.1em;
     }
     #shop ul#products li .product-top div.buy-now .product-quantity input{
         font-size: 2em;
         margin: 0 0.5em;
         width: 2em;
+        border-right: 2px solid #fff;
+        border-left: 2px solid #fff;
     }
-    #shop ul#products li div.buy-now div.addtocart i{
-        font-size: 2.5em;
-        padding-left: 30%;
-    }
+  
     #shop #chuyentrang {
         width: 100%;
         margin: 20px auto;
