@@ -278,11 +278,14 @@ const TableEvent = {
             case 'sortUsername':
               sortTable(0, 'bill');
               break;
-            case 'sortSubtotal':
+            case 'sortDateTimeBill':
               sortTable(2, 'bill');
               break;
-            case 'sortStatus':
+            case 'sortSubtotal':
               sortTable(3, 'bill');
+              break;
+            case 'sortStatus':
+              sortTable(4, 'bill');
               break;
             default:
               return;
@@ -312,14 +315,17 @@ const TableEvent = {
             case 'sortCategory':
               sortTable(1, 'revenue');
               break;
-            case 'sortPrice':
+            case 'sortDateTime':
               sortTable(2, 'revenue');
               break;
-            case 'sortQTY':
+            case 'sortPrice':
               sortTable(3, 'revenue');
               break;
-            case 'sortTotal':
+            case 'sortQTY':
               sortTable(4, 'revenue');
+              break;
+            case 'sortTotal':
+              sortTable(5, 'revenue');
               break;
             default:
               return;
