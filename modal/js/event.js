@@ -38,6 +38,11 @@ const modalEvent = {
             modalNoti.classList.remove('success');
             modalNoti.classList.remove('error');
         };
+
+        $('.modal__noti').onkeydown = (e) => {
+            if(e.keyCode == 13)
+            $('.btn-noti').click()
+        }
     },
 
     btnExist(view) {
