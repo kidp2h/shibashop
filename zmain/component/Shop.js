@@ -34,7 +34,7 @@ function Shop() {
                         <ul class="loc1" >
                             
                                 <h3>Product Categories</h3>
-                                <li><span id="productall">All</span></li>
+                                <li><span id="productall">All()</span></li>
                         <ul id="loccategories"></ul>
                         </ul>
                         <ul class="loc1">

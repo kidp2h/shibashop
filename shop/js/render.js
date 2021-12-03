@@ -1,3 +1,7 @@
+    localStorage.setItem("sanphamtheotimkiem",JSON.stringify(""));
+     localStorage.setItem("sanphamtheogia",JSON.stringify(""));
+     localStorage.setItem("sanphamtheoloai",JSON.stringify(""));
+
 // Lấy dữ liệu ra
 function productItems(item){
     return `
@@ -170,6 +174,7 @@ function addpagecategories() {
         }
     });
     document.getElementById("productall").onclick = function(){
+        $("#slt").value = "All";
         renderData (x=1);
         taotrang();
         AddEvent();
@@ -317,9 +322,7 @@ function addpage1(data) {
 }
 // load trang rồi sử dụng các hàm
 // window.onload = () => {
-//     localStorage.setItem("sanphamtheotimkiem",JSON.stringify(""));
-//     localStorage.setItem("sanphamtheogia",JSON.stringify(""));
-//     localStorage.setItem("sanphamtheoloai",JSON.stringify(""));
+
 //     rendertheloai();
 //     renderData();
 //     renderproducts();
