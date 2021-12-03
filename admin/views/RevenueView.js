@@ -46,6 +46,11 @@ const RevenueView = {
         row += `<tr>
           <td>${bill.product.name}</td>
           <td>${bill.product.category}</td>
+          <td>${
+            new Date(bill.created_at).toLocaleDateString() +
+            ' ' +
+            new Date(bill.created_at).toLocaleTimeString()
+          }</td>
           <td>${formatNumber(bill.product.sale)}</td>
           <td>${bill.qty}</td>
           <td>${formatNumber(bill.product.sale * bill.qty)}</td>
@@ -55,6 +60,7 @@ const RevenueView = {
       }
     });
     row += `<tr>
+        <td></td>
         <td></td>
         <td></td>
         <td></td>

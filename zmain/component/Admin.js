@@ -369,6 +369,11 @@ function Admin() {
                       <i class="fas fa-sort"></i>
                     </th>
                     <th>Products</th>
+                    <th class="sort sortDateTimeBill">
+                      <input type="radio" name="sort" value="" />
+                      Date Time
+                      <i class="fas fa-sort"></i>
+                    </th>
                     <th class="sort sortSubtotal">
                       <input type="radio" name="sort" value="" />
                       Subtotal
@@ -431,6 +436,11 @@ function Admin() {
                     <th class="sort sortCategory">
                       <input type="radio" name="sort" value="" />
                       Category
+                      <i class="fas fa-sort"></i>
+                    </th>
+                    <th class="sort sortDateTime">
+                      <input type="radio" name="sort" value="" />
+                      Date time
                       <i class="fas fa-sort"></i>
                     </th>
                     <th class="sort sortPrice">
