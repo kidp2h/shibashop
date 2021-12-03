@@ -2,24 +2,29 @@ const UserModel = {
   Initialize: function () {
     localStorage.setItem('users', JSON.stringify(USERS));
   },
+
   UpdateAll: function (data) {
     localStorage.setItem('users', JSON.stringify(data));
   },
+
   Remove: function (id) {
     let table = this.getAll();
     let result = table.filter((record) => record.id != id);
     this.UpdateAll(result);
     return result;
   },
+
   Insert: function (document) {
     result = this.getAll();
     result.push(document);
     this.UpdateAll(result);
     return result;
   },
+
   getAll: function () {
     return JSON.parse(localStorage.getItem('users'));
   },
+
   updateUser: function (id, user) {
     if (Validate.isLength(user.username, options.user.username)) {
       const collection = this.getAll();
@@ -71,12 +76,14 @@ const UserModel = {
       }
     } else return { status: true, message: lang.usernameNotValid };
   },
+
   getTotalPage: function () {
     return (totalPageUser =
       this.getAll().length % LIMIT == 0
         ? this.getAll().length / LIMIT
         : this.getAll().length / LIMIT + 1);
   },
+
   getDocumentsByPage: function (page) {
     return sortObjectByField(
       'username',
@@ -114,7 +121,9 @@ const UserModel = {
   },
 
   chaneInfo(infoNew, { username, ...userCurrentTemp }) {
+    
     const users = this.getAll();
+
     users.forEach((user) => {
       if (user.username == username) {
         user.fullname = infoNew.fullname;
@@ -135,24 +144,16 @@ const UserModel = {
 
   updateWishList(userCurrent, productID, wish) {
     const users = this.getAll();
+    
     if (wish) {
       userCurrent.wishList.push(productID);
-      users.forEach((user) => {
-        if (user.id == userCurrent.id) {
-          user.wishList.push(productID);
-        }
-      });
-    } else {
+    } 
+    else {
       let index = 0;
-      users.forEach((user) => {
-        if (user.id == userCurrent.id) {
-          index = user.wishList.indexOf(productID);
-          user.wishList.splice(index, 1);
-          userCurrent.wishList.splice(index, 1);
-        }
-      });
+      index =  userCurrent.wishList.indexOf(productID);
+      userCurrent.wishList.splice(index, 1);
     }
-
+    
     this.UpdateAll(users);
     this.setUserCurrent(userCurrent);
   },

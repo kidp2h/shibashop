@@ -1,14 +1,16 @@
 const UserView = {
-  Load : function(){
+  Load: function () {
     UserController.LoadUser();
     TableEvent.User.Remove();
     TableEvent.User.Save();
+    TableEvent.actionWithEnter();
   },
-  LoadData : function(page){
+  LoadData: function (page) {
     UserController.LoadUser(page);
   },
-  LoadEvent : function(){
+  LoadEvent: function () {
     TableEvent.User.Remove();
     TableEvent.User.Save();
-  }
-}
+    TableEvent.actionWithEnter();
+  },
+};

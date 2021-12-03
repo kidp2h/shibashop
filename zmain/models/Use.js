@@ -33,8 +33,13 @@ const UserModel = {
       for (const document of collection) {
         if (document.id == id) {
           found = true;
-          console.log(user, document);
-          if (user.username == document.username && user.isAdmin == document.isAdmin)
+          if (
+            user.username == document.username &&
+            user.isAdmin == document.isAdmin &&
+            user.address == document.address &&
+            user.fullname == document.fullname &&
+            user.phone == document.phone
+          )
             return {
               status: false,
               message: lang.nothingChangeDocument,
@@ -59,6 +64,9 @@ const UserModel = {
             } else {
               document.isAdmin = user.isAdmin;
               document.username = user.username;
+              document.phone = user.phone;
+              document.address = user.address;
+              document.fullname = user.fullname;
               this.UpdateAll(collection);
               return {
                 status: true,

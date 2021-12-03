@@ -9,15 +9,10 @@
   display: grid;
   position: relative;
 }
-#admin .wrap-table td {
-  word-break: break-all;
-}
 
 #admin .details .wrap-table div {
-  width: 100px;
   height: 30px;
-  padding: 5px;
-  margin-bottom: 10px;
+  margin: 15px 0px;
   text-align: center;
   display: flex;
   align-items: center;
@@ -25,16 +20,24 @@
   border-radius: 10px;
   color: white;
 }
-#admin .wrap-table:nth-child(1) div {
-  background-color: var(--ui-background);
+.details .wrap-image .image-document {
+  width: 70px;
+  height: 70px;
+  border-radius: 50px;
+  transition: all 0.2s;
 }
-#admin .wrap-table:nth-child(2) div {
-  background-color: var(--purple);
+/* tbody tr:nth-child(even) {
+  animation: tdSlideR2L ease 0.85s forwards;
 }
-#admin .wrap-table:nth-child(3) div {
-  background-color: var(--green);
+tbody tr:nth-child(odd) {
+  animation: slideL2R ease 0.85s forwards;
 }
-
+tbody tr:first-child {
+  animation: slideT2B ease 0.85s forwards;
+}
+tbody tr:last-child {
+  animation: slideB2T ease 0.85s forwards;
+} */
 #admin .details .wrap-table:nth-child(1) thead tr {
   background-color: var(--ui-background);
 }
@@ -181,7 +184,7 @@
 }
 
 /* Table Product */
-#admin .image-document {
+#admin .tmanager .image-document {
   width: 100px;
   height: 100px;
   object-fit: cover;

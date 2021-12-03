@@ -25,12 +25,20 @@ const TableEvent = {
         HandleEvent.User.SearchUser(this.value);
       };
     },
+    HandlePhoneNumber: function () {
+      $$('.phone').forEach((row) => {
+        row.onkeypress = function (e) {
+          if (e.which < 48 || e.which > 57) e.preventDefault();
+        };
+      });
+    },
     Initialize: function () {
       this.Save();
       this.Add();
       this.Remove();
       this.Search();
       this.Sort();
+      this.HandlePhoneNumber();
     },
     Sort: function () {
       $$('.tmanager-user .sort').forEach((ele) => {
@@ -55,7 +63,6 @@ const TableEvent = {
             default:
               return;
           }
-          ele.querySelector('input').checked = true;
         };
       });
     },
@@ -89,11 +96,17 @@ const TableEvent = {
     HandlePrice: function () {
       $$('.priceProduct').forEach((row) => {
         row.onkeypress = function (e) {
+          if (e.which == 13) {
+            row.parentNode.querySelector('.save').click();
+          }
           if (e.which < 48 || e.which > 57) e.preventDefault();
         };
       });
       $$('.priceSaleProduct').forEach((row) => {
         row.onkeypress = function (e) {
+          if (e.which == 13) {
+            row.parentNode.querySelector('.save').click();
+          }
           if (e.which < 48 || e.which > 57) e.preventDefault();
         };
       });
@@ -157,7 +170,6 @@ const TableEvent = {
             default:
               return;
           }
-          ele.querySelector('input').checked = true;
         };
       });
     },
@@ -218,7 +230,6 @@ const TableEvent = {
             default:
               return;
           }
-          ele.querySelector('input').checked = true;
         };
       });
     },
@@ -276,7 +287,6 @@ const TableEvent = {
             default:
               return;
           }
-          ele.querySelector('input').checked = true;
         };
       });
     },
@@ -314,7 +324,6 @@ const TableEvent = {
             default:
               return;
           }
-          ele.querySelector('input').checked = true;
         };
       });
     },
@@ -325,8 +334,18 @@ const TableEvent = {
     this.Category.Initialize();
     this.Bill.Initialize();
     this.Revenue.Initialize();
+    this.actionWithEnter();
   },
   Add: function () {
     $('.button-add').onclick = HandleEvent.Add();
+  },
+  actionWithEnter: function () {
+    $$('table td').forEach((row) => {
+      row.onkeypress = function (e) {
+        if (e.keyCode == 13) {
+          row.parentNode.querySelector('.save').click();
+        }
+      };
+    });
   },
 };

@@ -170,6 +170,8 @@ function clickColorChangeSlide() {
     });
 }
 
+
+
 function makeItem(amountItemAppear) {
     const listItem = $$('.recommended__products-item');
     const wrapperItem = $('.recommended__products-wrapper');
@@ -243,8 +245,11 @@ function SliderProducts() {
 
 //sự kiện click next previous của mục you may also like
 function slideItem() {
-    document.addEventListener('DOMContentLoaded', SliderProducts());
+    // document.addEventListener('DOMContentLoaded', );
+    SliderProducts()
 }
+
+
 
 const renderDetailProduct = function (detailProduct) {
     const htmls = html`<div class="detail-item__slider">
@@ -272,7 +277,7 @@ const renderDetailProduct = function (detailProduct) {
         <div class="item-infor">
             <h1 class="item__title">${detailProduct.name}</h1>
             <div class="item__price-status">
-                <span class="item__price">${detailProduct.price}</span>
+                <span class="item__price">${formatMoney(detailProduct.sale, '$')}</span>
                 <span class="item__status">In stock</span>
             </div>
 
@@ -456,7 +461,7 @@ const renderRecommendedProduct = function () {
 
             <div class="recommended-product-infor">
                 <h3>${product.name}</h3>
-                <span>$${product.price}</span>
+                <span>${formatMoney(product.sale,'$')}</span>
             </div>
             <div class="recommended__control">
                 ${product.colorList &&

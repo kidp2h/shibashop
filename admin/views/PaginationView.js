@@ -1,8 +1,10 @@
 const PaginationView = {
   initializePage: function () {
     PaginationController.Initialize();
+    TableEvent.actionWithEnter();
   },
-  updatePagination: function(){
+  updatePagination: function () {
     PaginationController.Update();
-  }
+    TableEvent.actionWithEnter();
+  },
 };
