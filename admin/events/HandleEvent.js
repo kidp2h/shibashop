@@ -4,21 +4,24 @@ const HandleEvent = {
       let nextId = getNextId(UserModel);
       let row = `
       <tr>
-          <td contenteditable="true" class="username">Username here</td>
-          <td class="isAdmin">
-              <label class="switch">
-                  <input type="checkbox">
-                  <span class="sliderBtn round"></span>
-              </label>
-      </td>
-          <td class="action">
-              <button class="button-icon remove" data-id='${nextId}' data-table='users'>
-                  <i class="far fa-trash-alt"></i>
-              </button>
-              <button class="button-icon save" data-id='${nextId}' data-table='users'>
-                  <i class="fas fa-save"></i>
-              </button>
-          </td>
+        <td contenteditable="true" class="username">Username here</td>
+        <td contenteditable="true" class="fullname">Full name user</td>
+        <td contenteditable="true" class="address">Address user</td>
+        <td contenteditable="true" class="phone">00000000000</td>
+        <td class="isAdmin">
+            <label class="switch">
+                <input type="checkbox">
+                <span class="sliderBtn round"></span>
+            </label>
+        </td>
+        <td class="action">
+            <button class="button-icon remove" data-id='${nextId}' data-table='users'>
+                <i class="far fa-trash-alt"></i>
+            </button>
+            <button class="button-icon save" data-id='${nextId}' data-table='users'>
+                <i class="fas fa-save"></i>
+            </button>
+        </td>
       </tr>`;
       $('.tmanager-user table tbody').insertAdjacentHTML('afterBegin', row);
       var el = $('.username');
@@ -39,6 +42,9 @@ const HandleEvent = {
         let currentPage = Number($('.page-user input.currentPage').value);
         let user = {
           username: row.querySelector('.username').textContent,
+          address: row.querySelector('.address').textContent,
+          fullname: row.querySelector('.fullname').textContent,
+          phone: row.querySelector('.phone').textContent,
           isAdmin: row.querySelector('.isAdmin label input').checked,
         };
         let result = UserModel.updateUser(id, user);
@@ -114,7 +120,7 @@ const HandleEvent = {
               </button>
           </td>
       </tr>`;
-
+      HandleEvent.RemoveAnimation();
       $('.tmanager-product table tbody').insertAdjacentHTML('afterBegin', row);
       var el = $('.nameProduct');
       var range = document.createRange();
@@ -126,6 +132,12 @@ const HandleEvent = {
       sel.removeAllRanges();
       sel.addRange(range);
       window.scrollTo({ top: 0, behavior: 'smooth' });
+      // $$('tbody tr:nth-child(even)').forEach((r) => {
+      //   r.style.animation = 'tdSlideR2L ease 0.85s forwards';
+      // });
+      // $$('tbody tr:nth-child(odd)').forEach((r) => {
+      //   r.style.animation = 'slideL2R ease 0.85s forwards';
+      // });
     },
     Save: function (item) {
       let row = item.parentNode.parentNode;
@@ -145,8 +157,9 @@ const HandleEvent = {
           if (result.message.type == 'success') {
             PaginationController.Update('product');
             ProductView.Load();
+            TableEvent.Product.Initialize();
             IndexController.LoadProductTable();
-            RevenueView.Load();
+            //RevenueView.Load();
           }
         }
       } else {
@@ -271,10 +284,10 @@ const HandleEvent = {
         if (result.message.type == 'success') {
           PaginationController.Update('category');
           CategoryView.LoadData(currentPage);
-          CategoryView.LoadEvent();
+          TableEvent.Category.Initialize();
           IndexController.LoadCategoryTable();
           ProductView.Load();
-          RevenueView.Load();
+          //RevenueView.Load();
         }
       }
     },
@@ -439,5 +452,24 @@ const HandleEvent = {
   },
   Add: function () {
     window.scrollTo({ top: 0, behavior: 'smooth' });
+  },
+  SlideTdTable: function () {
+    $$('tbody tr:nth-child(even)').forEach((r) => {
+      r.style.animation = 'tdSlideR2L ease 0.85s forwards';
+    });
+    $$('tbody tr:nth-child(odd)').forEach((r) => {
+      r.style.animation = 'slideL2R ease 0.85s forwards';
+    });
+    $$('tbody tr:first-child').forEach((r) => {
+      r.style.animation = 'slideT2B ease 0.85s forwards';
+    });
+    $$('tbody tr:last-child').forEach((r) => {
+      r.style.animation = 'slideB2T ease 0.85s forwards';
+    });
+  },
+  RemoveAnimation: function () {
+    $$('.tmanager-product tbody tr').forEach((r) => {
+      r.style.animation = 'none';
+    });
   },
 };

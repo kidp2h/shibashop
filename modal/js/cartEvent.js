@@ -58,10 +58,10 @@ function CartPageEmpty() {
                         <i class="fas fa-shopping-bag"></i>
                 
                     </div>
-                    <h2>YOUR FUCKING CART IS EMPTY.</h2>
-                    <p>You don't have any products in the fucking cart yet.</p>
+                    <h2>YOUR CART IS EMPTY.</h2>
+                    <p>You don't have any products in the cart yet.</p>
                     
-                    <p>You will find a lot of disgusting and terrible products on our "Shop" page.</p>
+                    <p>You will find a lot of products on our "Shop" page.</p>
 
                     <button>RETURN TO SHOP</button>
                 </div>`;

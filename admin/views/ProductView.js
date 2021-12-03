@@ -1,21 +1,24 @@
 const ProductView = {
-  Load : function(){
+  Load: function () {
     ProductController.LoadProduct();
     TableEvent.Product.Remove();
     TableEvent.Product.Save();
+    TableEvent.actionWithEnter();
   },
-  LoadSelectCategory : function(){
+  LoadSelectCategory: function () {
     ProductController.LoadCategorySelect();
     TableEvent.Product.Remove();
     TableEvent.Product.Save();
+    TableEvent.actionWithEnter();
   },
-  LoadEvent(){
+  LoadEvent() {
+    TableEvent.actionWithEnter();
     TableEvent.Product.Remove();
     TableEvent.Product.Save();
     TableEvent.Product.HandlePrice();
     TableEvent.Product.AddImage();
   },
-  LoadData(page){
+  LoadData(page) {
     ProductController.LoadProduct(page);
-  }
-}
+  },
+};

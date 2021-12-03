@@ -129,6 +129,7 @@ function sortTable(n, tableName) {
   }
 }
 function sortTableByCategoryProduct(n) {
+  HandleEvent.SlideTdTable();
   table = $(`.tmanager-product table`);
   var rows,
     switching,

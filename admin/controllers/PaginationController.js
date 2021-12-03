@@ -3,7 +3,7 @@ const PaginationController = {
     for (let i = 1; i <= UserModel.getTotalPage(); i++) {
       let page = '';
       if (i == 1) {
-        page = `<li style="background-color:var(--yellow)">${i}</li>`;
+        page = `<li style="background-color:var(--ui-background)">${i}</li>`;
       } else {
         page = `<li>${i}</li>`;
       }
@@ -12,7 +12,7 @@ const PaginationController = {
     for (let i = 1; i <= ProductModel.getTotalPage(); i++) {
       let page = '';
       if (i == 1) {
-        page = `<li style="background-color:var(--yellow)">${i}</li>`;
+        page = `<li style="background-color:var(--ui-background)">${i}</li>`;
       } else {
         page = `<li>${i}</li>`;
       }
@@ -21,7 +21,7 @@ const PaginationController = {
     for (let i = 1; i <= CategoryModel.getTotalPage(); i++) {
       let page = '';
       if (i == 1) {
-        page = `<li style="background-color:var(--yellow)">${i}</li>`;
+        page = `<li style="background-color:var(--ui-background)">${i}</li>`;
       } else {
         page = `<li>${i}</li>`;
       }
@@ -30,7 +30,7 @@ const PaginationController = {
     for (let i = 1; i <= BillModel.getTotalPage(); i++) {
       let page = '';
       if (i == 1) {
-        page = `<li style="background-color:var(--yellow)">${i}</li>`;
+        page = `<li style="background-color:var(--ui-background)">${i}</li>`;
       } else {
         page = `<li>${i}</li>`;
       }
@@ -61,7 +61,7 @@ const PaginationController = {
         let page = Number($('.page-user input.currentPage').value);
         $$('.page-user ul li').forEach((item) => {
           if (item.textContent == page) {
-            item.style.backgroundColor = 'var(--yellow)';
+            item.style.backgroundColor = 'var(--ui-background)';
           }
         });
         let collection = UserModel.getDocumentsByPage(page);
@@ -82,10 +82,16 @@ const PaginationController = {
                   <td class="action">
                       <button class="button-icon remove" data-id='${
                         document.id
-                      }' data-table='users'>
+                      }' data-table='users' style="visibility:${
+            document.username == JSON.parse(localStorage.getItem('username')) ? 'hidden' : 'visible'
+          }">
                           <i class="far fa-trash-alt"></i>
                       </button>
-                      <button class="button-icon save" data-id='${document.id}' data-table='users'>
+                      <button class="button-icon save" data-id='${
+                        document.id
+                      }' data-table='users' style="visibility:${
+            document.username == JSON.parse(localStorage.getItem('username')) ? 'hidden' : 'visible'
+          }">
                           <i class="fas fa-save"></i>
                       </button>
                   </td>
@@ -93,10 +99,7 @@ const PaginationController = {
         });
         $('.tmanager-user table tbody').innerHTML = result;
         TableEvent.User.Initialize();
-        let currentSort = +$('.tmanager-user input:checked').parentNode.classList[2].split(
-          'col'
-        )[1];
-        sortTable(currentSort, 'user');
+        HandleEvent.SlideTdTable();
       };
     });
     $$('.page-product ul li').forEach((page) => {
@@ -121,7 +124,7 @@ const PaginationController = {
         let page = Number($('.page-product input.currentPage').value);
         $$('.page-product ul li').forEach((item) => {
           if (item.textContent == page) {
-            item.style.backgroundColor = 'var(--yellow)';
+            item.style.backgroundColor = 'var(--ui-background)';
           }
         });
         let collection = ProductModel.getDocumentsByPage(page);
@@ -171,6 +174,7 @@ const PaginationController = {
         });
         $('.tmanager-product table tbody').innerHTML = result;
         TableEvent.Product.Initialize();
+        HandleEvent.SlideTdTable();
       };
     });
     $$('.page-category ul li').forEach((page) => {
@@ -195,7 +199,7 @@ const PaginationController = {
         let page = Number($('.page-category input.currentPage').value);
         $$('.page-category ul li').forEach((item) => {
           if (item.textContent == page) {
-            item.style.backgroundColor = 'var(--yellow)';
+            item.style.backgroundColor = 'var(--ui-background)';
           }
         });
         let collection = CategoryModel.getDocumentsByPage(page);
@@ -226,10 +230,7 @@ const PaginationController = {
         });
         $('.tmanager-category table tbody').innerHTML = result;
         TableEvent.Category.Initialize();
-        let currentSort = +$('.tmanager-category input:checked').parentNode.classList[2].split(
-          'col'
-        )[1];
-        sortTable(currentSort, 'category');
+        HandleEvent.SlideTdTable();
       };
     });
     $$('.page-bill ul li').forEach((page) => {
@@ -254,7 +255,7 @@ const PaginationController = {
         let page = Number($('.page-bill input.currentPage').value);
         $$('.page-bill ul li').forEach((item) => {
           if (item.textContent == page) {
-            item.style.backgroundColor = 'var(--yellow)';
+            item.style.backgroundColor = 'var(--ui-background)';
           }
         });
         let collection = BillModel.getDocumentsByPage(page);
@@ -287,11 +288,9 @@ const PaginationController = {
           </td></tr>  `;
         });
         $('.tmanager-bill table tbody').innerHTML = result;
+
         TableEvent.Bill.Initialize();
-        let currentSort = +$('.tmanager-bill input:checked').parentNode.classList[2].split(
-          'col'
-        )[1];
-        sortTable(currentSort, 'bill');
+        HandleEvent.SlideTdTable();
       };
     });
   },
@@ -307,7 +306,7 @@ const PaginationController = {
       for (let i = 1; i <= UserModel.getTotalPage(); i++) {
         let page = '';
         if (i == currentPage) {
-          page = `<li style="background-color:var(--yellow)">${i}</li>`;
+          page = `<li style="background-color:var(--ui-background)">${i}</li>`;
         } else {
           page = `<li>${i}</li>`;
         }
@@ -325,7 +324,7 @@ const PaginationController = {
       for (let i = 1; i <= ProductModel.getTotalPage(); i++) {
         let page = '';
         if (i == currentPage) {
-          page = `<li style="background-color:var(--yellow)">${i}</li>`;
+          page = `<li style="background-color:var(--ui-background)">${i}</li>`;
         } else {
           page = `<li>${i}</li>`;
         }
@@ -343,7 +342,7 @@ const PaginationController = {
       for (let i = 1; i <= CategoryModel.getTotalPage(); i++) {
         let page = '';
         if (i == currentPage) {
-          page = `<li style="background-color:var(--yellow)">${i}</li>`;
+          page = `<li style="background-color:var(--ui-background)">${i}</li>`;
         } else {
           page = `<li>${i}</li>`;
         }
@@ -401,6 +400,7 @@ const PaginationController = {
       });
       $('.tmanager-product table tbody').innerHTML = result;
       TableEvent.Product.Initialize();
+      HandleEvent.SlideTdTable();
     } else if (view == 'user') {
       let row = '';
       UserModel.getDocumentsByPage(page).forEach((user) => {
@@ -424,6 +424,7 @@ const PaginationController = {
         </tr>`;
       });
       $('.tmanager-user table tbody').innerHTML = row;
+      HandleEvent.SlideTdTable();
     } else {
     }
   },

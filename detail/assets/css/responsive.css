@@ -1,7 +1,6 @@
  
  /* TABLET AND MOBILE */
 @media(max-width: 1280px){ 
-
     .pane-icon--minus-icon {
         display: none;
     }
@@ -38,25 +37,30 @@
     }
 }
 
- /* TABLET */
-@media(min-width: 768px) and (max-width: 1280px){
+ /* TABLET 749*/
+@media(min-width: 701px) and (max-width: 1280px){
 /* @media(min-width: 46.25em) and (max-width: 64em){ */
     .detail-item,
     .detail-nav .detail-nav__item {
         padding-left: 15px;
         padding-right: 15px;
     }
-
+/* 
     .detail-item__slider {
-        flex-shrink: 0;
         height: auto;
-    }
+    } */
     .detail-item__next-prev-btn {
         top: 50%;
     }
 
     .detail-item__next-btn, .detail-item__prev-btn {
-        padding: 12px 18px
+        padding: 10px 16px
+    }
+
+    .item-infor .Img_box,
+    .item__variation .buy-it-now-btn {
+        width: 100%;
+        max-width: 359px;
     }
 
      /*reponsive phần show more infor */
@@ -138,12 +142,12 @@
     }
 
     .recommended__prev-btn {
-        font-size: 4.6rem;
+        font-size: 4rem;
         left: -58px;
     }
     
     .recommended__next-btn {
-        font-size: 4.6rem;
+        font-size: 4rem;
         right: -58px;
     }
 
@@ -162,7 +166,7 @@
 
     .recommended-product-infor span,
     .recommended-product-infor h3{
-        font-size: 1.8rem;
+        font-size: 1.6rem;
     }
 
     .recommended__color-item {
@@ -174,7 +178,7 @@
     }
     
 }
-
+ 
 @media(width: 768px) {
     .detail-item__slider {
         height: 550px;
@@ -217,9 +221,9 @@
     }
 }
 
-
+ /* 748 */
  /* MOBILE */
-@media(max-width: 766px) {
+@media(max-width: 700px) {
     
     .detail-item,
     .detail-nav .detail-nav__item {
@@ -227,7 +231,7 @@
         padding-right: 15px;
         font-size: 1.2rem;
     }
-
+    
 
     .detail-item {
         margin-top: 15px;
@@ -238,7 +242,7 @@
     .detail-item__slider {
         width: 100%;
         /* height: 500px; */
-        height: auto;
+
     }
 
     .detail-item .item-imgBx {
@@ -273,6 +277,13 @@
     }
 
     /*reponsive phần show more infor */ 
+    .detail__benefit-list:nth-child(2) {
+        padding: 0;
+    }
+    .detail__more-infor-img {
+        margin: 0;
+    }
+
     .detail__more-infor {
         background-color: #fff;
         padding: 0;
@@ -347,6 +358,7 @@
 
     .detail__sp-delivery-return {
         flex-direction: column;
+        align-items: center;
         padding-top: 50px;
     }
 
@@ -401,6 +413,10 @@
     } */
 }
 
+@media(max-width: 1318px) {
+    /* chuyển add to cart thành giỏ hàng  */
+}
+
 /* Điện thoại IPHONE 5 :))) */
 @media(max-width: 540px) {
     .detail-item__slider {
@@ -425,10 +441,4 @@
         top: 34%;
     }
 
-}
-
-@media(min-width: 1280px) {
-    .recommended__products #recommended__products-wrapper .recommended__products-item {
-        width: calc(100% / 8);
-    }
 }

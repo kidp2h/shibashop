@@ -143,6 +143,11 @@ const modalSignEvent = {
                 $('.modal-noti__disc.error').innerText = "Tài khoản và mật khẩu sai"
             }
         }
+
+        $('#sign-in').onkeydown = (e) => {
+            if(e.keyCode == 13)
+            $('.btn-signin').click()
+        }
     },
 
     SignUp() {
@@ -175,6 +180,10 @@ const modalSignEvent = {
                 $('.modal-noti__disc.error').innerText = 'Vui lòng nhập đủ thông tin';
             }
         };
+        $('#sign-up').onkeydown = (e) => {
+            if(e.keyCode == 13)
+            $('.btn-signup').click()
+        }
     },
 
     init() {
