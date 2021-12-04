@@ -264,10 +264,29 @@ const TableEvent = {
         };
       });
     },
+    Search: function () {
+      $('.tmanager-bill .btn-filter-bill').onclick = function () {
+        let from = $('.input-from').value != '' ? Date.parse($('.input-from').value) : 0;
+        let to = $('.input-to').value != '' ? Date.parse($('.input-to').value) : Date.now();
+        let key = $('.searchBillByUsername').value;
+        HandleEvent.Bill.searchBill(from, to, key);
+        window.scrollTo({ top: 500, behavior: 'smooth' });
+      };
+      $('.tmanager-bill .searchBillByUsername').onkeypress = function (e) {
+        if (e.keyCode == 13) {
+          let from = $('.input-from').value != '' ? Date.parse($('.input-from').value) : 0;
+          let to = $('.input-to').value != '' ? Date.parse($('.input-to').value) : Date.now();
+          let key = $('.searchBillByUsername').value;
+          HandleEvent.Bill.searchBill(from, to, key);
+          window.scrollTo({ top: 500, behavior: 'smooth' });
+        }
+      };
+    },
     Initialize: function () {
       this.SeeDetail();
       this.Accept();
       this.Cancel();
+      this.Search();
       this.Sort();
     },
     Sort: function () {
@@ -296,7 +315,7 @@ const TableEvent = {
   },
   Revenue: {
     Filter: function () {
-      $('.btn-filter-revenue').onclick = function () {
+      $('.search-category').onchange = function () {
         HandleEvent.Revenue.Filter();
       };
     },

@@ -34,6 +34,10 @@ function App() {
                 </nav>
 
                 <div class="icons">
+                    <div class = "navbar__inputSearch"> 
+                        <input class="navbar-input-Search" type = "text" >
+                        <i class="fas fa-search"  id ="nav-search"></i>
+                    </div>
                     <i class="fas fa-search"  id ="search-icon"></i>
                     <div class="user-info">
                             <i class="fas fa-user" id="user-icon"></i> 
@@ -51,10 +55,10 @@ function App() {
         </div>
 
         <div class="navigation-mobile">
-            <div class="icon" id="shop-icon">
+            <a href="#shop" class="icon">
                 <i class="fab fa-shopify"></i>
                 <p>Shop</p>
-            </div>
+            </a>
             <a href="#wishList" class="icon noti wishList" data-amount="0">
                 <i class="fas fa-heart"></i>
                 <p>Wishlist</p>
@@ -64,7 +68,7 @@ function App() {
                 <p>Cart</p>
             </div>
             <div class="icon" id ="search-icon-mb">
-                <i class="fas fa-search"  id ="search-icon"></i>
+                <i class="fas fa-search" ></i>
                 <p>Search</p>
             </div>
         </div>
@@ -392,7 +396,8 @@ function App() {
                 <div class="modal-noti__logo">
                     <i class="far fa-check-circle" id="icon-success"></i>
                     <i class="fas fa-times" id="icon-error"></i>
-                </div>    
+                </div> 
+                <input type = "text">   
                 <h2 class="modal-noti__disc success"></h2>
                 <h2 class="modal-noti__disc error"></h2>
                 <button class="btn-noti glassmorphism ">OK</button>

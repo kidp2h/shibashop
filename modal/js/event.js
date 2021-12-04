@@ -37,7 +37,15 @@ const modalEvent = {
 
             modalNoti.classList.remove('success');
             modalNoti.classList.remove('error');
+
         };
+
+        $('.modal__noti input').onkeydown = (e) => {
+            if(e.keyCode == 13) {
+                $('.btn-noti').click()
+                $$('.groups input')[1].focus()
+            }
+        }
     },
 
     btnExist(view) {
@@ -126,6 +134,7 @@ const modalSignEvent = {
 
             if( chekLogin ) {
                 $('.modal__noti').classList.add('success')
+                $('.modal__noti input').focus()
                 $('.modal-noti__disc.success').innerText = "Đăng nhập thành công"
 
                 updateProductInCart(userCurrent.cart);
@@ -137,9 +146,11 @@ const modalSignEvent = {
                 renderComponentNavbar.amountCart()
                 renderWishList.start()
                 renderOrderPage.items()
+                renderShop.start()
             }
             else {
                 $('.modal__noti').classList.add('error')
+                $('.modal__noti input').focus()
                 $('.modal-noti__disc.error').innerText = "Tài khoản và mật khẩu sai"
             }
         }

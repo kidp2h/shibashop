@@ -354,9 +354,30 @@ function Admin() {
           </div>
           <div class="tmanager tmanager-bill">
             <div class="box-filter">
-              <div class="table-search">
-                <i class="fas fa-search ic-input-search"></i>
-                <input class="input-search" type="text" placeholder="Search bill by username" />
+              <div class="input-date">
+                <span style="font-size:1.5em;margin-left:5px;">From</span>
+                <div class="table-search">
+                  <i class="fas fa-calendar-alt ic-input-search"></i>
+                  <input
+                    class="input-search input-from"
+                    type="datetime-local"
+                    style="margin-bottom: 0px;"
+                  />
+                </div>
+                <span style="font-size:1.5em;margin-left:5px;">To</span>
+                <div class="table-search">
+                  <i class="fas fa-calendar-alt ic-input-search"></i>
+                  <input class="input-search input-to" type="datetime-local" />
+                </div>
+                <div class="table-search">
+                  <i class="fas fa-search ic-input-search"></i>
+                  <input
+                    class="input-search searchBillByUsername"
+                    type="text"
+                    placeholder="Search by username"
+                  />
+                </div>
+                <div><button class="btn-filter-bill">Filter</button></div>
               </div>
             </div>
             <div class="t-wrap">
@@ -402,24 +423,6 @@ function Admin() {
           </div>
           <div class="tmanager tmanager-revenue">
             <div class="box-filter">
-              <div class="input-date">
-                <span style="font-size:1.5em;margin-left:5px;">From</span>
-                <div class="table-search">
-                  <i class="fas fa-calendar-alt ic-input-search"></i>
-                  <input
-                    class="input-search input-from"
-                    type="datetime-local"
-                    style="margin-bottom: 0px;"
-                  />
-                </div>
-                <span style="font-size:1.5em;margin-left:5px;">To</span>
-                <div class="table-search">
-                  <i class="fas fa-calendar-alt ic-input-search"></i>
-                  <input class="input-search input-to" type="datetime-local" />
-                </div>
-                <div><button class="btn-filter-revenue">Filter</button></div>
-              </div>
-
               <div class="table-search search-category">
                 <select name="search-category" id="select-search-category"></select>
               </div>
@@ -436,11 +439,6 @@ function Admin() {
                     <th class="sort sortCategory">
                       <input type="radio" name="sort" value="" />
                       Category
-                      <i class="fas fa-sort"></i>
-                    </th>
-                    <th class="sort sortDateTime">
-                      <input type="radio" name="sort" value="" />
-                      Date time
                       <i class="fas fa-sort"></i>
                     </th>
                     <th class="sort sortPrice">

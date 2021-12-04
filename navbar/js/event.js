@@ -49,6 +49,10 @@ const navbarEvent = {
             $('.modal').classList.add('active')
             $('.modal__cart').classList.add('active')
         }
+
+        $('.icon.noti.cart').onclick = () => {
+            $('#cart-icon').click()
+        }
     },
 
     loadProfile() {
@@ -78,6 +82,37 @@ const navbarEvent = {
             PaginationView.initializePage();
             TableEvent.Initialize();
         };
+    },
+
+    btnSearch() {
+        let search = $('#search-icon')
+        search.onclick = () => {
+            $('.navbar__inputSearch').classList.toggle('active')
+            $('#search-icon').classList.toggle('fa-times')
+            $('#search-icon-mb i').classList.toggle('fa-times')
+
+            if($('.navbar__inputSearch.active')) $('.navbar-input-Search').focus()
+        }
+
+        $('#search-icon-mb').onclick = () => {
+            search.click()
+        }
+
+        $('#nav-search').onclick = () => {
+            if(!$('.navbar-input-Search').value) return;
+            search.click()
+            window.location.hash = `#shop-search:${$('.navbar-input-Search').value}`
+            $('.navbar-input-Search').value = ""   
+        }
+
+        $('.navbar-input-Search').onkeydown = (e) => {
+            if(e.keyCode == 13)  {
+                if(!$('.navbar-input-Search').value) return;
+                search.click()
+                window.location.hash = `#shop-search:${$('.navbar-input-Search').value}`
+                $('.navbar-input-Search').value = ""
+            }
+        }
     },
 
     loadOrder() {
@@ -113,6 +148,7 @@ const navbarEvent = {
             renderOrderPage.items()
             renderWishList.start()
             renderHome.products()
+            renderShop.start()
         };
     },
 
@@ -122,5 +158,6 @@ const navbarEvent = {
         this.SignOut();
         this.navItem();
         this.btnCart();
+        this.btnSearch();
     },
 };

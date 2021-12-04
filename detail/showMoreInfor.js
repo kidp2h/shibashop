@@ -43,7 +43,7 @@ function InitEventDetail() {
                 content.style.display = 'block';
                 disableIcon.style.display = 'block';
                 activeIcon.style.display = 'none';
-                Item.querySelector('.pane-title').style.color = '#b59677';
+                Item.querySelector('.pane-title').style.color = '#5f50f1';
             }
         };
     });
@@ -220,7 +220,7 @@ function SliderProducts() {
         } else if (window.innerWidth >= 1000) {
             //1280
             makeItem(3);
-        } else if (window.innerWidth >= 600) {
+        } else if (window.innerWidth >= 540) {
             //540
             makeItem(2);
         } else {
@@ -231,7 +231,7 @@ function SliderProducts() {
     const media = [
         window.matchMedia('(min-width: 1366px)'),
         window.matchMedia('(min-width: 1000px)'),
-        window.matchMedia('(min-width: 600px)'),
+        window.matchMedia('(min-width: 540px)'),
     ];
 
     if (media[0].matches) {
@@ -249,21 +249,37 @@ function slideItem() {
     SliderProducts()
 }
 
+function clickWish() {
+    $('.item__favorative').onclick = () => {
+        //hàm bên wishListEvent/homeEvent
+        if (!chekLogin) {
+            $('.modal').classList.add('active');
+            $('.modal__noti').classList.add('error');
+            $('.modal-noti__disc.error').innerText = 'Vui lòng đăng nhập !';
+            modalEvent.btnNoti('checkLogin');
+        } else {
+            $('.item__favorative i').classList.toggle('fas')
+            wishListEvent.changeStatusWish($('.item__favorative i'));
+            renderComponentNavbar.amountWishlist();
+        }
+    }
+}
+
 
 
 const renderDetailProduct = function (detailProduct) {
     const htmls = html`<div class="detail-item__slider">
-            ${detailProduct.imgList
-                .map((img, index) => {
-                    return `
-            <div class="item-imgBx ${index == 0 && 'item-imgBx--active'} 
-            data-index = "${index + 1}"">
-                <img class="item__img" src="${img}" alt="">
-            </div>
-            `;
-                })
-                .join('')}
 
+            ${detailProduct.imgList .map((img, index) => {
+               
+                return `
+                    <div class="item-imgBx ${index == 0 && 'item-imgBx--active'} 
+                    data-index = "${index + 1}"">
+                        <img class="item__img" src="${img}" alt="">
+                    </div>
+                `
+            }).join('')}
+                
             <div class="detail-item__next-prev-btn">
                 <button class="detail-item__prev-btn" onclick="clickSlideBtn(-1)">
                     <i class="fas fa-chevron-left"></i>
@@ -291,32 +307,31 @@ const renderDetailProduct = function (detailProduct) {
             </div>
 
             <div class="item-infor__description">
-                A pair of twill woven shorts featuring slanted front pockets, buttoned back pockets,
-                a zip pocket, buttoned waist, and keychain loop.
+            Morbi commodo, ipsum sed pharetra gravida, orci magna rhoncus neque, id pulvinar odio lorem non turpis. Nullam sit amet enim. Suspendisse id velit vitae ligula volutpat condimentum. 
             </div>
 
             <div class="item__option">
                 <div class="item__option-color">
-                    <h4 class="color__title">
-                        COLOR:
-                        <span>BLUE</span>
-                    </h4>
 
                     ${detailProduct.colorList &&
-                    `
-                    <ul class="color__list">
-                        ${detailProduct.colorList
-                            .map((color, index) => {
+                        `<h4 class="color__title">
+                            COLOR:
+                            <span></span>
+                        </h4>
+                        <ul class="color__list">                  
+                            ${detailProduct.colorList.map((color, index) => {
+                                //colorList: ['--pink:1', '--black:3', '--blue:4'],
+                                //color = "--pink:1" 
+                                    
                                 let colors = color.split(':');
-                                console.log('colors : ', colors);
+                                    //colors = ["--pink",'1'];
                                 return ` 
-                                <li class="color__list-item color${colors[0]} ${
-                                    index == 0 && 'color__list-item--active'
-                                }" data-img="${colors[1] - 1}"></li>                             
-                            `;
-                            })
-                            .join('')}
-                    </ul>
+                                    <li class="color__list-item color${colors[0]} 
+                                    ${index == 0 && 'color__list-item--active'}" 
+                                    data-img="${colors[1] - 1}"></li>                             
+                                `
+                                }).join('')}
+                        </ul>
                     `}
                 </div>
             </div>
@@ -325,28 +340,18 @@ const renderDetailProduct = function (detailProduct) {
                 <div class="variation__choose">
                     <div class="item__change-input">
                         <button class="decrement" id="decrement" onclick="stepper(this)">-</button>
-                        <input
-                            type="number"
-                            min="1"
-                            max="100"
-                            step="1"
-                            value="1"
-                            class="my-input"
-                            id="my-input"
-                            inputmode="numeric"
-                        />
+                        <input class ="my-input inputQuantity" data-id="${detailProduct.id}" type="number" min="1"  max="100" step="1" value="1" id="my-input"  inputmode="numeric" />
                         <button class="increment" id="increment" onclick="stepper(this)">+</button>
                     </div>
-                    <button id="add-to-cart" class="add-to-cart-btn">Add to cart</button>
                     <div class="item__favorative">
-                        <i class="far fa-heart"></i>
+                        <i class="far fa-heart ${detailProduct.wish == 1 && 'fas'}" data-index="${detailProduct.id}" data-wish="${detailProduct.wish}"></i>
                     </div>
                 </div>
-                <button id="buy-it-now" class="buy-it-now-btn">Buy it now</button>
+                <button id="buy-it-now" data-id="${detailProduct.id}" class="buy-it-now-btn addToCart">Add to cart</button>
             </div>
 
             <div class="Img_box">
-                <img class="img_more" src="./assets/img/img_more.png" alt="" />
+                <img class="img_more" src="./images/detail_icon/img_more.png" alt="" />
             </div>
 
             <div class="item__support-link">
@@ -382,6 +387,9 @@ const renderDetailProduct = function (detailProduct) {
     $('.detail__more-infor-imgBox').innerHTML = detailInforImgBox(detailProduct);
     document.getElementById('detail-item').innerHTML = htmls;
     clickColorChangeSlide();
+    AddToCart();
+    clickWish() 
+    homeEvent.btnWish()
 };
 
 function randomIdProduct(Products, numbers) {
@@ -420,7 +428,8 @@ const renderRecommendedProduct = function () {
     }
 
     function ProductItem(product) {
-        return html`<div class="recommended__products-item">
+        return html`
+        <div class="recommended__products-item">
             <div class="recommended__product-image">
                 <div class="recommended__img">
                     ${product.imgList.map((img, index) => {
@@ -430,32 +439,30 @@ const renderRecommendedProduct = function () {
                             }" src="${img}" alt="">
                         `;
                     }).join('')}
+
+                    <div class="icon-heart ${product.wish == 1 && 'active'}" data-index="${product.id}" data-wish="${product.wish}">
+                        <i class="far fa-heart"></i>
+                        <i class="fas fa-heart"></i>
+                    </div>
                 </div>
 
                 <div class="recommended__add-to-cart">
                     <div class="recommended__quantity">
                         <div class="recommended__quantity-input">
                             <button class="recommended__decrement">-</button>
-                            <input
-                                type="number"
-                                min="1"
-                                max="100"
-                                step="1"
-                                value="1"
-                                class="recommended__input"
-                                inputmode="numeric"
-                            />
+                            <input class ="recommended__input inputQuantity" data-id="${product.id}" type="number" min="1" max="100" step="1" value="1" inputmode="numeric"   />
                             <button class="recommended__increment">+</button>
                         </div>
                     </div>
-                    <span>
+                    <div class="recommended__addToCart addToCart" data-id="${product.id}">
                         <button
                             class="recommended__add-to-cart-btn"
                             class="recommended__add-to-cart-btn"
                         >
-                            Add to cart
+                            <span>Add to cart</span>
+                            <i class="fas fa-shopping-cart"></i>
                         </button>
-                    </span>
+                    </div>
                 </div>
             </div>
 
@@ -485,4 +492,6 @@ const renderRecommendedProduct = function () {
     hoverColorChangeImg();
     clickPlusMinusRecommendedInput();
     slideItem();
+    AddToCart();
+    homeEvent.btnWish()
 };

@@ -85,6 +85,11 @@
     z-index: 100;
 }
 
+#main .modal__noti input {
+    width: 0;height: 0;
+    opacity: 0;
+}
+
 #main .modal-noti__logo {
     font-size: 100px;
     color: var(--green);

@@ -60,7 +60,8 @@
     overflow: hidden;
     position: relative;
     width: 50%;
-    height: 750px;
+    /* height: 750px; */
+    height: auto;
     /* display: none; */
 }
 
@@ -281,7 +282,7 @@
    font-size: 2.4rem;
    border: none;
    outline: none;
-   width: 60px;
+   width: 70px;
    background-color: #fff;
    color: #202030;
 }
@@ -338,7 +339,9 @@
 .variation__choose .item__favorative {
     border: 1px solid black;
     border-radius: 50%;
+    margin-left: 10px;
 }
+
 
 .variation__choose .item__favorative i {
     font-size: 1.6rem;
@@ -357,7 +360,7 @@
     width: 100%;
     max-width: 359px;
     height: 44px;
-    background-color: var(--black-color);
+    background-color: var(--ui-background);
     border-radius: 45px;
     appearance: none;
     border: none;
@@ -369,7 +372,7 @@
 
 
 .item__variation .buy-it-now-btn:hover {
-    background-color: #222;
+    background-color: var(--red);
     transition: all 0.5s;
 }
 
@@ -385,6 +388,7 @@
 
 .item-infor .item__support-link {
     margin-top: 25px;
+    display: flex;
 }
 
 .item__support-link .support-link {
@@ -511,13 +515,14 @@
 
 .detail__more-infor-imgBox {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
 }
 
 .detail__more-infor-img {
     /* width: 370px;
     height: 541px; */
     width: 32%;
+    margin: 5px;
 }
 
 .detail__more-infor-img img {
@@ -526,7 +531,7 @@
 }
 
 .detail__benefit-infor {
-    padding-top: 50px;
+    padding-top: 30px;
     display: flex;
     justify-content: center;
 }
@@ -536,9 +541,14 @@
     flex-direction: column;
 }
 
+.detail__benefit-list:nth-child(1) {
+     /* margin-right: 14px; */
+} 
+
 .detail__benefit-list:nth-child(2) {
-    margin-left: 25px;
-}
+    padding-right: 31px;
+    padding-left: 12px;
+}  
 
 .detail__benefit-list--tr .detail__benefit-item {
     display: flex;
@@ -662,6 +672,10 @@
     flex-direction: column;
 } 
 
+.detail__delivery-return:nth-child(2) {
+    margin: 0 15px;
+}
+
 .detail__delivery-return-header h4{
     font-size: 1.8rem;
     letter-spacing: 3px;
@@ -700,6 +714,7 @@
 
 .delivery-return__detail p {
     padding: 5px 0 0 0;
+    text-align: left;
 }
 
 .recommended__contents {
@@ -716,7 +731,8 @@
 
 .recommended__next-prev-btn {
     position: absolute;
-    top: 35%;
+    top: 38%;
+    /* transform: translateY(-50%); */
     z-index: 1; 
     display: flex;
     width: 100%;
@@ -783,6 +799,10 @@
     animation: fadeIn_2 ease 0.8s;
 }
 
+.recommended__img:hover .icon-heart{
+    right: 0;
+}
+
 .recommended__img img{
     max-width: 100%;
     display: none;
@@ -800,7 +820,15 @@
 .recommended-product-infor h3 {
     font-size: 1.4rem;
     letter-spacing: 2px;
-    color:rgb(92, 88, 88)
+    color:rgb(92, 88, 88);
+
+    /* XÉT CHO NÓ 2 DÒNG RỒI 3 CHẤM */
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-break: break-word;
 }
 
 .recommended-product-infor span {
@@ -857,9 +885,12 @@
     position: absolute;
     width: 100%;
     height: 42px;
-    display: none;
     /* top: 90%; */
     bottom: 0;
+    display: none;
+}
+
+.recommended__addToCart i {
     display: none;
 }
 
@@ -922,10 +953,9 @@
     /* border-radius: 0; */
 }
 
-.recommended__add-to-cart span {
+.recommended__add-to-cart .recommended__addToCart {
     width: 100%;
     height: 100%;
-    /* width: 70%; */
     /* border-left: 1px solid #fff; */
 }
 

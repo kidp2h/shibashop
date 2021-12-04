@@ -12,9 +12,11 @@ const RevenueView = {
       billFilter = [];
 
     bills.forEach((bill) => {
-      bill.products.forEach((product) => {
-        idsProduct.push(product.id);
-      });
+      if (bill.status == 'COMPLETED') {
+        bill.products.forEach((product) => {
+          idsProduct.push(product.id);
+        });
+      }
     });
 
     let idsUnique = [...new Set(idsProduct)];
@@ -23,13 +25,15 @@ const RevenueView = {
         currentProduct,
         currentBill;
       bills.forEach((bill) => {
-        bill.products.forEach((product) => {
-          if (product.id == idProduct) {
-            currentProduct = product;
-            qty += product.quantity;
-            currentBill = bill;
-          }
-        });
+        if (bill.status == 'COMPLETED') {
+          bill.products.forEach((product) => {
+            if (product.id == idProduct) {
+              currentProduct = product;
+              qty += product.quantity;
+              currentBill = bill;
+            }
+          });
+        }
       });
       billFilter.push({
         product: currentProduct,
@@ -42,15 +46,10 @@ const RevenueView = {
       totalPrice = 0,
       totalAmountSold = 0;
     billFilter.forEach((bill) => {
-      if (bill.status != '') {
+      if (bill.status == 'COMPLETED') {
         row += `<tr>
           <td>${bill.product.name}</td>
           <td>${bill.product.category}</td>
-          <td>${
-            new Date(bill.created_at).toLocaleDateString() +
-            ' ' +
-            new Date(bill.created_at).toLocaleTimeString()
-          }</td>
           <td>${formatNumber(bill.product.sale)}</td>
           <td>${bill.qty}</td>
           <td>${formatNumber(bill.product.sale * bill.qty)}</td>
@@ -60,7 +59,6 @@ const RevenueView = {
       }
     });
     row += `<tr>
-        <td></td>
         <td></td>
         <td></td>
         <td></td>
@@ -83,3 +81,11 @@ const RevenueView = {
     $('.tmanager-revenue tbody').innerHTML = data.rowProduct;
   },
 };
+
+{
+  /* <td>${
+  new Date(bill.created_at).toLocaleDateString() +
+  ' ' +
+  new Date(bill.created_at).toLocaleTimeString()
+}</td> */
+}

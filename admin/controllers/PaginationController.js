@@ -3,7 +3,7 @@ const PaginationController = {
     for (let i = 1; i <= UserModel.getTotalPage(); i++) {
       let page = '';
       if (i == 1) {
-        page = `<li style="background-color:var(--ui-background)">${i}</li>`;
+        page = `<li style="background-color:var(--purple)">${i}</li>`;
       } else {
         page = `<li>${i}</li>`;
       }
@@ -45,12 +45,18 @@ const PaginationController = {
         let currentPage = Number($('.page-user input.currentPage').value);
         if (this.classList.contains('previous')) {
           if (currentPage <= 1) {
+            $('.page-user ul li.previous').nextElementSibling.style.backgroundColor =
+              'var(--purple)';
+            return;
           } else {
             --currentPage;
             $('.page-user input.currentPage').value = currentPage;
           }
         } else if (this.classList.contains('next')) {
           if (currentPage >= Math.floor(UserModel.getTotalPage())) {
+            $('.page-user ul li.next').previousElementSibling.style.backgroundColor =
+              'var(--purple)';
+            return;
           } else {
             ++currentPage;
             $('.page-user input.currentPage').value = currentPage;
@@ -61,7 +67,7 @@ const PaginationController = {
         let page = Number($('.page-user input.currentPage').value);
         $$('.page-user ul li').forEach((item) => {
           if (item.textContent == page) {
-            item.style.backgroundColor = 'var(--ui-background)';
+            item.style.backgroundColor = 'var(--purple)';
           }
         });
         let collection = UserModel.getDocumentsByPage(page);
@@ -108,12 +114,18 @@ const PaginationController = {
         let currentPage = Number($('.page-product input.currentPage').value);
         if (this.classList.contains('previous')) {
           if (currentPage <= 1) {
+            $('.page-product ul li.previous').nextElementSibling.style.backgroundColor =
+              'var(--ui-background)';
+            return;
           } else {
             --currentPage;
             $('.page-product input.currentPage').value = currentPage;
           }
         } else if (this.classList.contains('next')) {
           if (currentPage >= Math.floor(ProductModel.getTotalPage())) {
+            $('.page-product ul li.next').previousElementSibling.style.backgroundColor =
+              'var(--ui-background)';
+            return;
           } else {
             ++currentPage;
             $('.page-product input.currentPage').value = currentPage;
@@ -183,12 +195,18 @@ const PaginationController = {
         let currentPage = Number($('.page-category input.currentPage').value);
         if (this.classList.contains('previous')) {
           if (currentPage <= 1) {
+            $('.page-category ul li.previous').nextElementSibling.style.backgroundColor =
+              'var(--ui-background)';
+            return;
           } else {
             --currentPage;
             $('.page-category input.currentPage').value = currentPage;
           }
         } else if (this.classList.contains('next')) {
           if (currentPage >= Math.floor(CategoryModel.getTotalPage())) {
+            $('.page-category ul li.next').previousElementSibling.style.backgroundColor =
+              'var(--ui-background)';
+            return;
           } else {
             ++currentPage;
             $('.page-category input.currentPage').value = currentPage;
@@ -239,12 +257,18 @@ const PaginationController = {
         let currentPage = Number($('.page-bill input.currentPage').value);
         if (this.classList.contains('previous')) {
           if (currentPage <= 1) {
+            $('.page-bill ul li.previous').nextElementSibling.style.backgroundColor =
+              'var(--ui-background)';
+            return;
           } else {
             --currentPage;
             $('.page-bill input.currentPage').value = currentPage;
           }
         } else if (this.classList.contains('next')) {
           if (currentPage >= Math.floor(BillModel.getTotalPage())) {
+            $('.page-bill ul li.next').previousElementSibling.style.backgroundColor =
+              'var(--ui-background)';
+            return;
           } else {
             ++currentPage;
             $('.page-bill input.currentPage').value = currentPage;
@@ -268,6 +292,11 @@ const PaginationController = {
               <span>Xem chi tiết</span>
             </button>
           </td>
+          <td>${
+            new Date(bill.created_at).toLocaleDateString('en-GB') +
+            ' ' +
+            new Date(bill.created_at).toLocaleTimeString()
+          }</td>
           <td>${formatNumber(bill.subtotal)}</td>
           <td class="status-bill">
           ${

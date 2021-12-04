@@ -292,9 +292,6 @@ tbody tr:last-child {
   pointer-events: none;
   white-space: nowrap;
 }
-#admin .search-category {
-  margin-left: auto;
-}
 #admin .search-category select {
   padding: 15px 0px 10px 0px;
   background-color: var(--gray);
@@ -309,6 +306,15 @@ tbody tr:last-child {
   margin-bottom: 10px;
   width: 120px;
   background: var(--gray);
+  color: white;
+  border-radius: 5px;
+}
+
+#admin .btn-filter-bill {
+  padding: 13px;
+  margin-bottom: 10px;
+  width: 120px;
+  background: var(--red);
   color: white;
   border-radius: 5px;
 }

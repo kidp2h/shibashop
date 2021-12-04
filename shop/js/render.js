@@ -1,3 +1,7 @@
+    localStorage.setItem("sanphamtheotimkiem",JSON.stringify(""));
+    localStorage.setItem("sanphamtheogia",JSON.stringify(""));
+    localStorage.setItem("sanphamtheoloai",JSON.stringify(""));
+
 // Lấy dữ liệu ra
 function productItems(item){
     return `
@@ -12,10 +16,10 @@ function productItems(item){
             <div class="buy-now">
             <div class="product-quantity">
                 <button class="btn btn-tru"> - </button>
-                <input type="text" min="1" max="99" value="1">
+                <input type="text" min="1" max="99" value="1" class="inputQuantity" data-id ="${item.id}"  >
                 <button class="btn btn-add"> + </button>
             </div>
-                <div class="addtocart">
+                <div class="addtocart addToCart" data-id ="${item.id}" >
                     <p>ADD TO CART</p>
                     <i id="cart-icon" class="fas fa-shopping-cart"></i>
 
@@ -27,11 +31,11 @@ function productItems(item){
             </div>
         </div>
         <div class="product-info ">
-            <a href="" class="product-cat">${item.category}</a>
-            <a href="" class="product-name">${item.name}</a>
+            <div href="" class="product-cat">${item.category}</div>
+            <div href="" class="product-name">${item.name}</div>
             <div class="price">
-            <div class="product-price">${item.price}</div>
-            <div class="sale-price">${item.sale}</div>
+            <div class="product-price">${formatMoney(item.price, "$")}</div>
+            <div class="sale-price">${formatMoney(item.sale, "$")}</div>
             </div>
         </div>
     </li>             
@@ -47,6 +51,7 @@ function renderData (x=1) {
     document.getElementById('products').innerHTML = htmls.join('');
     AddEvent();
     AddHeart();
+    AddToCart();
 }
 // lấy dữ liệu ra trong mảng dữ liệu và in ra màn hình
 function renData (data,x) {
@@ -56,6 +61,7 @@ function renData (data,x) {
     document.getElementById('products').innerHTML = htmls.join('');
     AddEvent();
     AddHeart();
+    AddToCart();
 }
 // Hàm lọc sản phẩm 
 function filtersort() {
@@ -94,6 +100,7 @@ function filtersort() {
        
     })
     if (valuefilter =="All"){
+    
         let htmls = getpage(productSort,1).map(item =>{     //sử dụng hàm getpade để in ra sản phẩm trang đầu tiên
             return productItems(item);
         })
@@ -115,6 +122,7 @@ function filtersort() {
     AddEvent();
     AddHeart();
     filter_hide(); 
+    AddToCart();
 }
 
 // lÀM CATEGORIES
@@ -153,10 +161,28 @@ function addpagecategories() {
             var filterdata =  ProductModel.getAll().filter(item =>{
                 return item.category.toUpperCase() == a.toUpperCase();
             })
+            if(filterdata.length ==0){
+                console.log("dô");
+             $(".center-product").innerHTML = productEmty();
+             filter_hide();
+             page_hide()
+             $('#return').onclick = function(){
+                renderData (x=1);
+                taotrang();
+                AddEvent();
+                AddHeart();
+                filter_hide();
+                page_block();
+                AddToCart();
+             }
+             return;
+            }
+            $(".center-product").innerHTML = ` <ul id="products"> </ul>`;
             filterdata.map(item =>{
                 sanphamtheoloai.push(item); //thêm sản phẩm vào mảng local
                
             });
+            
             let htmlcategories = getpage(filterdata,1).map(item =>{
            
                 return productItems(item);
@@ -167,14 +193,20 @@ function addpagecategories() {
             AddEvent();
             AddHeart();
             filter_hide();
+            AddToCart();
         }
     });
     document.getElementById("productall").onclick = function(){
+        localStorage.setItem("sanphamtheotimkiem",JSON.stringify(""));
+        localStorage.setItem("sanphamtheogia",JSON.stringify(""));
+        localStorage.setItem("sanphamtheoloai",JSON.stringify(""));
+        $("#slt").value = "All";
         renderData (x=1);
         taotrang();
         AddEvent();
         AddHeart();
         filter_hide();
+        AddToCart();
     }
 }
 
@@ -183,6 +215,7 @@ function renderproducts() {
         localStorage.setItem("sanphamtheotimkiem",JSON.stringify(""));
         localStorage.setItem("sanphamtheoloai",JSON.stringify(""));
         let sanphamtheogia =[] // sự kiện onclick
+        $("#slt").value = "All"; // mặc định ngay select
         let pricevalue = Number.parseInt(document.getElementById("myRange").value); // lấy giá trị của price range
         //console.log(pricevalue);
         const filterdata = ProductModel.getAll().filter(value => {
@@ -196,7 +229,7 @@ function renderproducts() {
          $(".center-product").innerHTML = productEmty();
          filter_hide();
          page_hide()
-         
+           
          $('#return').onclick = function(){
             renderData (x=1);
             taotrang();
@@ -204,6 +237,7 @@ function renderproducts() {
             AddHeart();
             filter_hide();
             page_block();
+            AddToCart();
          }
          return;
         }
@@ -219,6 +253,7 @@ function renderproducts() {
         AddEvent();
         AddHeart();
         filter_hide(); 
+        AddToCart();
         }
         // hàm lọc theo title (Nhập cái cần tìm)
     document.getElementById('filtertitle').onclick = function() {
@@ -226,6 +261,9 @@ function renderproducts() {
         localStorage.setItem("sanphamtheoloai",JSON.stringify(""));  // Sự kiện onclick ở button fillter title
         let sanphamtheotimkiem= [];
         let title = document.getElementById('search').value; // lấy giá trị trong div.search
+        
+        document.getElementById('search').value = ""
+
         const filterdata = ProductModel.getAll().filter(value => {   // Chạy hàm lọc
             return value.name.toUpperCase().includes(title.toUpperCase());
         })
@@ -245,6 +283,7 @@ function renderproducts() {
             AddHeart();
             filter_hide();
             page_block();
+            AddToCart();
          }
          return;
         }
@@ -262,6 +301,7 @@ function renderproducts() {
         AddHeart(); // sự kiện thêm yêu thích cho sản phẩm
         filter_hide();  // hàm ẩn filter
         page_block();
+        AddToCart();
 
     }
 
@@ -317,9 +357,6 @@ function addpage1(data) {
 }
 // load trang rồi sử dụng các hàm
 // window.onload = () => {
-//     localStorage.setItem("sanphamtheotimkiem",JSON.stringify(""));
-//     localStorage.setItem("sanphamtheogia",JSON.stringify(""));
-//     localStorage.setItem("sanphamtheoloai",JSON.stringify(""));
 //     rendertheloai();
 //     renderData();
 //     renderproducts();
