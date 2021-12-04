@@ -222,6 +222,8 @@ const HandleEvent = {
         FR.addEventListener('load', function (e) {
           if (e.total > 500000) {
             toast('danger', danger, 'Vui lòng upload ảnh size nhỏ hơn 500 KB');
+          } else if (!e.target.result.includes('data:image/')) {
+            toast('warning', warning, 'Vui lòng chỉ upload ảnh');
           } else {
             let imageHTML = `                        
             <div class="wrap-image list-image-product" data-status="new">
@@ -322,12 +324,15 @@ const HandleEvent = {
     ChangeImage: function (btn, id) {
       let imgCurrent = btn.parentNode.querySelector('.image-document');
       $('#inputChangeImage').click();
-      $('#inputChangeImage').addEventListener('change', function () {
+      $('#inputChangeImage').onchange = function () {
         if (this.files && this.files[0]) {
           var FR = new FileReader();
           FR.addEventListener('load', function (e) {
+            console.log(e);
             if (e.total > 500000) {
               toast('danger', danger, 'Vui lòng upload ảnh size nhỏ hơn 500 KB');
+            } else if (!e.target.result.includes('data:image/')) {
+              toast('warning', warning, 'Vui lòng chỉ upload ảnh');
             } else {
               imgCurrent.setAttribute('src', e.target.result);
             }
@@ -335,8 +340,7 @@ const HandleEvent = {
           });
           FR.readAsDataURL(this.files[0]);
         }
-      });
-      //toast("success",success,"Đã lưu")
+      };
     },
   },
   Bill: {
