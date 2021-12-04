@@ -63,7 +63,8 @@ function CartPageEmpty() {
                     
                     <p>You will find a lot of products on our "Shop" page.</p>
 
-                    <button>RETURN TO SHOP</button>
+                    <button onclick = " window.location.hash = '#order'">MY ORDER</button>
+                    <button onclick = " window.location.hash = '#shop'">RETURN TO SHOP</button>
                 </div>`;
 }
 
