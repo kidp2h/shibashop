@@ -373,32 +373,34 @@ const HandleEvent = {
       status.innerHTML = `<i class="fas fa-times-circle cancelled"></i>`;
       BillController.setStatusBill(btn.dataset.id, 'CANCELLED');
     },
+    searchBill: function (from, to, key) {
+      BillController.searchBill(from, to, key);
+      HandleEvent.SlideTdTable();
+    },
   },
   Revenue: {
-    Filter: function (from, to) {
-      from = $('.input-from').value != '' ? Date.parse($('.input-from').value) : 0;
-      to = $('.input-to').value != '' ? Date.parse($('.input-to').value) : Date.now();
+    Filter: function () {
       let category = $('#select-search-category').value;
       let bills = BillModel.getAll();
+      let idsProduct = [],
+        billFilter = [];
 
-      if (from > to) {
-        toast('warning', icon['warning'], 'Vui lòng nhập khoảng thời gian hợp lệ !!');
-      } else {
-        let idsProduct = [],
-          billFilter = [];
-
-        bills.forEach((bill) => {
+      bills.forEach((bill) => {
+        if (bill.status == 'COMPLETED') {
           bill.products.forEach((product) => {
             idsProduct.push(product.id);
           });
-        });
+        }
+      });
 
-        let idsUnique = [...new Set(idsProduct)];
-        idsUnique.forEach((idProduct) => {
-          let qty = 0,
-            currentProduct,
-            currentBill;
-          bills.forEach((bill) => {
+      let idsUnique = [...new Set(idsProduct)];
+      console.log(idsUnique);
+      idsUnique.forEach((idProduct) => {
+        let qty = 0,
+          currentProduct,
+          currentBill;
+        bills.forEach((bill) => {
+          if (bill.status == 'COMPLETED') {
             bill.products.forEach((product) => {
               if (product.id == idProduct) {
                 currentProduct = product;
@@ -406,71 +408,54 @@ const HandleEvent = {
                 currentBill = bill;
               }
             });
-          });
-          billFilter.push({
-            product: currentProduct,
-            qty,
-            created_at: currentBill.created_at,
-            status: currentBill.status,
-          });
-        });
-        let row = '',
-          totalPrice = 0,
-          totalAmountSold = 0;
-        billFilter.forEach((bill) => {
-          console.log(category);
-          if (category == '0') {
-            if (bill.status != '' && from <= bill.created_at && bill.created_at <= to) {
-              row += `<tr>
-                <td>${bill.product.name}</td>
-                <td>${bill.product.category}</td>
-                <td>${
-                  new Date(bill.created_at).toLocaleDateString() +
-                  ' ' +
-                  new Date(bill.created_at).toLocaleTimeString()
-                }</td>
-                <td>${formatNumber(bill.product.sale)}</td>
-                <td>${bill.qty}</td>
-                <td>${formatNumber(bill.product.sale * bill.qty)}</td>
-              </tr>`;
-              totalAmountSold += bill.qty;
-              totalPrice += bill.product.sale * bill.qty;
-            }
-          } else {
-            if (
-              bill.status != '' &&
-              from <= bill.created_at &&
-              bill.created_at <= to &&
-              bill.product.category == category
-            ) {
-              row += `<tr>
-                <td>${bill.product.name}</td>
-                <td>${bill.product.category}</td>
-                <td>${
-                  new Date(bill.created_at).toLocaleDateString() +
-                  ' ' +
-                  new Date(bill.created_at).toLocaleTimeString()
-                }</td>
-                <td>${formatNumber(bill.product.sale)}</td>
-                <td>${bill.qty}</td>
-                <td>${formatNumber(bill.product.sale * bill.qty)}</td>
-              </tr>`;
-              totalAmountSold += bill.qty;
-              totalPrice += bill.product.sale * bill.qty;
-            }
           }
         });
-        row += `<tr>
-            <td></td>
+        billFilter.push({
+          product: currentProduct,
+          qty,
+          status: currentBill.status,
+        });
+      });
+      console.log(billFilter);
+      let row = '',
+        totalPrice = 0,
+        totalAmountSold = 0;
+      billFilter.forEach((bill) => {
+        if (category == '0') {
+          if (bill.status == 'COMPLETED') {
+            row += `<tr>
+                <td>${bill.product.name}</td>
+                <td>${bill.product.category}</td>
+                <td>${formatNumber(bill.product.sale)}</td>
+                <td>${bill.qty}</td>
+                <td>${formatNumber(bill.product.sale * bill.qty)}</td>
+              </tr>`;
+            totalAmountSold += bill.qty;
+            totalPrice += bill.product.sale * bill.qty;
+          }
+        } else {
+          if (bill.status == 'COMPLETED' && bill.product.category == category) {
+            row += `<tr>
+                <td>${bill.product.name}</td>
+                <td>${bill.product.category}</td>
+                <td>${formatNumber(bill.product.sale)}</td>
+                <td>${bill.qty}</td>
+                <td>${formatNumber(bill.product.sale * bill.qty)}</td>
+              </tr>`;
+            totalAmountSold += bill.qty;
+            totalPrice += bill.product.sale * bill.qty;
+          }
+        }
+      });
+      row += `<tr>
             <td></td>
             <td></td>
             <td></td>
             <td><b>Amount Sold</b> = <b style="color:var(--ui-background)">${totalAmountSold}</b></td>
             <td><b>Sub total</b> = <b style="color:var(--red)">${formatNumber(totalPrice)}</b></td>
           </tr>`;
-        $('.tmanager-revenue tbody').innerHTML = row;
-        HandleEvent.SlideTdTable();
-      }
+      $('.tmanager-revenue tbody').innerHTML = row;
+      HandleEvent.SlideTdTable();
     },
     LoadBillByDate: function (from, to) {},
   },

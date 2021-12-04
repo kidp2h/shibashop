@@ -9,6 +9,9 @@
     display: revert;
     justify-content: center;
   } */
+  #admin .t-wrap {
+    overflow-x: scroll;
+  }
 }
 @media screen and (min-width: 1100px) {
   #admin .wrap-table:first-child {
@@ -27,8 +30,8 @@
   #admin .modal {
     width: 700px;
   }
-  #admin .search-category {
-    margin-left: auto;
+  #admin .t-wrap {
+    overflow-x: scroll;
   }
 }
 @media (max-width: 768px) {
