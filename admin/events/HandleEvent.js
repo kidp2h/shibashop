@@ -326,7 +326,11 @@ const HandleEvent = {
         if (this.files && this.files[0]) {
           var FR = new FileReader();
           FR.addEventListener('load', function (e) {
-            imgCurrent.setAttribute('src', e.target.result);
+            if (e.total > 500000) {
+              toast('danger', danger, 'Vui lòng upload ảnh size nhỏ hơn 500 KB');
+            } else {
+              imgCurrent.setAttribute('src', e.target.result);
+            }
             $('#inputChangeImage').value = '';
           });
           FR.readAsDataURL(this.files[0]);
