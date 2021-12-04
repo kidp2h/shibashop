@@ -450,7 +450,7 @@ const renderRecommendedProduct = function () {
                     <div class="recommended__quantity">
                         <div class="recommended__quantity-input">
                             <button class="recommended__decrement">-</button>
-                            <input class ="inputQuantity" data-id="${product.id}" type="number" min="1" max="100" step="1" value="1"  class="recommended__input"  inputmode="numeric"   />
+                            <input class ="recommended__input inputQuantity" data-id="${product.id}" type="number" min="1" max="100" step="1" value="1" inputmode="numeric"   />
                             <button class="recommended__increment">+</button>
                         </div>
                     </div>

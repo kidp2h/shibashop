@@ -270,6 +270,7 @@ const renderWishList = {
         if (productWish) {
             $('.wishList__box').innerHTML = ProductBox();
             $('.product-box').innerHTML = productWish;
+            AddToCart()
         } else {
             $('.wishList__box').innerHTML = WishList__Empty();
         }
@@ -335,6 +336,7 @@ const renderToastAddToCart = {
         };
 
         setTimeout(() => {
+            if(toasts)
             toastApp.removeChild(toasts);
         }, 2000);
     },
@@ -373,6 +375,7 @@ const renderDetail = {
     },
 };
 
+//================================> ĐẠI <================================
 const renderShop = {
     start() {
         if(window.location.hash.split('-')[0]!="#shop") return;

@@ -13,7 +13,7 @@ const wishListEvent = {
         let btnReturn = $('.wishList__Empty button');
         if (btnReturn)
             btnReturn.onclick = () => {
-                window.location.hash = '#home';
+                window.location.hash = '#shop';
             };
     },
 
