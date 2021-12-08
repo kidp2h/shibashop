@@ -5,9 +5,8 @@ const ProductModel = {
   UpdateAll: function (data) {
     localStorage.setItem('products', JSON.stringify(data));
   },
-  
-  Remove: function (id) {
 
+  Remove: function (id) {
     let table = this.getAll();
     let result = table.filter((record) => record.id != id);
     this.UpdateAll(result);
@@ -92,15 +91,12 @@ const ProductModel = {
       }
     } else return { status: true, message: lang.nameProductNotValid };
   },
-  getTotalPage: function () {
+  getTotalPage: function (document = this.getAll()) {
     return (totalPageUser =
-      this.getAll().length % LIMIT == 0
-        ? this.getAll().length / LIMIT
-        : this.getAll().length / LIMIT + 1);
+      document.length % LIMIT == 0 ? document.length / LIMIT : document.length / LIMIT + 1);
   },
-  getDocumentsByPage: function (page) {
-    return sortObjectByField('name', this.getAll().slice((page - 1) * LIMIT, page * LIMIT), 'asc');
-    //return this.getAll().slice((page - 1) * LIMIT, page * LIMIT);
+  getDocumentsByPage: function (page, document = this.getAll()) {
+    return document.slice((page - 1) * LIMIT, page * LIMIT);
   },
   saveImage: function (id, arrayImage) {
     let collection = this.getAll();
@@ -151,6 +147,23 @@ const ProductModel = {
   getProductByCategory(category = '0') {
     if (category == 0) return this.getAll();
     return this.getAll().filter((product) => product.category == category);
+  },
+  Search(from, to, name, category, rate) {
+    let patternCategory = !category ? new RegExp('.*', 'g') : new RegExp(`^${category}$`, 'g');
+    let patternName = name == '' ? new RegExp('.*', 'g') : new RegExp(`${name.toLowerCase()}`, 'g');
+    let products = [];
+    ProductModel.getAll().forEach((product) => {
+      if (
+        from <= product.sale &&
+        product.sale <= to &&
+        patternCategory.test(product.category) &&
+        product.rate == rate &&
+        patternName.test(product.name.toLowerCase())
+      ) {
+        products.push(product);
+      }
+    });
+    return products;
   },
 };
 

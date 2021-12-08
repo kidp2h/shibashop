@@ -77,19 +77,13 @@ const UserModel = {
     } else return { status: true, message: lang.usernameNotValid };
   },
 
-  getTotalPage: function () {
+  getTotalPage: function (document = this.getAll()) {
     return (totalPageUser =
-      this.getAll().length % LIMIT == 0
-        ? this.getAll().length / LIMIT
-        : this.getAll().length / LIMIT + 1);
+      document.length % LIMIT == 0 ? document.length / LIMIT : document.length / LIMIT + 1);
   },
 
-  getDocumentsByPage: function (page) {
-    return sortObjectByField(
-      'username',
-      this.getAll().slice((page - 1) * LIMIT, page * LIMIT),
-      'asc'
-    );
+  getDocumentsByPage: function (page, document = this.getAll()) {
+    return document.slice((page - 1) * LIMIT, page * LIMIT);
   },
 
   isExistUser(value) {
@@ -121,7 +115,6 @@ const UserModel = {
   },
 
   chaneInfo(infoNew, { username, ...userCurrentTemp }) {
-    
     const users = this.getAll();
 
     users.forEach((user) => {
@@ -144,22 +137,21 @@ const UserModel = {
 
   updateWishList(userCurrent, productID, wish) {
     const users = this.getAll();
-    
+
     if (wish) {
       userCurrent.wishList.push(productID);
-    } 
-    else {
+    } else {
       let index = 0;
-      index =  userCurrent.wishList.indexOf(productID);
+      index = userCurrent.wishList.indexOf(productID);
       userCurrent.wishList.splice(index, 1);
     }
-    
+
     this.UpdateAll(users);
     this.setUserCurrent(userCurrent);
   },
 
   getIdMax() {
-    return Math.max(...this.getAll().map(user => user.id))
-  }
+    return Math.max(...this.getAll().map((user) => user.id));
+  },
 };
 if (UserModel.getAll() == null) UserModel.Initialize();

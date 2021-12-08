@@ -28,18 +28,12 @@ const BillModel = {
     let collection = this.getAll();
     return collection.filter((bill) => bill.id == id)[0];
   },
-  getTotalPage: function () {
+  getTotalPage: function (document = this.getAll()) {
     return (totalPageUser =
-      this.getAll().length % LIMIT == 0
-        ? this.getAll().length / LIMIT
-        : this.getAll().length / LIMIT + 1);
+      document.length % LIMIT == 0 ? document.length / LIMIT : document.length / LIMIT + 1);
   },
-  getDocumentsByPage: function (page) {
-    return sortObjectByField(
-      'username',
-      this.getAll().slice((page - 1) * LIMIT, page * LIMIT),
-      'asc'
-    );
+  getDocumentsByPage: function (page, document = this.getAll()) {
+    return document.slice((page - 1) * LIMIT, page * LIMIT);
   },
 
   insertBill(bill) {

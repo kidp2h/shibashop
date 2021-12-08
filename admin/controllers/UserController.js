@@ -44,8 +44,27 @@ const UserController = {
           result.push(document);
         }
       });
+      let totalPage = UserModel.getTotalPage(result);
+      let currentPage = ($('.page-user input.currentPage').value = 1);
+      let base = `    
+      <ul>
+        <li class="previous">&lt;</li>
+        <li class="next">&gt;</li>
+      </ul>`;
+      $('.page-user ul').innerHTML = base;
+      for (let i = 1; i <= totalPage; i++) {
+        let page = '';
+        if (i == currentPage) {
+          page = `<li style="background-color:var(--purple)">${i}</li>`;
+        } else {
+          page = `<li>${i}</li>`;
+        }
+        $('.page-user ul li:last-child').insertAdjacentHTML('beforeBegin', page);
+      }
+      PaginationController.InitializeEventPaginationSearch(result, totalPage, 'user');
+      //localStorage.setItem('searchUserByUsername', JSON.stringify(result));
       let row = '';
-      result.forEach((user) => {
+      UserModel.getDocumentsByPage(1, result).forEach((user) => {
         row += `
         <tr>
             <td class="username">${user.username}</td>
@@ -80,6 +99,8 @@ const UserController = {
       TableEvent.User.Initialize();
     } else {
       this.LoadUser(Number($('.page-user input.currentPage').value));
+      //localStorage.setItem('searchUserByUsername', '');
+      PaginationController.Update('user');
     }
   },
 };
