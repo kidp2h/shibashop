@@ -57,8 +57,27 @@ const BillController = {
         result.push(document);
       }
     });
+    let totalPage = BillModel.getTotalPage(result);
+    let currentPage = ($('.page-bill input.currentPage').value = 1);
+    let base = `    
+      <ul>
+          <li class="previous">&lt;</li>
+          <li class="next">&gt;</li>
+      </ul>`;
+    $('.page-bill ul').innerHTML = base;
+    for (let i = 1; i <= totalPage; i++) {
+      let page = '';
+      if (i == currentPage) {
+        page = `<li style="background-color:var(--ui-background)">${i}</li>`;
+      } else {
+        page = `<li>${i}</li>`;
+      }
+      $('.page-bill ul li:last-child').insertAdjacentHTML('beforeBegin', page);
+    }
+    PaginationController.InitializeEventPaginationSearch(result, totalPage, 'bill');
+    localStorage.setItem('searchBillByUsername', JSON.stringify(result));
     let row = '';
-    result.forEach((bill) => {
+    BillModel.getDocumentsByPage(1, result).forEach((bill) => {
       row += `<tr>          
         <td>${bill.username}</td>
         <td class="action">

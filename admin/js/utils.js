@@ -23,18 +23,14 @@ function isExist(model, document) {
 
 function getNextId(model) {
   function compare(a, b) {
-    if (a.id < b.id) {
-      return 1;
-    }
-    if (a.id > b.id) {
-      return -1;
-    }
+    if (a.id < b.id) return 1;
+    if (a.id > b.id) return -1;
     return 0;
   }
+
   table = model.getAll();
-  if (table.length == 0) {
-    return 1;
-  } else {
+  if (table.length == 0) return 1;
+  else {
     table.sort(compare);
     return Number(table[0].id) + 1;
   }
@@ -55,6 +51,7 @@ function sortObjectByField(field, data, type = 'asc') {
 }
 
 function sortTable(n, tableName) {
+  HandleEvent.SlideTdTable();
   let table = $(`.tmanager-${tableName} table`);
   var rows,
     i,
@@ -65,28 +62,18 @@ function sortTable(n, tableName) {
     dir,
     switchcount = 0;
   switching = true;
-  //Set the sorting direction to ascending:
+
   dir = 'asc';
-  /*Make a loop that will continue until
-  no switching has been done:*/
   while (switching) {
-    //start by saying: no switching is done:
     switching = false;
     rows = table.getElementsByTagName('TR');
-    /*Loop through all table rows (except the
-    first, which contains table headers):*/
     let length = rows.length - 1;
     if (tableName == 'revenue') length = rows.length - 2;
     for (i = 1; i < length; i++) {
-      //Change i=0 if you have the header th a separate table.
-      //start by saying there should be no switching:
       shouldSwitch = false;
-      /*Get the two elements you want to compare,
-      one from current row and one from the next:*/
       x = rows[i].getElementsByTagName('TD')[n];
       y = rows[i + 1].getElementsByTagName('TD')[n];
-      /*check if the two rows should switch place,
-      based on the direction, asc or desc:*/
+
       let contentX = x.innerHTML,
         contentY = y.innerHTML;
       if (!isNaN(contentX) || contentX.includes('$')) {
@@ -96,31 +83,23 @@ function sortTable(n, tableName) {
         contentX = x.innerHTML.toLowerCase();
         contentY = y.innerHTML.toLowerCase();
       }
-      console.log(contentX, contentY);
       if (dir == 'asc') {
         if (contentX > contentY) {
-          //if so, mark as a switch and break the loop:
           shouldSwitch = true;
           break;
         }
       } else if (dir == 'desc') {
         if (contentX < contentY) {
-          //if so, mark as a switch and break the loop:
           shouldSwitch = true;
           break;
         }
       }
     }
     if (shouldSwitch) {
-      /*If a switch has been marked, make the switch
-      and mark that a switch has been done:*/
       rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
       switching = true;
-      //Each time a switch is done, increase this count by 1:
       switchcount++;
     } else {
-      /*If no switching has been done AND the direction is "asc",
-      set the direction to "desc" and run the while loop again.*/
       if (switchcount == 0 && dir == 'asc') {
         dir = 'desc';
         switching = true;
@@ -140,37 +119,28 @@ function sortTableByCategoryProduct(n) {
     dir,
     switchcount = 0;
   switching = true;
-  //Set the sorting direction to ascending:
+  // Đổi thứ tự
   dir = 'asc';
-  /*Make a loop that will continue until
-  no switching has been done:*/
   while (switching) {
-    //start by saying: no switching is done:
     switching = false;
     rows = table.getElementsByTagName('TR');
-    /*Loop through all table rows (except the
-    first, which contains table headers):*/
+    // Lặp từng cặp dòng i và i + 1
     for (i = 1; i < rows.length - 1; i++) {
-      //Change i=0 if you have the header th a separate table.
-      //start by saying there should be no switching:
+      // để giá trị switch là false để đánh dấu
       shouldSwitch = false;
-      /*Get the two elements you want to compare,
-      one from current row and one from the next:*/
       x = rows[i].getElementsByTagName('TD')[n];
       y = rows[i + 1].getElementsByTagName('TD')[n];
-      /*check if the two rows should switch place,
-      based on the direction, asc or desc:*/
+      // lấy nội dung 2 dòng để kiểm tra
       let contentX = x.querySelector('select').value,
         contentY = y.querySelector('select').value;
       if (dir == 'asc') {
         if (contentX > contentY) {
-          //if so, mark as a switch and break the loop:
+          // đánh dấu để đổi dòng
           shouldSwitch = true;
           break;
         }
       } else if (dir == 'desc') {
         if (contentX < contentY) {
-          //if so, mark as a switch and break the loop:
           shouldSwitch = true;
           break;
         }
@@ -181,8 +151,6 @@ function sortTableByCategoryProduct(n) {
       switching = true;
       switchcount++;
     } else {
-      /*If no switching has been done AND the direction is "asc",
-      set the direction to "desc" and run the while loop again.*/
       if (switchcount == 0 && dir == 'asc') {
         dir = 'desc';
         switching = true;

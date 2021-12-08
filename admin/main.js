@@ -100,4 +100,22 @@ function Admin_Main() {
       $('.overlayDetail').style.display = 'none';
     }, 300);
   };
+  let stars = [];
+  $$('.selectRate i').forEach((star) => {
+    stars.push(star);
+    star.onclick = function () {
+      $$('.selectRate i').forEach((item) => (item.style.color = 'var(--gray)'));
+      let pos = this.dataset.pos;
+      this.classList.add('active');
+      for (let i = 0; i < pos; i++) {
+        stars[i].style.color = '#fc0';
+      }
+    };
+  });
+  $('.selectRate').ondblclick = function () {
+    $$('.selectRate i').forEach((item) => {
+      item.style.color = 'var(--gray)';
+      item.classList.remove('active');
+    });
+  };
 }

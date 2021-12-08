@@ -42,8 +42,27 @@ const CategoryController = {
           result.push(document);
         }
       });
+      let totalPage = CategoryModel.getTotalPage(result);
+      let currentPage = ($('.page-category input.currentPage').value = 1);
+      let base = `    
+      <ul>
+          <li class="previous">&lt;</li>
+          <li class="next">&gt;</li>
+      </ul>`;
+      $('.page-category ul').innerHTML = base;
+      for (let i = 1; i <= totalPage; i++) {
+        let page = '';
+        if (i == currentPage) {
+          page = `<li style="background-color:var(--ui-background)">${i}</li>`;
+        } else {
+          page = `<li>${i}</li>`;
+        }
+        $('.page-category ul li:last-child').insertAdjacentHTML('beforeBegin', page);
+      }
+      PaginationController.InitializeEventPaginationSearch(result, totalPage, 'category');
+      localStorage.setItem('searchCategoryByName', JSON.stringify(result));
       let row = '';
-      result.forEach((item) => {
+      CategoryModel.getDocumentsByPage(1, result).forEach((item) => {
         row += `
       <tr>
       <td>
@@ -71,7 +90,7 @@ const CategoryController = {
       TableEvent.Category.Initialize();
     } else {
       this.LoadCategory(Number($('.page-category input.currentPage').value));
-      //PaginationController.LoadDataAtPage("category",Number($(".page-category input.currentPage").value))
+      localStorage.setItem('searchCategoryByName', '');
     }
   },
 };

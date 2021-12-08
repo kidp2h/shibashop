@@ -37,6 +37,7 @@ const HandleEvent = {
     },
     Save: function (item) {
       if (confirm('Bạn có thật sự muốn lưu không ?')) {
+        $('.tmanager-user .input-search').value = '';
         let row = item.parentNode.parentNode;
         let id = Number(item.dataset.id);
         let currentPage = Number($('.page-user input.currentPage').value);
@@ -51,6 +52,7 @@ const HandleEvent = {
         toast(result.message.type, icon[result.message.type], result.message.text);
         if (result.message.type == 'success') {
           PaginationController.Update('user');
+          localStorage.setItem('searchUserByUsername', '');
           // only load page current, not load all
           UserView.LoadData(currentPage);
           UserView.LoadEvent();
@@ -132,12 +134,6 @@ const HandleEvent = {
       sel.removeAllRanges();
       sel.addRange(range);
       window.scrollTo({ top: 0, behavior: 'smooth' });
-      // $$('tbody tr:nth-child(even)').forEach((r) => {
-      //   r.style.animation = 'tdSlideR2L ease 0.85s forwards';
-      // });
-      // $$('tbody tr:nth-child(odd)').forEach((r) => {
-      //   r.style.animation = 'slideL2R ease 0.85s forwards';
-      // });
     },
     Save: function (item) {
       let row = item.parentNode.parentNode;
@@ -151,7 +147,6 @@ const HandleEvent = {
       };
       if (Validate.isNumber(product.price)) {
         if (confirm('Bạn có thật sự muốn lưu không ?')) {
-          let currentPage = Number($('.page-product input.currentPage').value);
           let result = ProductModel.updateProduct(id, product);
           toast(result.message.type, icon[result.message.type], result.message.text);
           if (result.message.type == 'success') {
@@ -238,6 +233,49 @@ const HandleEvent = {
         FR.readAsDataURL(this.files[0]);
       }
     },
+    SearchDetail: function () {
+      let to = $('#rangePrice-to').value || 999999999999999999;
+      let from = $('#rangePrice-from').value || 0;
+      let name = $('.tmanager-product .input-search').value || '';
+      let category = 0,
+        rate = 0;
+      if (to < from) {
+        console.log(to, from);
+        toast('warning', warning, 'Vui lòng chọn khoảng giá hợp lệ');
+        return;
+      }
+
+      $$('.btn-select-category').forEach((item) => {
+        if (item.classList.contains('active')) {
+          category = item.textContent == 'All' ? 0 : item.textContent;
+        }
+      });
+      $$('.selectRate i').forEach((item) => {
+        if (item.classList.contains('active')) {
+          rate = item.dataset.pos;
+        }
+      });
+      console.log(to, from, category, rate);
+      ProductController.SearchDetail(from, to, name, category, rate);
+    },
+    InnerCategoryInFilter: function () {
+      let categories = CategoryModel.getAll();
+      let listButton = '<button class="btn-select-category">All</button>';
+      categories.forEach((category, index) => {
+        if (index == 0) {
+          listButton += `<button class="btn-select-category active">${category.name}</button>`;
+        } else {
+          listButton += `<button class="btn-select-category">${category.name}</button>`;
+        }
+      });
+      $('.list-btn-category').innerHTML = listButton;
+      $$('.btn-select-category').forEach((btn) => {
+        btn.onclick = function () {
+          $$('.btn-select-category').forEach((item) => item.classList.remove('active'));
+          btn.classList.add('active');
+        };
+      });
+    },
   },
   Category: {
     Add: function () {
@@ -246,7 +284,7 @@ const HandleEvent = {
       <tr>
       <td>
       <div class="wrap-image">
-        <img class="image-document i-category" src="./images/categories/category-img-1.jpg" alt="Image category ">
+        <img class="image-document i-category" src="./images/products/product.jpg" alt="Image category ">
         <button class="changeImage" data-id="${nextId}">
           <i class="fas fa-plus">
             <input type="file" name="changeImage" id="inputChangeImage"  style="display: none;" accept="image/*">

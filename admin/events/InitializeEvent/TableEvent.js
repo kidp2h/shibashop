@@ -88,11 +88,11 @@ const TableEvent = {
         };
       });
     },
-    Search: function () {
-      $('.tmanager-product .input-search').onkeyup = function () {
-        HandleEvent.Product.SearchProduct(this.value);
-      };
-    },
+    // Search: function () {
+    //   $('.tmanager-product .input-search').onkeyup = function () {
+    //     HandleEvent.Product.SearchProduct(this.value);
+    //   };
+    // },
     HandlePrice: function () {
       $$('.priceProduct').forEach((row) => {
         row.onkeypress = function (e) {
@@ -173,6 +173,11 @@ const TableEvent = {
         };
       });
     },
+    SearchDetail: function () {
+      $('.btn-filter-detail').onclick = function () {
+        HandleEvent.Product.SearchDetail();
+      };
+    },
     Initialize: function () {
       this.Save();
       this.Add();
@@ -181,9 +186,11 @@ const TableEvent = {
       this.HandlePrice();
       this.AddImage();
       this.SaveImage();
-      this.Search();
+      //this.Search();
       this.HandleRate();
       this.Sort();
+      this.SearchDetail();
+      HandleEvent.Product.InnerCategoryInFilter();
     },
   },
   Category: {

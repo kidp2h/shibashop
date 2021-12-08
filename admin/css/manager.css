@@ -115,3 +115,73 @@
 #admin .table-action div {
   display: flex;
 }
+
+.group-range-price {
+  margin-bottom: 10px;
+}
+#admin .tmanager-product .box-filter {
+  margin-bottom: 10px;
+}
+#admin .rangePrice {
+  border: 1px solid var(--purple);
+  width: 120px;
+  padding: 5px 10px 5px 10px;
+  border-radius: 5px;
+  height: 40px;
+}
+#admin .tmanager-product .box-filter label {
+  display: block;
+  font-size: 1.5rem;
+  margin-bottom: 5px;
+}
+button.btn-select-category {
+  background-color: transparent;
+  padding: 10px 30px;
+  border: 1px solid var(--purple);
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s;
+  margin-bottom: 10px;
+  margin-right: 10px;
+  font-size: 1.5rem;
+}
+
+button.btn-select-category:hover {
+  background-color: var(--purple);
+  color: white;
+}
+.btn-select-category.active {
+  background-color: var(--purple);
+  color: white;
+  transition: all 0.3s;
+}
+.box-search-detail {
+  transition: all 1s;
+  height: 100%;
+}
+
+.selectRate {
+  user-select: none;
+}
+.selectRate i {
+  font-size: 3rem;
+  color: var(--gray);
+}
+.selectRate i {
+  cursor: pointer;
+  font-style: normal;
+}
+.btn-filter-detail {
+  margin-bottom: 10px;
+  padding: 10px;
+  width: 100px;
+  background-color: var(--ui-background);
+  color: white;
+  border-radius: 10px;
+  transition: all 0.3s;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
